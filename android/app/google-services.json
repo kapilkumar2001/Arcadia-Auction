@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "508512706519",
+    "project_id": "arcadia-auction-app",
+    "storage_bucket": "arcadia-auction-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508512706519:android:d92664cd634ecbf997f592",
+        "android_client_info": {
+          "package_name": "com.example.auctions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508512706519-mohnnd3krb27nvlpldbjgdi1i33l80ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDldNz73Mr60Sk4xZ84oMnjZfKLDaYP9TA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508512706519-mohnnd3krb27nvlpldbjgdi1i33l80ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
