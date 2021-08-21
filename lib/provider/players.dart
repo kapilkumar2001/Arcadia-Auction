@@ -8,15 +8,19 @@ class Players with ChangeNotifier {
   List<Player> soldPlayers = [
     Player(
       name: 'Nishant',
-      isAdmin: '0',
+      inGameName: 'iauhdslfiahudf',
       primaryWeapon: 'lavda',
       secondaryWeapon: 'chumt',
+      hoursPlayed: 1,
+      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
       playerCategory: PlayerCategory.gold,
     ),
     Player(
       name: 'Kapil',
-      isAdmin: '0',
+      inGameName: 'aisdhfiawhdf',
       primaryWeapon: 'naak',
+      hoursPlayed: 1,
+      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
       secondaryWeapon: 'gaand',
       playerCategory: PlayerCategory.silver,
     ),
@@ -25,15 +29,19 @@ class Players with ChangeNotifier {
   List<Player> unsoldPlayers = [
     Player(
       name: 'Nishant-noob',
-      isAdmin: '0',
+      inGameName: 'XD-Noob',
       primaryWeapon: 'lavda',
+      hoursPlayed: 1,
+      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
       secondaryWeapon: 'chumt',
       playerCategory: PlayerCategory.silver,
     ),
     Player(
       name: 'Kapil-noob',
-      isAdmin: '0',
+      inGameName: 'Matlab-noob',
       primaryWeapon: 'naak',
+      hoursPlayed: 1,
+      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
       secondaryWeapon: 'gaand',
       playerCategory: PlayerCategory.bronze,
     ),
