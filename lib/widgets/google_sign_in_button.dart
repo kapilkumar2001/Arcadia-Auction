@@ -1,5 +1,5 @@
 import 'package:arcadia/provider/auth.dart';
-import 'package:arcadia/screens/Wrapper.dart';
+import 'package:arcadia/screens/wrapper.dart';
 import 'package:arcadia/screens/auction_overview.dart';
 import 'package:arcadia/screens/userprofile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
