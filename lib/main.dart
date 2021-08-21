@@ -1,6 +1,7 @@
-import 'package:auctions/provider/players.dart';
-import 'package:auctions/screens/auction_home.dart';
-import 'package:auctions/screens/auction_overview.dart';
+import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/screens/auction_home.dart';
+import 'package:arcadia/screens/auction_overview.dart';
+import 'package:arcadia/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -75,6 +76,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return AuctionOverview();
+    return MaterialApp(
+      title: 'Arcadia CSGO League',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        brightness: Brightness.dark,
+      ),
+      home: SignInScreen(),
+    );
   }
 }
