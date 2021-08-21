@@ -1,6 +1,6 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/screens/Wrapper.dart';
+import 'package:arcadia/screens/wrapper.dart';
 import 'package:arcadia/screens/auction_home.dart';
 import 'package:arcadia/screens/auction_overview.dart';
 import 'package:arcadia/screens/auction_player.dart';
