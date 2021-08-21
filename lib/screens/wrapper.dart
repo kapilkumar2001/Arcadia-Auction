@@ -1,5 +1,7 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/screens/auction_overview.dart';
+import 'package:arcadia/screens/formPage.dart';
+import 'package:arcadia/screens/player_dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,10 +17,19 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> {
   bool isAdmin = false;
   FirebaseAuth auth = FirebaseAuth.instance;
+  static var snapShot;
+  static String? uid;
+
+void _getsnapShot()async{
+  snapShot =
+            await FirebaseFirestore.instance.collection('Player').doc(uid).get();
+}
+
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    String uid = auth.currentUser!.uid.toString();
+    _getsnapShot();
+    uid = auth.currentUser!.uid.toString();
     FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (value) {
         setState(() {
@@ -33,19 +44,13 @@ class _WrapperState extends State<Wrapper> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return isAdmin
+  Widget build(BuildContext context)  {
+    // snapShot =
+    //     await FirebaseFirestore.instance.collection('Player').doc(uid).get();
+    return (isAdmin)
         ? AuctionOverview()
-        : Center(
-            child: Scaffold(
-              body: ElevatedButton.icon(
-                onPressed: () async {
-                  await Provider.of<Auth>(context, listen: false).signOut();
-                },
-                icon: Icon(Icons.arrow_forward),
-                label: Text('Sign Out'),
-              ),
-            ),
-          );
+        : (snapShot == null || !snapShot.exists)
+            ? PlayerForm()
+            : PlayerDashBoard();
   }
 }
