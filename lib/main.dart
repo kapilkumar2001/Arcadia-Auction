@@ -1,11 +1,76 @@
+import 'package:arcadia/provider/auth.dart';
+import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/screens/Wrapper.dart';
+import 'package:arcadia/screens/auction_home.dart';
+import 'package:arcadia/screens/auction_overview.dart';
+import 'package:arcadia/screens/auction_player.dart';
 import 'package:arcadia/screens/signin_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+import 'constants/app_theme.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Players>(
+          create: (_) => Players(),
+        ),
+        ChangeNotifierProvider<Auth>(
+          create: (_) => Auth(),
+        )
+      ],
+      child: Consumer<Auth>(
+        builder: (ctx, auth, _) => MaterialApp(
+          title: 'Arcadia CSGO League',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'lato',
+          ),
+          home: FutureBuilder(
+            // Initialize FlutterFire:
+            future: _initialization,
+            builder: (context, snapshot) {
+              // Once complete, show your application
+              if (snapshot.connectionState == ConnectionState.done) {
+                return auth.isAuth ? Wrapper() : OnboardingPage();
+              }
+              return CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      CustomColors.firebaseOrange,
+                    ),
+                  );
+            },
+          ),
+          // home: auth.isAuth?AuctionHome() :MyHomePage(),
+          routes: {
+            AuctionOverview.routeName: (ctx) => AuctionOverview(),
+            AuctionHome.routeName: (ctx) => AuctionHome(),
+            AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
+          },
+        ),
+        // ),
+      ),
+    );
+  }
+}
+
+class OnboardingPage extends StatefulWidget {
+  @override
+  _OnboardingPageState createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
