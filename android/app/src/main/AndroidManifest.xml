@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.auctions">
    <application
-        android:label="auctions"
+        android:label="Arcadia CSGO League"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
