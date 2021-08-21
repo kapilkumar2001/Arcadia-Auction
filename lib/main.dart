@@ -52,14 +52,12 @@ class MyApp extends StatelessWidget {
                   );
             },
           ),
-          // home: auth.isAuth?AuctionHome() :MyHomePage(),
           routes: {
             AuctionOverview.routeName: (ctx) => AuctionOverview(),
             AuctionHome.routeName: (ctx) => AuctionHome(),
             AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
           },
         ),
-        // ),
       ),
     );
   }
