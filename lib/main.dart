@@ -1,9 +1,9 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/screens/Auction/auction_overview.dart';
+import 'package:arcadia/screens/Auction/auction_player.dart';
 import 'package:arcadia/screens/wrapper.dart';
-import 'package:arcadia/screens/auction_home.dart';
-import 'package:arcadia/screens/auction_overview.dart';
-import 'package:arcadia/screens/auction_player.dart';
+import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:arcadia/screens/signin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
