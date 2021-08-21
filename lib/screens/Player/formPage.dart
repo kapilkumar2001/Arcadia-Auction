@@ -1,10 +1,9 @@
 import 'dart:io';
 
-
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/screens/player_dashboard.dart';
+import 'package:arcadia/screens/Player/player_dashboard.dart';
 import 'package:arcadia/widgets/blue_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -297,15 +296,16 @@ class _PlayerFormState extends State<PlayerForm> {
                             if (imageUrl == null) {
                               _showMyDialog();
                             } else {
-                              Provider.of<Players>(context,listen: false).addplayerSetup(
-                                  Player(
+                              Provider.of<Players>(context, listen: false)
+                                  .addplayerSetup(Player(
                                       studentID: studentIDcontroller.text,
                                       inGameName: iGNcontroller.text,
                                       name: namecontroller.text,
                                       primaryWeapon: primaryWcontroller.text,
                                       secondaryWeapon:
                                           secondaryWcontroller.text,
-                                      hoursPlayed: int.parse(gameHRScontroller.text),
+                                      hoursPlayed:
+                                          int.parse(gameHRScontroller.text),
                                       steamUrl: streamURLcontroller.text));
                               if (_formKey.currentState!.validate()) {
                                 Navigator.push(
@@ -321,14 +321,14 @@ class _PlayerFormState extends State<PlayerForm> {
                               label: "Apply",
                               buttonWidth:
                                   MediaQuery.of(context).size.width / 2)),
-
-                                  ElevatedButton.icon(
-              onPressed: () async {
-                await Provider.of<Auth>(context, listen: false).signOut();
-              },
-              icon: Icon(Icons.arrow_forward),
-              label: Text('Sign Out'),
-            ),
+                      ElevatedButton.icon(
+                        onPressed: () async {
+                          await Provider.of<Auth>(context, listen: false)
+                              .signOut();
+                        },
+                        icon: Icon(Icons.arrow_forward),
+                        label: Text('Sign Out'),
+                      ),
                     ],
                   ),
                 ),

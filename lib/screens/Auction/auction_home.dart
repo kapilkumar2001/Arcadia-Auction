@@ -1,9 +1,10 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/screens/auction_player.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'auction_player.dart';
 
 class AuctionHome extends StatefulWidget {
   static const routeName = '/auction-home';
