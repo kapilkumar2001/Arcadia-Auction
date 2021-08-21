@@ -1,5 +1,5 @@
-import 'package:auctions/enums/category.dart';
-import 'package:auctions/enums/player_status.dart';
+import 'package:arcadia/enums/category.dart';
+import 'package:arcadia/enums/player_status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

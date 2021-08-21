@@ -4,6 +4,7 @@ import 'package:arcadia/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({Key? key, required User user})
@@ -142,7 +143,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         setState(() {
                           _isSigningOut = true;
                         });
-                        await Authentication.signOut(context: context);
+                        await Provider.of<Auth>(context).signOut();
                         setState(() {
                           _isSigningOut = false;
                         });

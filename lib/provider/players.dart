@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:auctions/enums/category.dart';
-import 'package:auctions/provider/player.dart';
+import 'package:arcadia/enums/category.dart';
+import 'package:arcadia/provider/player.dart';
 import 'package:flutter/material.dart';
 
 class Players with ChangeNotifier {
@@ -44,7 +44,7 @@ class Players with ChangeNotifier {
   Player get getNextUnsoldPlayer {
     Random random = new Random();
     return unsoldPlayers.elementAt(random.nextInt(soldPlayers.length));
-  } 
+  }
 
   void addSoldPlayer(Player p) {
     soldPlayers.add(p);

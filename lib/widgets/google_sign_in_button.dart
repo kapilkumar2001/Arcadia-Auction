@@ -1,4 +1,6 @@
 import 'package:arcadia/provider/auth.dart';
+import 'package:arcadia/screens/Wrapper.dart';
+import 'package:arcadia/screens/auction_overview.dart';
 import 'package:arcadia/screens/userprofile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,19 +36,17 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   _isSigningIn = true;
                 });
 
-                User? user =
-                    await Authentication.signInWithGoogle(context: context);
+                User? user = await Auth.signInWithGoogle();
 
                 setState(() {
                   _isSigningIn = false;
                 });
 
                 if (user != null) {
+                  print('reached wrapper');
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => UserProfileScreen(
-                        user: user,
-                      ),
+                      builder: (context) => Wrapper(),
                     ),
                   );
                 }

@@ -1,79 +1,76 @@
+import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/screens/Wrapper.dart';
 import 'package:arcadia/screens/auction_home.dart';
 import 'package:arcadia/screens/auction_overview.dart';
+import 'package:arcadia/screens/auction_player.dart';
 import 'package:arcadia/screens/signin_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'constants/app_theme.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     primarySwatch: Colors.blue,
-    //   ),
-    //   home: AuctionOverview(),
-    //   routes: {
-    //     AuctionOverview.routeName: (ctx) => AuctionOverview(),
-    //     AuctionHome.routeName: (ctx) => AuctionHome(),
-    //   },
-    // );
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Players>(
           create: (_) => Players(),
         ),
+        ChangeNotifierProvider<Auth>(
+          create: (_) => Auth(),
+        )
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: Consumer<Auth>(
+        builder: (ctx, auth, _) => MaterialApp(
+          title: 'Arcadia CSGO League',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'lato',
+          ),
+          home: FutureBuilder(
+            // Initialize FlutterFire:
+            future: _initialization,
+            builder: (context, snapshot) {
+              // Once complete, show your application
+              if (snapshot.connectionState == ConnectionState.done) {
+                return auth.isAuth ? Wrapper() : OnboardingPage();
+              }
+              return CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      CustomColors.firebaseOrange,
+                    ),
+                  );
+            },
+          ),
+          // home: auth.isAuth?AuctionHome() :MyHomePage(),
+          routes: {
+            AuctionOverview.routeName: (ctx) => AuctionOverview(),
+            AuctionHome.routeName: (ctx) => AuctionHome(),
+            AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
+          },
         ),
-        home: AuctionOverview(),
-        routes: {
-          AuctionOverview.routeName: (ctx) => AuctionOverview(),
-          AuctionHome.routeName: (ctx) => AuctionHome(),
-        },
-
-        // child: Consumer<Auth>(
-        //   builder: (ctx, auth, _) => MaterialApp(
-        //     title: 'MyShop',
-        //     theme: ThemeData(
-        //       primarySwatch: Colors.purple,
-        //       accentColor: Colors.deepOrange,
-        //       fontFamily: 'lato',
-        //     ),
-        //     home: auth.isAuth ? ProductsOverviewScreen() : AuthScreen(),
-        //     routes: {
-        //       ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
-        //       CartScreen.routeName: (ctx) => CartScreen(),
-        //       OrdersScreen.routeName: (ctx) => OrdersScreen(),
-        //       UserProductScreen.routeName: (ctx) => UserProductScreen(),
-        //       EditProductScreen.routeName: (ctx) => EditProductScreen(),
-        //     },
-        // ),
         // ),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
+class OnboardingPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _OnboardingPageState createState() => _OnboardingPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
