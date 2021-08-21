@@ -1,0 +1,4 @@
+enum PlayerStatus {
+  sold,
+  unsold,
+}
