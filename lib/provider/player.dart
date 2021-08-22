@@ -33,7 +33,6 @@ class Player with ChangeNotifier {
     this.soldTo = "",
     this.soldIn = 0,
   });
-
   Player copyWith({
     String? name,
     String? studentID,
