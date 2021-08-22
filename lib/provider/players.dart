@@ -129,9 +129,9 @@ class Players with ChangeNotifier {
     CollectionReference players =
         FirebaseFirestore.instance.collection('Player');
     players.doc(uid).update(p.toMap()).then((_) {
-      notifyListeners();
       print("Data Updated in firebase for uid - " + uid);
     });
+    notifyListeners();
   }
 
   Future<void> getData() async {
