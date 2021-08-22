@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:arcadia/enums/weapons.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,8 @@ class Player with ChangeNotifier {
   final String studentID;
   final String inGameName;
   final bool isAdmin;
-  final String primaryWeapon;
-  final String secondaryWeapon;
+  final Weapons primaryWeapon;
+  final Weapons secondaryWeapon;
   final PlayerCategory playerCategory;
   final PlayerStatus playerStatus;
   final int hoursPlayed;
@@ -30,7 +31,7 @@ class Player with ChangeNotifier {
     required this.primaryWeapon,
     required this.secondaryWeapon,
     this.playerCategory = PlayerCategory.unassigned,
-    this.playerStatus = PlayerStatus.unsold,
+    this.playerStatus = PlayerStatus.unassigned,
     required this.hoursPlayed,
     required this.steamUrl,
     this.soldTo = "",
@@ -42,8 +43,8 @@ class Player with ChangeNotifier {
     String? studentID,
     String? inGameName,
     bool? isAdmin,
-    String? primaryWeapon,
-    String? secondaryWeapon,
+    Weapons? primaryWeapon,
+    Weapons? secondaryWeapon,
     PlayerCategory? playerCategory,
     PlayerStatus? playerStatus,
     int? hoursPlayed,
@@ -88,18 +89,24 @@ class Player with ChangeNotifier {
 
   factory Player.fromMap(Map<String, dynamic> map) {
     PlayerCategory pc = PlayerCategory.values.firstWhere((e) {
-      // print("e.string => " + e.toString());
-      // print("map[playercateg] =>  " + map['playerCategory']);
       return e.toString() == map['playerCategory'];
     }, orElse: () {
-      // print('No matching element.');
       return PlayerCategory.gold;
     });
     PlayerStatus ps = PlayerStatus.values
         .firstWhere((e) => e.toString() == map['playerStatus'], orElse: () {
-      // print('No matching element.');
-      return PlayerStatus.unsold;
+      return PlayerStatus.unassigned;
     });
+    Weapons pwp = Weapons.values.firstWhere(
+      (e) {
+        return e.toString() == map['primaryWeapon'];
+      },
+    );
+    Weapons swp = Weapons.values.firstWhere(
+      (e) {
+        return e.toString() == map['secondaryWeapon'];
+      },
+    );
 
     return Player(
       uid: map['uid'],
@@ -107,8 +114,8 @@ class Player with ChangeNotifier {
       studentID: map['studentID'],
       inGameName: map['inGameName'],
       isAdmin: map['isAdmin'],
-      primaryWeapon: map['primaryWeapon'],
-      secondaryWeapon: map['secondaryWeapon'],
+      primaryWeapon: pwp,
+      secondaryWeapon: swp,
       playerCategory: pc,
       playerStatus: ps,
       hoursPlayed: map['hoursPlayed'],

@@ -22,14 +22,16 @@ class _WrapperState extends State<Wrapper> {
   void initiate() async {
     var uid = auth.currentUser!.uid.toString();
     await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
-      (value) {
-        if (value.exists) {
+      (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
+        if (documentSnapshot.exists) {
           setState(() {
             isData = true;
-            isAdmin = value.data()!['isAdmin'];
-            isLoading = false;
+            isAdmin = documentSnapshot.data()!['isAdmin'];
           });
         }
+        setState(() {
+          isLoading = false;
+        });
       },
     );
   }

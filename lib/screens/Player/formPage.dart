@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
@@ -301,9 +302,17 @@ class _PlayerFormState extends State<PlayerForm> {
                                       studentID: studentIDcontroller.text,
                                       inGameName: iGNcontroller.text,
                                       name: namecontroller.text,
-                                      primaryWeapon: primaryWcontroller.text,
+                                      primaryWeapon: Weapons.values.firstWhere(
+                                        (e) =>
+                                            e.toString() ==
+                                            primaryWcontroller.text,
+                                      ),
                                       secondaryWeapon:
-                                          secondaryWcontroller.text,
+                                          Weapons.values.firstWhere(
+                                        (e) =>
+                                            e.toString() ==
+                                            secondaryWcontroller.text,
+                                      ),
                                       hoursPlayed:
                                           int.parse(gameHRScontroller.text),
                                       steamUrl: streamURLcontroller.text));
