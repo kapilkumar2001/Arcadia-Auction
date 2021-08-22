@@ -8,102 +8,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Players with ChangeNotifier {
-  List<Player> allPlayers = [
-    // Player(
-    //   name: 'Nishant',
-    //   inGameName: 'iauhdslfiahudf',
-    //   primaryWeapon: 'lavda',
-    //   secondaryWeapon: 'chumt',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   playerCategory: PlayerCategory.gold,
-    //   studentID: '116262',
-    // ),
-    // Player(
-    //   name: 'Kapil',
-    //   inGameName: 'aisdhfiawhdf',
-    //   primaryWeapon: 'naak',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   secondaryWeapon: 'gaand',
-    //   playerCategory: PlayerCategory.silver,
-    //   studentID: '55151',
-    // ),
-    // Player(
-    //   name: 'Nishant-noob',
-    //   inGameName: 'XD-Noob',
-    //   primaryWeapon: 'lavda',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   secondaryWeapon: 'chumt',
-    //   playerCategory: PlayerCategory.silver,
-    //   studentID: '25191',
-    // ),
-    // Player(
-    //   name: 'Kapil-noob',
-    //   inGameName: 'Matlab-noob',
-    //   primaryWeapon: 'naak',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   secondaryWeapon: 'gaand',
-    //   playerCategory: PlayerCategory.bronze,
-    //   studentID: '15144',
-    // ),
-  ];
-
-  List<Player> soldPlayers = [
-    // Player(
-    //   name: 'Nishant',
-    //   inGameName: 'iauhdslfiahudf',
-    //   primaryWeapon: 'lavda',
-    //   secondaryWeapon: 'chumt',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   playerCategory: PlayerCategory.gold,
-    //   studentID: '116262',
-    // ),
-    // Player(
-    //   name: 'Kapil',
-    //   inGameName: 'aisdhfiawhdf',
-    //   primaryWeapon: 'naak',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   secondaryWeapon: 'gaand',
-    //   playerCategory: PlayerCategory.silver,
-    //   studentID: '55151',
-    // ),
-  ];
-
-  List<Player> unsoldPlayers = [
-    // Player(
-    //   name: 'Nishant-noob',
-    //   inGameName: 'XD-Noob',
-    //   primaryWeapon: 'AWP',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   secondaryWeapon: 'AK47',
-    //   playerCategory: PlayerCategory.silver,
-    //   studentID: '25191',
-    // ),
-    // Player(
-    //   name: 'Kapil-noob',
-    //   inGameName: 'Matlab-noob',
-    //   primaryWeapon: 'Deagle',
-    //   hoursPlayed: 1,
-    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-    //   secondaryWeapon: 'AUG',
-    //   playerCategory: PlayerCategory.bronze,
-    //   studentID: '15144',
-    // ),
-  ];
+  List<Player> allPlayers = [];
+  List<Player> soldPlayers = [];
+  List<Player> unsoldPlayers = [];
+  List<Player> resellPlayers = [];
+  List<Player> unassignedPlayers = [];
 
   List<Player> get getAllPlayers => allPlayers;
   List<Player> get getSoldPlayers => soldPlayers;
   List<Player> get getUnsoldPlayers => unsoldPlayers;
+  List<Player> get getResellPlayers => resellPlayers;
+  List<Player> get getUnassignedPlayers => unassignedPlayers;
 
-  Player get getNextUnsoldPlayer {
+  Player? get getNextPlayer {
     Random random = new Random();
-    return unsoldPlayers.elementAt(random.nextInt(unsoldPlayers.length));
+    if (unassignedPlayers.length == 0) {
+      return null;
+    }
+    return unassignedPlayers
+        .elementAt(random.nextInt(unassignedPlayers.length));
+  }
+
+  Player? get getNextResellPlayer {
+    Random random = new Random();
+    if (resellPlayers.length == 0) {
+      return null;
+    }
+    return resellPlayers.elementAt(random.nextInt(resellPlayers.length));
+  }
+
+  Player getPlayer(String id) {
+    return allPlayers.firstWhere((e) => e.uid == id);
   }
 
   void addSoldPlayer(Player p) {
@@ -112,26 +47,25 @@ class Players with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addplayerSetup(
-    Player p,
-  ) async {
+  Future<void> addplayerSetup(Player p) async {
     CollectionReference players =
         FirebaseFirestore.instance.collection('Player');
 
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser!.uid.toString();
-    players.doc(uid).set(p.toMap());
+    p.copyWith(uid: uid);
+    await players.doc(uid).set(p.toMap());
     notifyListeners();
     return;
   }
 
-
-  Future<void> updatePlayer(String uid, Player p) async {
+  Future<void> updatePlayer(Player p) async {
     CollectionReference players =
         FirebaseFirestore.instance.collection('Player');
-    players.doc(uid).update(p.toMap()).then((_) {
-      print("Data Updated in firebase for uid - " + uid);
+    await players.doc(p.uid).update(p.toMap()).then((_) {
+      print("Data Updated in firebase for uid - " + p.uid);
     });
+    await fetchAndSetPlayers();
     notifyListeners();
   }
 
@@ -149,11 +83,20 @@ class Players with ChangeNotifier {
 
     allPlayers = allData.where((element) => element.isAdmin == false).toList();
 
+    resellPlayers = allPlayers
+        .where((element) => element.playerStatus == PlayerStatus.resell)
+        .toList();
+
+    unsoldPlayers = allPlayers
+        .where((element) => element.playerStatus == PlayerStatus.unsold)
+        .toList();
+
     soldPlayers = allPlayers
         .where((element) => element.playerStatus == PlayerStatus.sold)
         .toList();
-    unsoldPlayers = allPlayers
-        .where((element) => element.playerStatus == PlayerStatus.unsold)
+
+    unassignedPlayers = allPlayers
+        .where((element) => element.playerStatus == PlayerStatus.unassigned)
         .toList();
   }
 }

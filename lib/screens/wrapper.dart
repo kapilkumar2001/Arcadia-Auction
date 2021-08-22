@@ -17,17 +17,17 @@ class _WrapperState extends State<Wrapper> {
   bool isAdmin = false;
   FirebaseAuth auth = FirebaseAuth.instance;
   bool isData = false;
+  bool isLoading = true;
 
-  @override
-  void initState() {
-    super.initState();
+  void initiate() async {
     var uid = auth.currentUser!.uid.toString();
-    FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
+    await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (value) {
         if (value.exists) {
           setState(() {
             isData = true;
             isAdmin = value.data()!['isAdmin'];
+            isLoading = false;
           });
         }
       },
@@ -35,8 +35,18 @@ class _WrapperState extends State<Wrapper> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    initiate();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (isData) {
+    if (isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (isData) {
       return isAdmin ? AuctionOverview() : PlayerDashBoard();
     } else {
       return PlayerForm();

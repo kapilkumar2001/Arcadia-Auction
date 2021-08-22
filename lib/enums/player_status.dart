@@ -1,5 +1,6 @@
 enum PlayerStatus {
   sold,
   unsold,
-  unassigned,
+  resell,
+  unassigned
 }

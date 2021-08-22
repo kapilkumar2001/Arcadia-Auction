@@ -1,5 +1,7 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/provider/teams.dart';
+import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Auction/auction_player.dart';
 import 'package:arcadia/screens/wrapper.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'constants/app_theme.dart';
+import 'screens/Auction/auction_resell_player.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +27,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Players>(
           create: (_) => Players(),
+        ),
+        ChangeNotifierProvider<Teams>(
+          create: (_) => Teams(),
         ),
         ChangeNotifierProvider<Auth>(
           create: (_) => Auth(),
@@ -56,6 +62,8 @@ class MyApp extends StatelessWidget {
             AuctionOverview.routeName: (ctx) => AuctionOverview(),
             AuctionHome.routeName: (ctx) => AuctionHome(),
             AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
+            AuctionPlayerResell.routeName: (ctx) => AuctionPlayerResell(),
+            AuctionDetails.routeName: (ctx) => AuctionDetails(),
           },
         ),
       ),
