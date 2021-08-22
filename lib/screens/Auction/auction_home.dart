@@ -14,9 +14,13 @@ class AuctionHome extends StatefulWidget {
 
 class _AuctionHomeState extends State<AuctionHome> {
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<Players>(context).fetchAndSetPlayers();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<Player> soldPlayers = Provider.of<Players>(context).getSoldPlayers;
-    List<Player> unsoldPlayers = Provider.of<Players>(context).getUnsoldPlayers;
     return Material(
       color: Colors.deepPurpleAccent,
       child: Center(
@@ -32,8 +36,10 @@ class _AuctionHomeState extends State<AuctionHome> {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                Player nextPlayer =  Provider.of<Players>(context, listen: false).getNextUnsoldPlayer;
-                Navigator.of(context).pushNamed(AuctionPlayer.routeName, arguments: nextPlayer );
+                Player nextPlayer = Provider.of<Players>(context, listen: false)
+                    .getNextUnsoldPlayer;
+                Navigator.of(context)
+                    .pushNamed(AuctionPlayer.routeName, arguments: nextPlayer);
               },
               icon: Icon(Icons.arrow_forward),
               label: Text('Start Auction'),

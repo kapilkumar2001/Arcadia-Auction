@@ -29,6 +29,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
 
   late PlayerStatus _playerStatus;
   late String _teams;
+  TextEditingController _soldIn = TextEditingController();
   String getGunImage(String weapon) {
     return 'assets/guns/$weapon.png';
   }
@@ -282,15 +283,21 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(20),
-                                  )
+                                  Container(
+                                      height: height * 0.2,
+                                      padding: EdgeInsets.all(20),
+                                      child: TextField(
+                                        controller: _soldIn,
+                                        decoration: InputDecoration(),
+                                      ))
                                 ],
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(20),
                                 child: ElevatedButton.icon(
                                   onPressed: () {
+                                    Provider.of<Players>(context, listen: false)
+                                        .addSoldPlayer(currPlayer);
                                     Player nextPlayer = Provider.of<Players>(
                                             context,
                                             listen: false)
@@ -310,8 +317,6 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                       if (_playerStatus == PlayerStatus.unsold)
                         ElevatedButton.icon(
                           onPressed: () {
-                            Provider.of<Players>(context, listen: false)
-                                .addSoldPlayer(currPlayer);
                             Player nextPlayer =
                                 Provider.of<Players>(context, listen: false)
                                     .getNextUnsoldPlayer;

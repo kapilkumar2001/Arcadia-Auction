@@ -9,92 +9,92 @@ import 'package:flutter/material.dart';
 
 class Players with ChangeNotifier {
   List<Player> allPlayers = [
-    Player(
-      name: 'Nishant',
-      inGameName: 'iauhdslfiahudf',
-      primaryWeapon: 'lavda',
-      secondaryWeapon: 'chumt',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      playerCategory: PlayerCategory.gold,
-      studentID: '116262',
-    ),
-    Player(
-      name: 'Kapil',
-      inGameName: 'aisdhfiawhdf',
-      primaryWeapon: 'naak',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      secondaryWeapon: 'gaand',
-      playerCategory: PlayerCategory.silver,
-      studentID: '55151',
-    ),
-    Player(
-      name: 'Nishant-noob',
-      inGameName: 'XD-Noob',
-      primaryWeapon: 'lavda',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      secondaryWeapon: 'chumt',
-      playerCategory: PlayerCategory.silver,
-      studentID: '25191',
-    ),
-    Player(
-      name: 'Kapil-noob',
-      inGameName: 'Matlab-noob',
-      primaryWeapon: 'naak',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      secondaryWeapon: 'gaand',
-      playerCategory: PlayerCategory.bronze,
-      studentID: '15144',
-    ),
+    // Player(
+    //   name: 'Nishant',
+    //   inGameName: 'iauhdslfiahudf',
+    //   primaryWeapon: 'lavda',
+    //   secondaryWeapon: 'chumt',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   playerCategory: PlayerCategory.gold,
+    //   studentID: '116262',
+    // ),
+    // Player(
+    //   name: 'Kapil',
+    //   inGameName: 'aisdhfiawhdf',
+    //   primaryWeapon: 'naak',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   secondaryWeapon: 'gaand',
+    //   playerCategory: PlayerCategory.silver,
+    //   studentID: '55151',
+    // ),
+    // Player(
+    //   name: 'Nishant-noob',
+    //   inGameName: 'XD-Noob',
+    //   primaryWeapon: 'lavda',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   secondaryWeapon: 'chumt',
+    //   playerCategory: PlayerCategory.silver,
+    //   studentID: '25191',
+    // ),
+    // Player(
+    //   name: 'Kapil-noob',
+    //   inGameName: 'Matlab-noob',
+    //   primaryWeapon: 'naak',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   secondaryWeapon: 'gaand',
+    //   playerCategory: PlayerCategory.bronze,
+    //   studentID: '15144',
+    // ),
   ];
 
   List<Player> soldPlayers = [
-    Player(
-      name: 'Nishant',
-      inGameName: 'iauhdslfiahudf',
-      primaryWeapon: 'lavda',
-      secondaryWeapon: 'chumt',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      playerCategory: PlayerCategory.gold,
-      studentID: '116262',
-    ),
-    Player(
-      name: 'Kapil',
-      inGameName: 'aisdhfiawhdf',
-      primaryWeapon: 'naak',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      secondaryWeapon: 'gaand',
-      playerCategory: PlayerCategory.silver,
-      studentID: '55151',
-    ),
+    // Player(
+    //   name: 'Nishant',
+    //   inGameName: 'iauhdslfiahudf',
+    //   primaryWeapon: 'lavda',
+    //   secondaryWeapon: 'chumt',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   playerCategory: PlayerCategory.gold,
+    //   studentID: '116262',
+    // ),
+    // Player(
+    //   name: 'Kapil',
+    //   inGameName: 'aisdhfiawhdf',
+    //   primaryWeapon: 'naak',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   secondaryWeapon: 'gaand',
+    //   playerCategory: PlayerCategory.silver,
+    //   studentID: '55151',
+    // ),
   ];
 
   List<Player> unsoldPlayers = [
-    Player(
-      name: 'Nishant-noob',
-      inGameName: 'XD-Noob',
-      primaryWeapon: 'AWP',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      secondaryWeapon: 'AK47',
-      playerCategory: PlayerCategory.silver,
-      studentID: '25191',
-    ),
-    Player(
-      name: 'Kapil-noob',
-      inGameName: 'Matlab-noob',
-      primaryWeapon: 'Deagle',
-      hoursPlayed: 1,
-      steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
-      secondaryWeapon: 'AUG',
-      playerCategory: PlayerCategory.bronze,
-      studentID: '15144',
-    ),
+    // Player(
+    //   name: 'Nishant-noob',
+    //   inGameName: 'XD-Noob',
+    //   primaryWeapon: 'AWP',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   secondaryWeapon: 'AK47',
+    //   playerCategory: PlayerCategory.silver,
+    //   studentID: '25191',
+    // ),
+    // Player(
+    //   name: 'Kapil-noob',
+    //   inGameName: 'Matlab-noob',
+    //   primaryWeapon: 'Deagle',
+    //   hoursPlayed: 1,
+    //   steamUrl: 'https://steamcommunity.com/profiles/76561199007256891/',
+    //   secondaryWeapon: 'AUG',
+    //   playerCategory: PlayerCategory.bronze,
+    //   studentID: '15144',
+    // ),
   ];
 
   List<Player> get getAllPlayers => allPlayers;
@@ -103,9 +103,9 @@ class Players with ChangeNotifier {
 
   Player get getNextUnsoldPlayer {
     Random random = new Random();
-    return unsoldPlayers.elementAt(random.nextInt(soldPlayers.length));
+    return unsoldPlayers.elementAt(random.nextInt(unsoldPlayers.length));
   }
-
+  
   void addSoldPlayer(Player p) {
     soldPlayers.add(p);
     unsoldPlayers.removeWhere((elem) => p.name == elem.name);
@@ -125,34 +125,17 @@ class Players with ChangeNotifier {
     return;
   }
 
-  Future<void> getData() async {
+  Future<void> fetchAndSetPlayers() async {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection('Player');
 
     QuerySnapshot allDataQuerySnapshot = await _collectionRef.get();
-    // QuerySnapshot playerDataQuerySnapshot =
-    //     await _collectionRef.where('isAdmin', isEqualTo: false).get();
-    // QuerySnapshot soldPlayerDataQuerySnapshot = await _collectionRef
-    //     .where('playerStatus', isEqualTo: PlayerStatus.sold)
-    //     .get();
-    // QuerySnapshot unSoldPlayerDataQuerySnapshot = await _collectionRef
-    //     .where('playerStatus', isEqualTo: PlayerStatus.unsold)
-    //     .get();
 
     final allData = allDataQuerySnapshot.docs
         .map((doc) => doc.data())
         .toList()
         .map((e) => Player.fromMap(e as Map<String, dynamic>))
         .toList();
-
-    // final playerData =
-    //     allData.map((e) => Player.fromMap(e as Map<String, dynamic>)).toList();
-
-    // final soldPlayerData =
-    //     allData.map((e) => Player.fromMap(e as Map<String, dynamic>)).toList();
-
-    // final unSoldPlayerData =
-    //     allData.map((e) => Player.fromMap(e as Map<String, dynamic>)).toList();
 
     allPlayers = allData.where((element) => element.isAdmin == false).toList();
 
@@ -162,12 +145,5 @@ class Players with ChangeNotifier {
     unsoldPlayers = allPlayers
         .where((element) => element.playerStatus == PlayerStatus.unsold)
         .toList();
-
-    print("allplayers");
-    print(allPlayers);
-    print("sold");
-    print(soldPlayers);
-    print("unsold");
-    print(unsoldPlayers);
   }
 }
