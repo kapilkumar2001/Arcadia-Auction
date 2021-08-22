@@ -105,7 +105,7 @@ class Players with ChangeNotifier {
     Random random = new Random();
     return unsoldPlayers.elementAt(random.nextInt(unsoldPlayers.length));
   }
-  
+
   void addSoldPlayer(Player p) {
     soldPlayers.add(p);
     unsoldPlayers.removeWhere((elem) => p.name == elem.name);
@@ -123,6 +123,16 @@ class Players with ChangeNotifier {
     players.doc(uid).set(p.toMap());
     notifyListeners();
     return;
+  }
+
+
+  Future<void> updatePlayer(String uid, Player p) async {
+    CollectionReference players =
+        FirebaseFirestore.instance.collection('Player');
+    players.doc(uid).update(p.toMap()).then((_) {
+      print("Data Updated in firebase for uid - " + uid);
+    });
+    notifyListeners();
   }
 
   Future<void> fetchAndSetPlayers() async {
