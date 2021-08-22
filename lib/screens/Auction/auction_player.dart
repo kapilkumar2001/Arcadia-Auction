@@ -1,5 +1,6 @@
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
+import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,8 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
   late PlayerStatus _playerStatus;
   late String _teams;
   TextEditingController _soldIn = TextEditingController();
-  String getGunImage(String weapon) {
-    return 'assets/guns/$weapon.png';
+  String getGunImage(Weapons weapon) {
+    return 'assets/guns/${weapon.toString().split('.').last}.png';
   }
 
   @override
@@ -55,7 +56,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 300,
+                  height: 280,
                   color: Color(0xff787A91),
                   child: Column(
                     children: [
@@ -80,12 +81,13 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                       ),
                       Container(
                         alignment: Alignment.bottomLeft,
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.only(top: 20, left: 20),
                         child: Text(
                           currPlayer.name,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: getCategoryColor(currPlayer.playerCategory),
-                            fontSize: 40,
+                            fontSize: 35,
                           ),
                         ),
                       ),
@@ -164,7 +166,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                               ),
                             ),
                             Positioned(
-                              right: 20,
+                              right: 40,
                               top: 50,
                               child: Text(
                                 'Primary Weapon',
@@ -203,7 +205,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                               ),
                             ),
                             Positioned(
-                              right: 15,
+                              right: 30,
                               top: 50,
                               child: Text(
                                 'Secondary Weapon',
@@ -231,12 +233,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                         child: DropdownButton<PlayerStatus>(
                           underline: Container(color: Colors.transparent),
                           value: _playerStatus,
-                          items: <PlayerStatus>[
-                            PlayerStatus.sold,
-                            PlayerStatus.unsold,
-                            PlayerStatus.resell,
-                            PlayerStatus.unassigned,
-                          ].map((PlayerStatus value) {
+                          items: PlayerStatus.values.map((PlayerStatus value) {
                             return DropdownMenuItem<PlayerStatus>(
                               value: value,
                               child: Text(value.toString().split('.').last),

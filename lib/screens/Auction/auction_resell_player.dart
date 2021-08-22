@@ -1,5 +1,6 @@
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
+import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,8 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
   late PlayerStatus _playerStatus;
   late String _teams;
   TextEditingController _soldIn = TextEditingController();
-  String getGunImage(String weapon) {
-    return 'assets/guns/$weapon.png';
+  String getGunImage(Weapons weapon) {
+    return 'assets/guns/${weapon.toString().split('.').last}.png';
   }
 
   @override

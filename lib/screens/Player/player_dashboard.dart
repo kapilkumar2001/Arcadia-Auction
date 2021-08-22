@@ -1,3 +1,4 @@
+import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,13 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
     return Scaffold(
       body: Center(
         child: Container(
-          child: Text("hello"),
+          child: ElevatedButton.icon(
+            onPressed: () async {
+              await Provider.of<Auth>(context, listen: false).signOut();
+            },
+            icon: Icon(Icons.arrow_forward),
+            label: Text('Sign Out'),
+          ),
         ),
       ),
     );
