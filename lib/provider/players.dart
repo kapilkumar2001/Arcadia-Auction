@@ -125,6 +125,15 @@ class Players with ChangeNotifier {
     return;
   }
 
+  Future<void> updatePlayer(String uid, Player p) async {
+    CollectionReference players =
+        FirebaseFirestore.instance.collection('Player');
+    players.doc(uid).update(p.toMap()).then((_) {
+      notifyListeners();
+      print("Data Updated in firebase for uid - " + uid);
+    });
+  }
+
   Future<void> getData() async {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection('Player');
