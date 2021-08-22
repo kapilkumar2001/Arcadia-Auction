@@ -5,15 +5,15 @@ import 'package:arcadia/provider/players.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AuctionPlayer extends StatefulWidget {
-  static const routeName = '/auction-player';
-  const AuctionPlayer({Key? key}) : super(key: key);
+class AuctionPlayerResell extends StatefulWidget {
+  static const routeName = '/auction-player-resell';
+  const AuctionPlayerResell({Key? key}) : super(key: key);
 
   @override
   _AuctionPlayerState createState() => _AuctionPlayerState();
 }
 
-class _AuctionPlayerState extends State<AuctionPlayer> {
+class _AuctionPlayerState extends State<AuctionPlayerResell> {
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
       case PlayerCategory.gold:
@@ -306,10 +306,10 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                     Player? nextPlayer = Provider.of<Players>(
                                             context,
                                             listen: false)
-                                        .getNextPlayer;
+                                        .getNextResellPlayer;
                                     if (nextPlayer != null) {
                                       Navigator.of(context).popAndPushNamed(
-                                        AuctionPlayer.routeName,
+                                        AuctionPlayerResell.routeName,
                                         arguments: nextPlayer,
                                       );
                                     } else {
@@ -318,7 +318,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                              'No more Players available, try reselling!!'),
+                                              'All Players reselled or sold'),
                                         ),
                                       );
                                     }
@@ -340,18 +340,17 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                 .updatePlayer(newPlayer);
                             Player? nextPlayer =
                                 Provider.of<Players>(context, listen: false)
-                                    .getNextPlayer;
+                                    .getNextResellPlayer;
                             if (nextPlayer != null) {
                               Navigator.of(context).popAndPushNamed(
-                                AuctionPlayer.routeName,
+                                AuctionPlayerResell.routeName,
                                 arguments: nextPlayer,
                               );
                             } else {
                               Navigator.of(context).pop();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(
-                                      'No Players available, try reselling!!'),
+                                  content: Text('All Players reselled or sold'),
                                 ),
                               );
                             }
@@ -369,18 +368,17 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                 .updatePlayer(newPlayer);
                             Player? nextPlayer =
                                 Provider.of<Players>(context, listen: false)
-                                    .getNextPlayer;
+                                    .getNextResellPlayer;
                             if (nextPlayer != null) {
                               Navigator.of(context).popAndPushNamed(
-                                AuctionPlayer.routeName,
+                                AuctionPlayerResell.routeName,
                                 arguments: nextPlayer,
                               );
                             } else {
                               Navigator.of(context).pop();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(
-                                      'No Players available, try reselling!!'),
+                                  content: Text('All Players reselled or sold'),
                                 ),
                               );
                             }

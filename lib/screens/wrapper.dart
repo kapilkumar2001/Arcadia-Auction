@@ -16,40 +16,40 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> {
   bool isAdmin = false;
   FirebaseAuth auth = FirebaseAuth.instance;
-  static var snapShot;
-  static String? uid;
+  bool isData = false;
+  bool isLoading = true;
 
-void _getsnapShot()async{
-  snapShot =
-            await FirebaseFirestore.instance.collection('Player').doc(uid).get();
-}
-
-  @override
-  void initState()  {
-    super.initState();
-    _getsnapShot();
-    uid = auth.currentUser!.uid.toString();
-    FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
+  void initiate() async {
+    var uid = auth.currentUser!.uid.toString();
+    await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (value) {
-        setState(() {
-          isAdmin = value.data()!['isAdmin'];
-        });
-        print('isadmin : ' +
-            isAdmin.toString() +
-            '\n data : ' +
-            value.toString());
+        if (value.exists) {
+          setState(() {
+            isData = true;
+            isAdmin = value.data()!['isAdmin'];
+            isLoading = false;
+          });
+        }
       },
     );
   }
 
   @override
-  Widget build(BuildContext context)  {
-    // snapShot =
-    //     await FirebaseFirestore.instance.collection('Player').doc(uid).get();
-    return (isAdmin)
-        ? AuctionOverview()
-        : (snapShot == null || !snapShot.exists)
-            ? PlayerForm()
-            : PlayerDashBoard();
+  void initState() {
+    super.initState();
+    initiate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (isData) {
+      return isAdmin ? AuctionOverview() : PlayerDashBoard();
+    } else {
+      return PlayerForm();
+    }
   }
 }

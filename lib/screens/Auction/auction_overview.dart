@@ -1,3 +1,4 @@
+import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,12 +29,7 @@ class _AuctionOverviewState extends State<AuctionOverview> {
 
   static List<Widget> _tabs = <Widget>[
     AuctionHome(),
-    Center(
-      child: Text(
-        'Chat Page - Under Construction',
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-      ),
-    ),
+    AuctionDetails(),
     Center(
       child: Text('profile'),
     )

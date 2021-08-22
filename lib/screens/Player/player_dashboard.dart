@@ -14,7 +14,7 @@ class PlayerDashBoard extends StatefulWidget {
 class _PlayerDashBoardState extends State<PlayerDashBoard> {
   @override
   void didChangeDependencies() {
-    Provider.of<Players>(context, listen: false).getData();
+    Provider.of<Players>(context, listen: false).fetchAndSetPlayers();
     super.didChangeDependencies();
   }
 

@@ -1,11 +1,13 @@
 import 'dart:convert';
 
-import 'package:arcadia/enums/category.dart';
-import 'package:arcadia/enums/player_status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:arcadia/enums/category.dart';
+import 'package:arcadia/enums/player_status.dart';
+
 class Player with ChangeNotifier {
+  final String uid;
   final String name;
   final String studentID;
   final String inGameName;
@@ -20,6 +22,7 @@ class Player with ChangeNotifier {
   final int soldIn;
 
   Player({
+    this.uid = '',
     required this.name,
     required this.studentID,
     required this.inGameName,
@@ -34,6 +37,7 @@ class Player with ChangeNotifier {
     this.soldIn = 0,
   });
   Player copyWith({
+    String? uid,
     String? name,
     String? studentID,
     String? inGameName,
@@ -44,11 +48,11 @@ class Player with ChangeNotifier {
     PlayerStatus? playerStatus,
     int? hoursPlayed,
     String? steamUrl,
-    bool? isSold,
     String? soldTo,
     int? soldIn,
   }) {
     return Player(
+      uid: uid ?? this.uid,
       name: name ?? this.name,
       studentID: studentID ?? this.studentID,
       inGameName: inGameName ?? this.inGameName,
@@ -66,6 +70,7 @@ class Player with ChangeNotifier {
 
   Map<String, dynamic> toMap() {
     return {
+      'uid': uid,
       'name': name,
       'studentID': studentID,
       'inGameName': inGameName,
@@ -82,35 +87,22 @@ class Player with ChangeNotifier {
   }
 
   factory Player.fromMap(Map<String, dynamic> map) {
-    // String EnumFromString(List values, String comp) {
-    //   String enumValue = "";
-    //   values.forEach((item) {
-    //     if (item.toString() == comp) {
-    //       enumValue = item;
-    //     }
-    //   });
-    //   return enumValue;
-    // }
-
-    // String category =
-    //     EnumFromString(PlayerCategory.values, );
-    // String status = EnumFromString(PlayerCategory.values, );
-
     PlayerCategory pc = PlayerCategory.values.firstWhere((e) {
-      print("e.string => " + e.toString());
-      print("map[playercateg] =>  " + map['playerCategory']);
+      // print("e.string => " + e.toString());
+      // print("map[playercateg] =>  " + map['playerCategory']);
       return e.toString() == map['playerCategory'];
     }, orElse: () {
-      print('No matching element.');
+      // print('No matching element.');
       return PlayerCategory.gold;
     });
     PlayerStatus ps = PlayerStatus.values
         .firstWhere((e) => e.toString() == map['playerStatus'], orElse: () {
-      print('No matching element.');
+      // print('No matching element.');
       return PlayerStatus.unsold;
     });
 
     return Player(
+      uid: map['uid'],
       name: map['name'],
       studentID: map['studentID'],
       inGameName: map['inGameName'],
@@ -132,7 +124,7 @@ class Player with ChangeNotifier {
 
   @override
   String toString() {
-    return 'Player(name: $name, studentID: $studentID, inGameName: $inGameName, isAdmin: $isAdmin, primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, playerCategory: $playerCategory, playerStatus: $playerStatus, hoursPlayed: $hoursPlayed, steamUrl: $steamUrl,soldTo: $soldTo, soldIn: $soldIn)';
+    return 'Player(uid: $uid, name: $name, studentID: $studentID, inGameName: $inGameName, isAdmin: $isAdmin, primaryWeapon: $primaryWeapon, secondaryWeapon: $secondaryWeapon, playerCategory: $playerCategory, playerStatus: $playerStatus, hoursPlayed: $hoursPlayed, steamUrl: $steamUrl, soldTo: $soldTo, soldIn: $soldIn)';
   }
 
   @override
@@ -140,6 +132,7 @@ class Player with ChangeNotifier {
     if (identical(this, other)) return true;
 
     return other is Player &&
+        other.uid == uid &&
         other.name == name &&
         other.studentID == studentID &&
         other.inGameName == inGameName &&
@@ -156,7 +149,8 @@ class Player with ChangeNotifier {
 
   @override
   int get hashCode {
-    return name.hashCode ^
+    return uid.hashCode ^
+        name.hashCode ^
         studentID.hashCode ^
         inGameName.hashCode ^
         isAdmin.hashCode ^
