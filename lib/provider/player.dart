@@ -31,6 +31,6 @@ class Player with ChangeNotifier {
     this.playerCategory = PlayerCategory.unassigned,
     this.playerStatus = PlayerStatus.unsold,
   });
-
+  
   
 }

@@ -1,7 +1,9 @@
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
 import 'package:arcadia/provider/player.dart';
+import 'package:arcadia/provider/players.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AuctionPlayer extends StatefulWidget {
   static const routeName = '/auction-player';
@@ -26,6 +28,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
   }
 
   late PlayerStatus _playerStatus;
+  late String _teams;
   String getGunImage(String weapon) {
     return 'assets/guns/$weapon.png';
   }
@@ -33,6 +36,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
   @override
   void initState() {
     super.initState();
+    _teams = 'G2';
     _playerStatus = PlayerStatus.unassigned;
   }
 
@@ -212,24 +216,113 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                           ],
                         ),
                       ),
-                      DropdownButton<PlayerStatus>(
-                        items: <PlayerStatus>[
-                          PlayerStatus.sold,
-                          PlayerStatus.unsold,
-                          PlayerStatus.unassigned,
-                        ].map((PlayerStatus value) {
-                          return DropdownMenuItem<PlayerStatus>(
-                            value: _playerStatus,
-                            child: new Text(value.toString().split('.').last),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            print('value is : $value');
-                            _playerStatus = value!;
-                          });
-                        },
-                      )
+                      Container(
+                        height: 28,
+                        decoration: BoxDecoration(
+                          color: Colors.white54,
+                          border: Border.all(
+                            color: Colors.grey,
+                            width: 3,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: DropdownButton<PlayerStatus>(
+                          underline: Container(color: Colors.transparent),
+                          value: _playerStatus,
+                          items: <PlayerStatus>[
+                            PlayerStatus.sold,
+                            PlayerStatus.unsold,
+                            PlayerStatus.unassigned,
+                          ].map((PlayerStatus value) {
+                            return DropdownMenuItem<PlayerStatus>(
+                              value: value,
+                              child: Text(value.toString().split('.').last),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              print('value is : $value');
+                              _playerStatus = value!;
+                            });
+                          },
+                          // hint: Text(_playerStatus.toString().split('.').last),
+                        ),
+                      ),
+                      if (_playerStatus == PlayerStatus.sold)
+                        Container(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: DropdownButton<String>(
+                                      value: _teams,
+                                      onChanged: (newVal) {
+                                        setState(() {
+                                          _teams = newVal!;
+                                        });
+                                      },
+                                      items: [
+                                        DropdownMenuItem(
+                                          value: 'Astralis',
+                                          child: Text('Astralis'),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: 'Navi',
+                                          child: Text('Navi'),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: 'G2',
+                                          child: Text('G2'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(20),
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: ElevatedButton.icon(
+                                  onPressed: () {
+                                    Player nextPlayer = Provider.of<Players>(
+                                            context,
+                                            listen: false)
+                                        .getNextUnsoldPlayer;
+                                    Navigator.of(context).popAndPushNamed(
+                                      AuctionPlayer.routeName,
+                                      arguments: nextPlayer,
+                                    );
+                                  },
+                                  icon: Icon(Icons.navigate_next),
+                                  label: Text('Next Player'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (_playerStatus == PlayerStatus.unsold)
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            Provider.of<Players>(context, listen: false)
+                                .addSoldPlayer(currPlayer);
+                            Player nextPlayer =
+                                Provider.of<Players>(context, listen: false)
+                                    .getNextUnsoldPlayer;
+                            Navigator.of(context).popAndPushNamed(
+                              AuctionPlayer.routeName,
+                              arguments: nextPlayer,
+                            );
+                          },
+                          icon: Icon(Icons.navigate_next),
+                          label: Text('Next Player'),
+                        ),
                     ],
                   ),
                 ),
