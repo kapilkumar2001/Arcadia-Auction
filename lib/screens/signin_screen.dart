@@ -1,4 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/widgets/google_sign_in_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,16 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  // Future<void> getdata() async {
+  //   await Players().getData();
+  // }
+
+  // @override
+  // void initState() {
+  //   getdata();
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
