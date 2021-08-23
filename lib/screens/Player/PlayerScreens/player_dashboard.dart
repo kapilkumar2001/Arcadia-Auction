@@ -21,10 +21,6 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Players>(context, listen: false).fetchAndSetPlayers().then(
-          (value) =>
-              Provider.of<Players>(context, listen: false).getPlayer(Auth.uid!),
-        );
   }
 
   int _selectedIndex = 0;
@@ -45,7 +41,9 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30.0),

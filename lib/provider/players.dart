@@ -38,10 +38,8 @@ class Players with ChangeNotifier {
   }
 
   Player getPlayer(String id) {
-    return allPlayers.firstWhere((e) {
-      print('e.uid : ${e.uid} & id : ${id}');
-
-      return e.uid == id;
+    return allPlayers.firstWhere((temp) {
+      return temp.uid == id;
     });
   }
 

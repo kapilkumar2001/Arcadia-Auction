@@ -19,8 +19,11 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Players>(context, listen: false).fetchAndSetPlayers();
-    currPlayer = Provider.of<Players>(context, listen: false).getPlayer(Auth.uid!);
+    Provider.of<Players>(context, listen: false).fetchAndSetPlayers().then(
+          (value) => currPlayer =
+              Provider.of<Players>(context, listen: false).getPlayer(Auth.uid!),
+        );
+
     print(currPlayer);
   }
 
