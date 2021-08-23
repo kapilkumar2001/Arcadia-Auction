@@ -53,7 +53,7 @@ class Players with ChangeNotifier {
 
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser!.uid.toString();
-    p.copyWith(uid: uid);
+    p = p.copyWith(uid: uid);
     await players.doc(uid).set(p.toMap());
     notifyListeners();
     return;
