@@ -2,6 +2,7 @@ import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/screens/Auction/auction_resell_player.dart';
+import 'package:arcadia/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,10 @@ class _AuctionHomeState extends State<AuctionHome> {
             ElevatedButton.icon(
               onPressed: () async {
                 await Provider.of<Auth>(context, listen: false).signOut();
+                Navigator.pushAndRemoveUntil(context,
+                    MaterialPageRoute(builder: (context) {
+                  return SignInScreen();
+                }), (route) => false);
               },
               icon: Icon(Icons.arrow_forward),
               label: Text('Sign Out'),
@@ -40,6 +45,10 @@ class _AuctionHomeState extends State<AuctionHome> {
                 Player? nextPlayer =
                     Provider.of<Players>(context, listen: false).getNextPlayer;
                 if (nextPlayer != null) {
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return AuctionPlayer();
+                  // }));
+
                   Navigator.of(context).pushNamed(
                     AuctionPlayer.routeName,
                     arguments: nextPlayer,
@@ -66,7 +75,7 @@ class _AuctionHomeState extends State<AuctionHome> {
                     arguments: nextPlayer,
                   );
                 } else {
-                   ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('All Players reselled or sold'),
                     ),

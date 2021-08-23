@@ -1,9 +1,11 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/auction_results.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_profile_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/score_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/update_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +30,7 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
   List<Widget> _widgetOptions = <Widget>[
     PlayerProfileScreen(),
     UpdateScreen(),
-    ScoreScreen(),
+    AuctionResults(),
     ScheduleScreen(),
   ];
 

@@ -3,6 +3,8 @@ import 'package:arcadia/enums/player_status.dart';
 import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/provider/team.dart';
+import 'package:arcadia/provider/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,14 @@ class AuctionPlayerResell extends StatefulWidget {
 }
 
 class _AuctionPlayerState extends State<AuctionPlayerResell> {
+  List<Team> teams = [];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<Teams>(context).fetchAndSetTeams();
+  }
+
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
       case PlayerCategory.gold:
@@ -38,12 +48,13 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
   @override
   void initState() {
     super.initState();
-    _teams = 'G2';
+    _teams = '0';
     _playerStatus = PlayerStatus.unassigned;
   }
 
   @override
   Widget build(BuildContext context) {
+    teams = Provider.of<Teams>(context, listen: false).teams;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     final currPlayer = ModalRoute.of(context)!.settings.arguments as Player;
@@ -267,18 +278,14 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                     });
                                   },
                                   items: [
-                                    DropdownMenuItem(
-                                      value: 'Astralis',
-                                      child: Text('Astralis'),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 'Navi',
-                                      child: Text('Navi'),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 'G2',
-                                      child: Text('G2'),
-                                    ),
+                                    ...teams
+                                        .map(
+                                          (e) => DropdownMenuItem(
+                                            value: e.teamUid.toString(),
+                                            child: Text('${e.teamName}'),
+                                          ),
+                                        )
+                                        .toList(),
                                   ],
                                 ),
                               ),
@@ -296,6 +303,7 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                 padding: const EdgeInsets.all(20),
                                 child: ElevatedButton.icon(
                                   onPressed: () async {
+                                    // updating player
                                     var newPlayer = currPlayer.copyWith(
                                       soldIn: int.parse(_soldIn.text),
                                       soldTo: _teams,
@@ -304,6 +312,30 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                     await Provider.of<Players>(context,
                                             listen: false)
                                         .updatePlayer(newPlayer);
+
+                                    // updating team
+                                    int newnumPlayer =
+                                        teams[int.parse(_teams)].numPlayer;
+                                    int updatedcredits =
+                                        ((teams[int.parse(_teams)].credits) -
+                                            (int.parse(_soldIn.text)));
+                                    List<String> playersuid = [];
+                                    int i;
+                                    for (i = 0; i < newnumPlayer; i++) {
+                                      playersuid.add(teams[int.parse(_teams)]
+                                          .playerUid[i]);
+                                    }
+                                    playersuid.add(currPlayer.uid);
+                                    Team newTeam =
+                                        teams[int.parse(_teams)].copyWith(
+                                      playerUid: playersuid,
+                                      numPlayer: newnumPlayer + 1,
+                                      credits: updatedcredits,
+                                    );
+                                    await Provider.of<Teams>(context,
+                                            listen: false)
+                                        .updateTeam(newTeam);
+
                                     Player? nextPlayer = Provider.of<Players>(
                                             context,
                                             listen: false)
