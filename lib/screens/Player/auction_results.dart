@@ -7,13 +7,13 @@ import 'package:arcadia/provider/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AuctionDetails extends StatefulWidget {
+class AuctionResults extends StatefulWidget {
   static const routeName = '/auction-details';
   @override
-  _AuctionDetailsState createState() => _AuctionDetailsState();
+  _AuctionResultsState createState() => _AuctionResultsState();
 }
 
-class _AuctionDetailsState extends State<AuctionDetails> {
+class _AuctionResultsState extends State<AuctionResults> {
   List<Team> teams = [];
 
   @override
@@ -22,6 +22,7 @@ class _AuctionDetailsState extends State<AuctionDetails> {
     Provider.of<Teams>(context).fetchAndSetTeams();
   }
 
+  //TODO: create UI
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
@@ -29,7 +30,7 @@ class _AuctionDetailsState extends State<AuctionDetails> {
       appBar: AppBar(
         backgroundColor: CustomColors.firebaseNavy,
         title: Text(
-          "Auction Status",
+          "Auction Results",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
         ),
         centerTitle: true,
@@ -69,40 +70,6 @@ class TeamCard extends StatelessWidget {
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
         ),
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: CustomColors.firebaseNavy,
-                    border: Border.all(color: Colors.blueAccent)),
-                padding:
-                    EdgeInsets.only(left: 34, right: 34, top: 20, bottom: 20),
-                margin:
-                    EdgeInsets.only(left: 20, right: 4, top: 20, bottom: 20),
-                child: Text(
-                  "Players: " + team.playerUid.length.toString(),
-                  style: TextStyle(fontSize: 22, color: Colors.white54),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: CustomColors.firebaseNavy,
-                    border: Border.all(color: Colors.blueAccent)),
-                padding:
-                    EdgeInsets.only(left: 34, right: 34, top: 20, bottom: 20),
-                margin:
-                    EdgeInsets.only(left: 4, right: 20, top: 20, bottom: 20),
-                child: Text(
-                  "Credits: " + team.credits.toString(),
-                  style: TextStyle(fontSize: 22, color: Colors.white54),
-                ),
-              )
-            ],
-          ),
           if (team.playerUid.isEmpty)
             Text(
               'empty',
@@ -155,7 +122,7 @@ class PlayerTile extends StatelessWidget {
               BorderSide(color: getCategoryColor(player.playerCategory))),
       color: CustomColors.firebaseNavy,
       borderOnForeground: true,
-      margin: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 20),
+      margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       child: ListTile(
         leading: new CircleAvatar(
           backgroundColor: getCategoryColor(player.playerCategory),
