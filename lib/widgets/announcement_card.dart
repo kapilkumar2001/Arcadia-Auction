@@ -9,39 +9,22 @@ class AnnouncementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(
-                    child: Text(
-                  announcement.title,
-                  style: TextStyle(fontSize: 20),
-                )),
-                Flexible(
-                  child: Text(
-                    DateFormat('hmdMMM')
-                        .format(announcement.createddateTime),
-                    style: TextStyle(fontSize: 12),
-                  ),
-                )
-              ],
-            ),
-            Divider(
-              height: 20,
-              color: Colors.black,
-            ),
-            Text(announcement.subtitle,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300)),
+    return ExpansionTile(
+      title: Text(announcement.title),
+      subtitle: Text(announcement.subtitle),
+      children: [
+        Row(
+          children: [
+Text(announcement.desc),
+            Flexible(
+              child: Text(
+                DateFormat('hmdMMM').format(announcement.createddateTime),
+                style: TextStyle(fontSize: 12),
+              ),
+            )
           ],
-        ),
-      ),
+        )
+      ],
     );
   }
 }
