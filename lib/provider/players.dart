@@ -43,11 +43,11 @@ class Players with ChangeNotifier {
     });
   }
 
-  void addSoldPlayer(Player p) {
-    soldPlayers.add(p);
-    unsoldPlayers.removeWhere((elem) => p.name == elem.name);
-    notifyListeners();
-  }
+  // void addSoldPlayer(Player p) {
+  //   soldPlayers.add(p);
+  //   unsoldPlayers.removeWhere((elem) => p.name == elem.name);
+  //   notifyListeners();
+  // }
 
   Future<void> addplayerSetup(Player p) async {
     CollectionReference players =
@@ -75,13 +75,17 @@ class Players with ChangeNotifier {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection('Player');
 
-    QuerySnapshot allDataQuerySnapshot = await _collectionRef.get();
+    QuerySnapshot allDataQuerySnapshot =
+        await _collectionRef.orderBy('playerCategory').get();
 
     final allData = allDataQuerySnapshot.docs
         .map((doc) => doc.data())
         .toList()
         .map((e) => Player.fromMap(e as Map<String, dynamic>))
         .toList();
+
+    //   allData.sort((a, b) => a.playerCategory.compareTo(b.playerCategory));
+    // print(allData);
 
     allPlayers = allData.where((element) => element.isAdmin == false).toList();
 

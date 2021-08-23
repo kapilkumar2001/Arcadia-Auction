@@ -47,9 +47,16 @@ class _AuctionDetailsState extends State<AuctionDetails> {
   }
 }
 
-class TeamCard extends StatelessWidget {
+class TeamCard extends StatefulWidget {
   final Team team;
   TeamCard(this.team);
+
+  @override
+  _TeamCardState createState() => _TeamCardState();
+}
+
+class _TeamCardState extends State<TeamCard> {
+  var isexpanded = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -58,13 +65,51 @@ class TeamCard extends StatelessWidget {
       color: CustomColors.taskez1,
       margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       child: ExpansionTile(
+        onExpansionChanged: (value) {
+          setState(() {
+            isexpanded = !isexpanded;
+          });
+        },
+        trailing: !isexpanded
+            ? Stack(
+                children: <Widget>[
+                  new Icon(
+                    Icons.person,
+                    size: 42,
+                  ),
+                  new Positioned(
+                    right: 0,
+                    child: new Container(
+                      padding: EdgeInsets.all(2),
+                      decoration: new BoxDecoration(
+                        //color: Color(0xFF89CA72),
+                        color: Color(0xFF2368F8),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      constraints: BoxConstraints(
+                        minWidth: 18,
+                        minHeight: 18,
+                      ),
+                      child: new Text(
+                        widget.team.numPlayer.toString(),
+                        style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )
+                ],
+              )
+            : Icon(Icons.expand_less),
         title: Text(
-          team.teamName,
+          widget.team.teamName,
           style: TextStyle(
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 22),
         ),
         subtitle: Text(
-          "Owner: " + team.ownerName,
+          "Owner: " + widget.team.ownerName,
           style: TextStyle(
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
         ),
@@ -85,7 +130,7 @@ class TeamCard extends StatelessWidget {
                 margin:
                     EdgeInsets.only(left: 20, right: 4, top: 20, bottom: 20),
                 child: Text(
-                  "Players: " + team.playerUid.length.toString(),
+                  "Players: " + widget.team.playerUid.length.toString(),
                   style: TextStyle(fontSize: 22, color: Colors.white54),
                 ),
               ),
@@ -101,7 +146,7 @@ class TeamCard extends StatelessWidget {
                 margin:
                     EdgeInsets.only(left: 4, right: 20, top: 20, bottom: 20),
                 child: Text(
-                  "Credits: " + team.credits.toString(),
+                  "Credits: " + widget.team.credits.toString(),
                   style: TextStyle(
                     fontSize: 22,
                     color: Colors.white54,
@@ -110,7 +155,7 @@ class TeamCard extends StatelessWidget {
               )
             ],
           ),
-          ...team.playerUid.map((e) {
+          ...widget.team.playerUid.map((e) {
             return PlayerTile(
                 player: Provider.of<Players>(context).getPlayer(e));
           }).toList(),
