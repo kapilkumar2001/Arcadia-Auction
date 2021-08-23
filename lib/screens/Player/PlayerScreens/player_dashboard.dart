@@ -8,8 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../signin_screen.dart';
-
 class PlayerDashBoard extends StatefulWidget {
   const PlayerDashBoard({Key? key}) : super(key: key);
 
@@ -22,15 +20,14 @@ class PlayerDashBoard extends StatefulWidget {
 class _PlayerDashBoardState extends State<PlayerDashBoard> {
   @override
   void didChangeDependencies() {
-    Provider.of<Players>(context, listen: false).fetchAndSetPlayers();
     super.didChangeDependencies();
+    Provider.of<Players>(context, listen: false).fetchAndSetPlayers().then(
+          (value) =>
+              Provider.of<Players>(context, listen: false).getPlayer(Auth.uid!),
+        );
   }
 
- 
-
   int _selectedIndex = 0;
-
-  
 
   List<Widget> _widgetOptions = <Widget>[
     PlayerProfileScreen(),
@@ -50,43 +47,38 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: ClipRRect(
-         borderRadius: BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),),
+          topRight: Radius.circular(30.0),
+        ),
         child: BottomNavigationBar(
-          
-            iconSize: 30,
-            showSelectedLabels: true,
-            showUnselectedLabels: false,
-            type: BottomNavigationBarType.shifting,
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
+          iconSize: 30,
+          showSelectedLabels: true,
+          showUnselectedLabels: false,
+          type: BottomNavigationBarType.shifting,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.profile_circled),
                 label: 'Profile',
-                backgroundColor: Colors.black
-              ),
-              BottomNavigationBarItem(
+                backgroundColor: Colors.black),
+            BottomNavigationBarItem(
                 icon: Icon(Icons.add_alert),
                 label: 'Updates',
-                backgroundColor: Colors.black
-              ),
-              BottomNavigationBarItem(
+                backgroundColor: Colors.black),
+            BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.app_badge_fill),
                 label: 'Standings',
-                backgroundColor: Colors.black
-              ),
-              BottomNavigationBarItem(
+                backgroundColor: Colors.black),
+            BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.table_badge_more_fill),
                 label: 'Schedule',
-                backgroundColor: Colors.black
-              ),
-            ],
-            
-            currentIndex: _selectedIndex,
-            selectedItemColor: Colors.white,
-            onTap: _onItemTapped,
-            backgroundColor: Colors.white38,
-          ),
+                backgroundColor: Colors.black),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.white,
+          onTap: _onItemTapped,
+          backgroundColor: Colors.white38,
+        ),
       ),
     );
   }

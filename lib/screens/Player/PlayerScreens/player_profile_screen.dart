@@ -16,20 +16,15 @@ class PlayerProfileScreen extends StatefulWidget {
 }
 
 class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<Players>(context, listen: false).fetchAndSetPlayers();
+    currPlayer = Provider.of<Players>(context, listen: false).getPlayer(Auth.uid!);
+    print(currPlayer);
+  }
 
-  
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   String uid = auth.currentUser!.uid.toString();
-  //    Provider.of<Players>(context, listen: false).fetchAndSetPlayers();
-  //   currPlayer = Provider.of<Players>(context, listen: false).getPlayer(uid);
-  //   print(currPlayer);
-  // }
-
-   Player? currPlayer;
+  Player? currPlayer;
 
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
@@ -73,9 +68,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
         child: new Stack(
       children: <Widget>[
         ClipPath(
-          child: Container(
-              
-              color: Colors.blue.withOpacity(0.8)),
+          child: Container(color: Colors.blue.withOpacity(0.8)),
           clipper: getClipper(),
         ),
         Positioned(

@@ -1,3 +1,4 @@
+import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Player/formPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,12 +16,11 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> {
   bool isAdmin = false;
-  FirebaseAuth auth = FirebaseAuth.instance;
   bool isData = false;
   bool isLoading = true;
 
   void initiate() async {
-    var uid = auth.currentUser!.uid.toString();
+    var uid = Auth.uid;
     await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
         if (documentSnapshot.exists) {
