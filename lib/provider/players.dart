@@ -6,6 +6,7 @@ import 'package:arcadia/provider/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class Players with ChangeNotifier {
   List<Player> allPlayers = [];
@@ -104,5 +105,15 @@ class Players with ChangeNotifier {
     unassignedPlayers = allPlayers
         .where((element) => element.playerStatus == PlayerStatus.unassigned)
         .toList();
+  }
+
+  Future<String> getImageUrl(String uid) async {
+    String imageUrl = await firebase_storage.FirebaseStorage.instance
+        .ref('PlayerProfileImages/$uid/image')
+        .getDownloadURL();
+    // print(imageUrl);
+    return imageUrl;
+    // Within your widgets:
+    // Image.network(downloadURL);
   }
 }

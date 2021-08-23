@@ -7,6 +7,7 @@ import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class AuctionPlayer extends StatefulWidget {
   static const routeName = '/auction-player';
@@ -18,6 +19,8 @@ class AuctionPlayer extends StatefulWidget {
 
 class _AuctionPlayerState extends State<AuctionPlayer> {
   List<Team> teams = [];
+  String imageUrl =
+      "https://pbs.twimg.com/profile_images/1372030169985163266/ceCabVlu.jpg";
 
   @override
   void didChangeDependencies() {
@@ -75,20 +78,44 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                         padding: const EdgeInsets.only(top: 30),
                         child: CircleAvatar(
                           minRadius: 90,
+                          maxRadius: 90,
                           backgroundColor:
                               getCategoryColor(currPlayer.playerCategory),
-                          child: CircleAvatar(
-                            minRadius: 80,
-                            backgroundColor: Colors.greenAccent,
-                            foregroundColor: Colors.white54,
-                            child: IconButton(
-                              icon: Icon(Icons.add_a_photo_rounded),
-                              onPressed: () {
-                                //TODO:
-                                // this._getImage();
-                              },
-                            ),
+                          child: FutureBuilder(
+                            future: Provider.of<Players>(context, listen: false)
+                                .getImageUrl(currPlayer.uid),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                print(snapshot.data);
+                                return CircleAvatar(
+                                  minRadius: 80,
+                                  maxRadius: 80,
+                                  backgroundColor: Colors.greenAccent,
+                                  foregroundColor: Colors.white54,
+                                  backgroundImage:
+                                      NetworkImage(snapshot.data.toString()),
+                                );
+
+                                // return Image.network(
+                                //     snapshot.data.toString());
+                              } else if (snapshot.hasError) {
+                                return Icon(Icons.image_not_supported_sharp);
+                              } else {
+                                return CircleAvatar(
+                                  minRadius: 80,
+                                  maxRadius: 80,
+                                  backgroundColor: Colors.greenAccent,
+                                  foregroundColor: Colors.white54,
+                                  backgroundImage: NetworkImage(
+                                    "https://media.licdn.cn/dms/image/C4E03AQH0R-gHUXFypQ/profile-displayphoto-shrink_200_200/0/1608348586517?e=1632960000&v=beta&t=9Blc9LneB2KmVsbS8-C8Dvqa9ZQfLSoqE_7M6PTIXbI",
+                                  ),
+                                );
+
+                                //return CircularProgressIndicator();
+                              }
+                            },
                           ),
+                          //  Provider.of<Players>(context,listen: false).getImageUrl(currPlayer)
                         ),
                       ),
                       Container(
