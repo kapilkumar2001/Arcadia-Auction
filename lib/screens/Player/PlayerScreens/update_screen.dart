@@ -1,5 +1,8 @@
+import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
+import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -44,7 +47,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
               child: Column(
                 children: [
                   Container(
-                    width: double.infinity,
+                    height: 100,
                     padding: EdgeInsets.all(30),
                     child: Text(
                       'Arcadia CSGO League',
@@ -55,50 +58,40 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     ),
                   ),
                   Container(
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height - 100,
-                      // child: ListView.builder(
-                      //   itemBuilder: (_, index) {
-                      child: Card(
-                        elevation: 5,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Flexible(
-                                    child: Text(
-                                  announcementList[0].title,
-                                  style: TextStyle(fontSize: 20),
-                                )),
-                                Flexible(
-                                  child: Text(
-                                    DateFormat('d, MMM 7:mm').format(
-                                        announcementList[0].createddateTime),
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Divider(
-                              height: 20,
-                              color: Colors.black,
-                            ),
-                            Text(
-                              announcementList[0].subtitle,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                      //   },
+                    height: MediaQuery.of(context).size.height-200,
+                    child: ListView(
+                    
+                      children:[ 
+                        ...announcementList.map((e) => AnnouncementCard(announcement:e )).toList(),
+                        
+                      // ExpansionTile(
+                      //   title: Text(
+                      //     announcementList[0].title.toString(),
+                      //     style: TextStyle(
+                      //         color: Colors.black,
+                      //         fontWeight: FontWeight.bold,
+                      //         fontSize: 22),
+                      //   ),
+                      //   subtitle: Text(
+                      //     announcementList[0].subtitle.toString(),
+                      //     style: TextStyle(
+                      //         color: Colors.black,
+                      //         fontWeight: FontWeight.bold,
+                      //         fontSize: 15),
+                      //   ),
+                      //   children: [
+                      //     Text(
+                      //       announcementList[0].desc.toString(),
+                      //       style: TextStyle(
+                      //           color: Colors.black,
+                      //           fontWeight: FontWeight.bold,
+                      //           fontSize: 15),
+                      //     ),
+                      //   ],
                       // ),
-                      )
+                      ]
+                    ),
+                  ),
                 ],
               ),
             ),
