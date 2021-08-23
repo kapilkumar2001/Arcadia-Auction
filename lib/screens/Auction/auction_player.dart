@@ -73,6 +73,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                             child: IconButton(
                               icon: Icon(Icons.add_a_photo_rounded),
                               onPressed: () {
+                                //TODO:
                                 // this._getImage();
                               },
                             ),
@@ -255,6 +256,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(20),
+                                //TODO: add dynamic dropdown form firebase
                                 child: DropdownButton<String>(
                                   value: _teams,
                                   onChanged: (newVal) {
