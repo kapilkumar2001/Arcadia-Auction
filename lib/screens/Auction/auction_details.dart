@@ -74,12 +74,14 @@ class TeamCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
+                padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: CustomColors.firebaseNavy,
-                    border: Border.all(color: Colors.blueAccent)),
-                padding:
-                    EdgeInsets.only(left: 34, right: 34, top: 20, bottom: 20),
+                  borderRadius: BorderRadius.circular(20),
+                  color: CustomColors.firebaseNavy,
+                  border: Border.all(
+                    color: Colors.blueAccent,
+                  ),
+                ),
                 margin:
                     EdgeInsets.only(left: 20, right: 4, top: 20, bottom: 20),
                 child: Text(
@@ -88,26 +90,26 @@ class TeamCard extends StatelessWidget {
                 ),
               ),
               Container(
+                padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: CustomColors.firebaseNavy,
-                    border: Border.all(color: Colors.blueAccent)),
-                padding:
-                    EdgeInsets.only(left: 34, right: 34, top: 20, bottom: 20),
+                  borderRadius: BorderRadius.circular(20),
+                  color: CustomColors.firebaseNavy,
+                  border: Border.all(
+                    color: Colors.blueAccent,
+                  ),
+                ),
                 margin:
                     EdgeInsets.only(left: 4, right: 20, top: 20, bottom: 20),
                 child: Text(
                   "Credits: " + team.credits.toString(),
-                  style: TextStyle(fontSize: 22, color: Colors.white54),
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white54,
+                  ),
                 ),
               )
             ],
           ),
-          if (team.playerUid.isEmpty)
-            Text(
-              'empty',
-              style: TextStyle(color: Colors.white),
-            ),
           ...team.playerUid.map((e) {
             return PlayerTile(
                 player: Provider.of<Players>(context).getPlayer(e));

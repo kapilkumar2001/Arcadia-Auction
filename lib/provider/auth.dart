@@ -6,10 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth with ChangeNotifier {
-  String? uid;
+  static String? uid;
 
   bool get isAuth {
     User? user = FirebaseAuth.instance.currentUser;
+    return user == null ? false : true;
+  }
+
+  bool checkAndSetAuth() {
+    User? user = FirebaseAuth.instance.currentUser;
+    uid = FirebaseAuth.instance.currentUser!.uid.toString();
     return user == null ? false : true;
   }
 

@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           create: (_) => Auth(),
         ),
         ChangeNotifierProvider<Announcements>(
-          create: (_) =>Announcements(),
+          create: (_) => Announcements(),
         ),
       ],
       child: Consumer<Auth>(
@@ -53,13 +53,18 @@ class MyApp extends StatelessWidget {
             builder: (context, snapshot) {
               // Once complete, show your application
               if (snapshot.connectionState == ConnectionState.done) {
-                return auth.isAuth ? Wrapper() : OnboardingPage();
+                if (auth.isAuth) {
+                  Provider.of<Auth>(context).checkAndSetAuth();
+                  return Wrapper();
+                } else {
+                  return OnboardingPage();
+                }
               }
               return CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomColors.firebaseOrange,
-                    ),
-                  );
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  CustomColors.firebaseOrange,
+                ),
+              );
             },
           ),
           routes: {

@@ -19,9 +19,8 @@ class PlayerForm extends StatefulWidget {
 }
 
 class _PlayerFormState extends State<PlayerForm> {
-  FirebaseAuth auth = FirebaseAuth.instance;
   var imageUrl;
-  var uid;
+  var uid = Auth.uid;
 
   final namecontroller = new TextEditingController();
   final studentIDcontroller = new TextEditingController();
@@ -34,9 +33,6 @@ class _PlayerFormState extends State<PlayerForm> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      uid = auth.currentUser!.uid.toString();
-    });
   }
 
   Future<void> _showMyDialog() async {
@@ -305,13 +301,17 @@ class _PlayerFormState extends State<PlayerForm> {
                                       primaryWeapon: Weapons.values.firstWhere(
                                         (e) =>
                                             e.toString() ==
-                                            'Weapons.' + primaryWcontroller.text.toUpperCase(),
+                                            'Weapons.' +
+                                                primaryWcontroller.text
+                                                    .toUpperCase(),
                                       ),
                                       secondaryWeapon:
                                           Weapons.values.firstWhere(
                                         (e) =>
                                             e.toString() ==
-                                            'Weapons.' + secondaryWcontroller.text.toUpperCase(),
+                                            'Weapons.' +
+                                                secondaryWcontroller.text
+                                                    .toUpperCase(),
                                       ),
                                       hoursPlayed:
                                           int.parse(gameHRScontroller.text),
