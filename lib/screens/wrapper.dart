@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'Player/player_dashboard.dart';
+import 'Player/PlayerScreens/player_dashboard.dart';
 
 class Wrapper extends StatefulWidget {
   static const routeName = '/wrapper';

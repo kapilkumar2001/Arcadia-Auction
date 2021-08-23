@@ -4,7 +4,7 @@ import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/screens/Player/player_dashboard.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
 import 'package:arcadia/widgets/blue_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
