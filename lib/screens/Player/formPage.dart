@@ -305,13 +305,13 @@ class _PlayerFormState extends State<PlayerForm> {
                                       primaryWeapon: Weapons.values.firstWhere(
                                         (e) =>
                                             e.toString() ==
-                                            primaryWcontroller.text,
+                                            'Weapons.' + primaryWcontroller.text.toUpperCase(),
                                       ),
                                       secondaryWeapon:
                                           Weapons.values.firstWhere(
                                         (e) =>
                                             e.toString() ==
-                                            secondaryWcontroller.text,
+                                            'Weapons.' + secondaryWcontroller.text.toUpperCase(),
                                       ),
                                       hoursPlayed:
                                           int.parse(gameHRScontroller.text),

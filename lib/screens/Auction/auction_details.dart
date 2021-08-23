@@ -19,7 +19,7 @@ class _AuctionDetailsState extends State<AuctionDetails> {
     super.didChangeDependencies();
     Provider.of<Teams>(context).fetchAndSetTeams();
   }
-
+  //TODO: create UI
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
@@ -40,6 +40,7 @@ class TeamCard extends StatelessWidget {
   TeamCard(this.team);
   @override
   Widget build(BuildContext context) {
+    //TODO: expansion tile
     return ExpansionTile(
       title: Text(team.teamName),
       children: [
