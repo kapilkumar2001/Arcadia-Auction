@@ -12,7 +12,7 @@ class Announcement with ChangeNotifier {
     required this.id,
     required this.title,
      this.subtitle='',
-    required this.desc,
+     this.desc ='',
     required this.createddateTime,
   });
 
