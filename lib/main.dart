@@ -1,3 +1,4 @@
+import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/teams.dart';
@@ -33,7 +34,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<Auth>(
           create: (_) => Auth(),
-        )
+        ),
+        ChangeNotifierProvider<Announcements>(
+          create: (_) =>Announcements(),
+        ),
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(

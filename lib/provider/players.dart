@@ -38,7 +38,11 @@ class Players with ChangeNotifier {
   }
 
   Player getPlayer(String id) {
-    return allPlayers.firstWhere((e) => e.uid == id);
+    return allPlayers.firstWhere((e) {
+      print('e.uid : ${e.uid} & id : ${id}');
+
+      return e.uid == id;
+    });
   }
 
   void addSoldPlayer(Player p) {
