@@ -7,7 +7,6 @@ import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class AuctionPlayer extends StatefulWidget {
   static const routeName = '/auction-player';
@@ -22,11 +21,6 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
   String imageUrl =
       "https://pbs.twimg.com/profile_images/1372030169985163266/ceCabVlu.jpg";
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    Provider.of<Teams>(context).fetchAndSetTeams();
-  }
 
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
@@ -86,7 +80,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                 .getImageUrl(currPlayer.uid),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                print(snapshot.data);
+                                // print(snapshot.data);
                                 return CircleAvatar(
                                   minRadius: 80,
                                   maxRadius: 80,
@@ -280,7 +274,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                           }).toList(),
                           onChanged: (value) {
                             setState(() {
-                              print('value is : $value');
+                              // print('value is : $value');
                               _playerStatus = value!;
                             });
                           },

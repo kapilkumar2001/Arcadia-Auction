@@ -1,5 +1,6 @@
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/provider/auth.dart';
+import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Players>(
           create: (_) => Players(),
+        ),
+         ChangeNotifierProvider<Matches>(
+          create: (_) => Matches(),
         ),
         ChangeNotifierProvider<Teams>(
           create: (_) => Teams(),

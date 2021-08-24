@@ -19,11 +19,6 @@ class AuctionPlayerResell extends StatefulWidget {
 class _AuctionPlayerState extends State<AuctionPlayerResell> {
   List<Team> teams = [];
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    Provider.of<Teams>(context).fetchAndSetTeams();
-  }
 
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
@@ -256,7 +251,7 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                           }).toList(),
                           onChanged: (value) {
                             setState(() {
-                              print('value is : $value');
+                              // print('value is : $value');
                               _playerStatus = value!;
                             });
                           },
