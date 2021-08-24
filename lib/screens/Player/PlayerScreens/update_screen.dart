@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
