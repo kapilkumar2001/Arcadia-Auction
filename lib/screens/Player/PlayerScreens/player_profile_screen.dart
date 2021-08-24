@@ -3,6 +3,7 @@ import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,8 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
   bool _isInit = true;
   bool _isLoading = true;
 
+  final User? auth = FirebaseAuth.instance.currentUser;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -26,7 +29,9 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
           .fetchAndSetPlayers()
           .then((value) {
         currPlayer = Provider.of<Players>(context, listen: false).getPlayer(
-          Auth.uid!,
+          // TODO : ye kya hai ??
+          //     Auth.uid!,
+          auth!.uid,
         );
         setState(() {
           _isLoading = false;
@@ -65,7 +70,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : SafeArea(
-          child: SingleChildScrollView(
+            child: SingleChildScrollView(
               child: Center(
                 child: Column(
                   children: [
@@ -102,8 +107,8 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                               currPlayer!.name,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color:
-                                    getCategoryColor(currPlayer!.playerCategory),
+                                color: getCategoryColor(
+                                    currPlayer!.playerCategory),
                                 fontSize: 35,
                               ),
                             ),
@@ -233,17 +238,17 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                     ),
                                   ),
                                 ),
-                                
                               ],
                             ),
                           ),
                           ElevatedButton.icon(
-                onPressed: () async {
-                  await Provider.of<Auth>(context, listen: false).signOut();
-                },
-                icon: Icon(Icons.arrow_forward),
-                label: Text('Sign Out'),
-              ),
+                            onPressed: () async {
+                              await Provider.of<Auth>(context, listen: false)
+                                  .signOut();
+                            },
+                            icon: Icon(Icons.arrow_forward),
+                            label: Text('Sign Out'),
+                          ),
                         ],
                       ),
                     ),
@@ -251,6 +256,6 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                 ),
               ),
             ),
-        );
+          );
   }
 }

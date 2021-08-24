@@ -22,14 +22,17 @@ class _AuctionDetailsState extends State<AuctionDetails> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Players>(context, listen: false)
-          .fetchAndSetPlayers()
-          .then((value) {
-        Provider.of<Players>(context).fetchAndSetPlayers();
-        setState(() {
-          _isLoading = false;
-        });
-      });
+      Provider.of<Players>(context, listen: false).fetchAndSetPlayers().then(
+        (value) {
+          Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
+                (value) => setState(
+                  () {
+                    _isLoading = false;
+                  },
+                ),
+              );
+        },
+      );
     }
     _isInit = false;
   }
@@ -42,24 +45,24 @@ class _AuctionDetailsState extends State<AuctionDetails> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColors.firebaseNavy,
-        title: Text(
-          "Auction Status",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        centerTitle: true,
-      ),
-      body: Material(
-        color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
-        child: ListView.builder(
-          itemCount: teams.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TeamCard(teams[index]);
-          },
-        ),
-      ),
-    );
+            appBar: AppBar(
+              backgroundColor: CustomColors.firebaseNavy,
+              title: Text(
+                "Auction Status",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              centerTitle: true,
+            ),
+            body: Material(
+              color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
+              child: ListView.builder(
+                itemCount: teams.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return TeamCard(teams[index]);
+                },
+              ),
+            ),
+          );
   }
 }
 

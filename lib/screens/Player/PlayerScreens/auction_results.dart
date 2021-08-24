@@ -76,9 +76,9 @@ class TeamCard extends StatefulWidget {
 }
 
 class _TeamCardState extends State<TeamCard> {
+  bool isexpanded = false;
   @override
   Widget build(BuildContext context) {
-    var isexpanded = false;
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -90,23 +90,13 @@ class _TeamCardState extends State<TeamCard> {
             isexpanded = !isexpanded;
           });
         },
-        title: Text(
-          widget.team.teamName,
-          style: TextStyle(
-              color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 22),
-        ),
-        subtitle: Text(
-          "Owner: " + widget.team.ownerName,
-          style: TextStyle(
-              color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
-        ),
-
         trailing: !isexpanded
             ? Stack(
                 children: <Widget>[
                   new Icon(
                     Icons.person,
                     size: 42,
+                    color: Colors.black,
                   ),
                   new Positioned(
                     right: 0,
@@ -134,6 +124,16 @@ class _TeamCardState extends State<TeamCard> {
                 ],
               )
             : Icon(Icons.expand_less),
+        title: Text(
+          widget.team.teamName,
+          style: TextStyle(
+              color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 22),
+        ),
+        subtitle: Text(
+          "Owner: " + widget.team.ownerName,
+          style: TextStyle(
+              color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
+        ),
         children: [
           if (widget.team.playerUid.isEmpty) Container(),
           ...widget.team.playerUid.map((e) {

@@ -1,6 +1,5 @@
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,8 +42,8 @@ class _AuctionOverviewState extends State<AuctionOverview> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    print('uid : '  + auth.currentUser!.uid.toString());
+    // FirebaseAuth auth = FirebaseAuth.instance;
+    // print('uid : '  + auth.currentUser!.uid.toString());
     return Scaffold(
       bottomNavigationBar: Material(
         elevation: 100,

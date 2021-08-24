@@ -6,6 +6,7 @@ import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Auction/auction_player.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/wrapper.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:arcadia/screens/signin_screen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<Players>(
           create: (_) => Players(),
         ),
-         ChangeNotifierProvider<Matches>(
+        ChangeNotifierProvider<Matches>(
           create: (_) => Matches(),
         ),
         ChangeNotifierProvider<Teams>(
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
             AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
             AuctionPlayerResell.routeName: (ctx) => AuctionPlayerResell(),
             AuctionDetails.routeName: (ctx) => AuctionDetails(),
+            ScheduleScreen.routeName: (ctx) => ScheduleScreen(),
           },
         ),
       ),

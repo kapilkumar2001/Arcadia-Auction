@@ -19,7 +19,6 @@ class AuctionPlayerResell extends StatefulWidget {
 class _AuctionPlayerState extends State<AuctionPlayerResell> {
   List<Team> teams = [];
 
-
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
       case PlayerCategory.gold:
@@ -67,24 +66,41 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 30),
-                        child: CircleAvatar(
-                          minRadius: 90,
-                          backgroundColor:
-                              getCategoryColor(currPlayer.playerCategory),
+                          padding: const EdgeInsets.only(top: 30),
                           child: CircleAvatar(
-                            minRadius: 80,
-                            backgroundColor: Colors.greenAccent,
-                            foregroundColor: Colors.white54,
-                            child: IconButton(
-                              icon: Icon(Icons.add_a_photo_rounded),
-                              onPressed: () {
-                                // this._getImage();
-                              },
+                            minRadius: 90,
+                            backgroundColor:
+                                getCategoryColor(currPlayer.playerCategory),
+                            child: CircleAvatar(
+                              minRadius: 90,
+                              maxRadius: 90,
+                              backgroundColor:
+                                  getCategoryColor(currPlayer.playerCategory),
+                              child: FutureBuilder(
+                                future:
+                                    Provider.of<Players>(context, listen: false)
+                                        .getImageUrl(currPlayer.uid),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    // print(snapshot.data);
+                                    return CircleAvatar(
+                                      minRadius: 80,
+                                      maxRadius: 80,
+                                      backgroundColor: Colors.greenAccent,
+                                      foregroundColor: Colors.white54,
+                                      backgroundImage: NetworkImage(
+                                          snapshot.data.toString()),
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return Icon(
+                                        Icons.image_not_supported_sharp);
+                                  } else {
+                                    return CircularProgressIndicator();
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
+                          )),
                       Container(
                         alignment: Alignment.bottomLeft,
                         padding: const EdgeInsets.all(20),

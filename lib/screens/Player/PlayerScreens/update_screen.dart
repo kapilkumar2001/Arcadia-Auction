@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
@@ -67,10 +68,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     // SizedBox(
                     //   height: 20,
                     // ),
-                     Container(
-                      decoration: BoxDecoration(
-                        
-                      ),
+                    Container(
+                      decoration: BoxDecoration(),
                       width: MediaQuery.of(context).size.width,
                       // padding: EdgeInsets.all(30),
                       child: Text(
