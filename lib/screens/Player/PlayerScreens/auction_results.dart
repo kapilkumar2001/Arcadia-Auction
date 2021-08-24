@@ -15,36 +15,52 @@ class AuctionResults extends StatefulWidget {
 
 class _AuctionResultsState extends State<AuctionResults> {
   List<Team> teams = [];
+  bool _isInit = true;
+  bool _isLoading = true;
 
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Teams>(context).fetchAndSetTeams();
+    if (_isInit) {
+      Provider.of<Players>(context, listen: false)
+          .fetchAndSetPlayers()
+          .then((value) {
+        Provider.of<Teams>(context).fetchAndSetTeams();
+        setState(() {
+          _isLoading = false;
+          // print(currPlayer);
+        });
+      });
+    }
+    _isInit = false;
   }
 
-  //TODO: create UI
+  //TODO: image
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColors.firebaseNavy,
-        title: Text(
-          "Auction Results",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        centerTitle: true,
-      ),
-      body: Material(
-        color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
-        child: ListView.builder(
-          itemCount: teams.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TeamCard(teams[index]);
-          },
-        ),
-      ),
-    );
+    return _isLoading
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: CustomColors.firebaseNavy,
+              title: Text(
+                "Auction Results",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              centerTitle: true,
+            ),
+            body: Material(
+              color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
+              child: ListView.builder(
+                itemCount: teams.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return TeamCard(teams[index]);
+                },
+              ),
+            ),
+          );
   }
 }
 

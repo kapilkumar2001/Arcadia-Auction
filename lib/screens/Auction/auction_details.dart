@@ -15,17 +15,33 @@ class AuctionDetails extends StatefulWidget {
 
 class _AuctionDetailsState extends State<AuctionDetails> {
   List<Team> teams = [];
+  bool _isInit = true;
+  bool _isLoading = true;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Teams>(context).fetchAndSetTeams();
+    if (_isInit) {
+      Provider.of<Players>(context, listen: false)
+          .fetchAndSetPlayers()
+          .then((value) {
+        Provider.of<Players>(context).fetchAndSetPlayers();
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
   }
 
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
-    return Scaffold(
+    return _isLoading
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Scaffold(
       appBar: AppBar(
         backgroundColor: CustomColors.firebaseNavy,
         title: Text(

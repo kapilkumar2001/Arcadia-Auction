@@ -1,11 +1,7 @@
-import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
-import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class UpdateScreen extends StatefulWidget {
@@ -37,7 +33,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   Widget build(BuildContext context) {
     announcementList =
         Provider.of<Announcements>(context, listen: false).announcement;
-    print('announcements :   $announcementList');
+    // print('announcements :   $announcementList');
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
