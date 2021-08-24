@@ -24,33 +24,6 @@ class _WrapperState extends State<Wrapper> {
     var uid = Auth.uid;
     await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
-        print('testing -- match model');
-        Provider.of<Matches>(context, listen: false)
-            .addMatches(
-              Match(
-                isCompleted: false,
-                matchId: '1',
-                matchTime: DateTime.now(),
-                teamId1: '5',
-                teamId2: '6',
-                mvpId: '0WrQ52PM2zMakLXoa6XJRS0j1wQ2',
-                roundDiff: 3,
-                roundsWon: {
-                  '5':15,
-                  '6':16
-                },
-                points: {
-                  '5':0,
-                  '6':2
-                },
-                
-              ),
-            )
-            .then(
-              (value) =>
-                  print(Provider.of<Matches>(context, listen: false).matches),
-            );
-
         if (documentSnapshot.exists) {
           setState(() {
             isData = true;

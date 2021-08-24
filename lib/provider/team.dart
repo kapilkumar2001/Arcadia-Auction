@@ -90,13 +90,13 @@ class Team {
       credits: map['credits'],
       ownerName: map['ownerName'],
       numPlayer: map['numPlayer'],
-      matchesWon: map['matchesWon'],
-      matchesLost: map['matchesLost'],
-      matchesDraw: map['matchesDraw'],
-      roundDifference: map['roundDifference'],
-      points: map['points'],
-      completeMatches: List<String>.from(map['completeMatches']),
-      upcomingMatches: List<String>.from(map['upcomingMatches']),
+      matchesWon: map['matchesWon'] ?? 0,
+      matchesLost: map['matchesLost'] ?? 0,
+      matchesDraw: map['matchesDraw'] ?? 0,
+      roundDifference: map['roundDifference'] ?? 0,
+      points: map['points'] ?? 0,
+      completeMatches: List<String>.from(map['completeMatches'] ?? {}),
+      upcomingMatches: List<String>.from(map['upcomingMatches'] ?? {}),
     );
   }
 
