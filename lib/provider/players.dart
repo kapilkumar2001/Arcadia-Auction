@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

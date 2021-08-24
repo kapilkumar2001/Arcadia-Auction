@@ -15,15 +15,33 @@ class AuctionHome extends StatefulWidget {
 }
 
 class _AuctionHomeState extends State<AuctionHome> {
+
+  bool _isInit = true;
+  bool _isLoading = true;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Players>(context).fetchAndSetPlayers();
+    if (_isInit) {
+      Provider.of<Players>(context, listen: false)
+          .fetchAndSetPlayers()
+          .then((value) {
+        Provider.of<Players>(context).fetchAndSetPlayers();
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return _isLoading
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Material(
       color: Colors.deepPurpleAccent,
       child: Center(
         child: Column(

@@ -9,6 +9,13 @@ class Team {
   final int credits;
   final String ownerName;
   final int numPlayer;
+  final int matchesWon;
+  final int matchesLost;
+  final int matchesDraw;
+  final int roundDifference;
+  final int points;
+  final List<String> completeMatches;
+  final List<String> upcomingMatches;
   Team({
     required this.teamName,
     required this.teamUid,
@@ -16,6 +23,13 @@ class Team {
     required this.credits,
     required this.ownerName,
     required this.numPlayer,
+    required this.matchesWon,
+    required this.matchesLost,
+    required this.matchesDraw,
+    required this.roundDifference,
+    required this.points,
+    required this.completeMatches,
+    required this.upcomingMatches,
   });
 
   Team copyWith({
@@ -25,6 +39,13 @@ class Team {
     int? credits,
     String? ownerName,
     int? numPlayer,
+    int? matchesWon,
+    int? matchesLost,
+    int? matchesDraw,
+    int? roundDifference,
+    int? points,
+    List<String>? completeMatches,
+    List<String>? upcomingMatches,
   }) {
     return Team(
       teamName: teamName ?? this.teamName,
@@ -33,6 +54,13 @@ class Team {
       credits: credits ?? this.credits,
       ownerName: ownerName ?? this.ownerName,
       numPlayer: numPlayer ?? this.numPlayer,
+      matchesWon: matchesWon ?? this.matchesWon,
+      matchesLost: matchesLost ?? this.matchesLost,
+      matchesDraw: matchesDraw ?? this.matchesDraw,
+      roundDifference: roundDifference ?? this.roundDifference,
+      points: points ?? this.points,
+      completeMatches: completeMatches ?? this.completeMatches,
+      upcomingMatches: upcomingMatches ?? this.upcomingMatches,
     );
   }
 
@@ -44,6 +72,13 @@ class Team {
       'credits': credits,
       'ownerName': ownerName,
       'numPlayer': numPlayer,
+      'matchesWon': matchesWon,
+      'matchesLost': matchesLost,
+      'matchesDraw': matchesDraw,
+      'roundDifference': roundDifference,
+      'points': points,
+      'completeMatches': completeMatches,
+      'upcomingMatches': upcomingMatches,
     };
   }
 
@@ -55,6 +90,13 @@ class Team {
       credits: map['credits'],
       ownerName: map['ownerName'],
       numPlayer: map['numPlayer'],
+      matchesWon: map['matchesWon'] ?? 0,
+      matchesLost: map['matchesLost'] ?? 0,
+      matchesDraw: map['matchesDraw'] ?? 0,
+      roundDifference: map['roundDifference'] ?? 0,
+      points: map['points'] ?? 0,
+      completeMatches: List<String>.from(map['completeMatches'] ?? {}),
+      upcomingMatches: List<String>.from(map['upcomingMatches'] ?? {}),
     );
   }
 
@@ -64,7 +106,7 @@ class Team {
 
   @override
   String toString() {
-    return 'Team(teamName: $teamName, teamUid: $teamUid, playerUid: $playerUid, credits: $credits, ownerName: $ownerName, numPlayer: $numPlayer)';
+    return 'Team(teamName: $teamName, teamUid: $teamUid, playerUid: $playerUid, credits: $credits, ownerName: $ownerName, numPlayer: $numPlayer, matchesWon: $matchesWon, matchesLost: $matchesLost, matchesDraw: $matchesDraw, roundDifference: $roundDifference, points: $points, completeMatches: $completeMatches, upcomingMatches: $upcomingMatches)';
   }
 
   @override
@@ -77,7 +119,14 @@ class Team {
       listEquals(other.playerUid, playerUid) &&
       other.credits == credits &&
       other.ownerName == ownerName &&
-      other.numPlayer == numPlayer;
+      other.numPlayer == numPlayer &&
+      other.matchesWon == matchesWon &&
+      other.matchesLost == matchesLost &&
+      other.matchesDraw == matchesDraw &&
+      other.roundDifference == roundDifference &&
+      other.points == points &&
+      listEquals(other.completeMatches, completeMatches) &&
+      listEquals(other.upcomingMatches, upcomingMatches);
   }
 
   @override
@@ -87,6 +136,13 @@ class Team {
       playerUid.hashCode ^
       credits.hashCode ^
       ownerName.hashCode ^
-      numPlayer.hashCode;
+      numPlayer.hashCode ^
+      matchesWon.hashCode ^
+      matchesLost.hashCode ^
+      matchesDraw.hashCode ^
+      roundDifference.hashCode ^
+      points.hashCode ^
+      completeMatches.hashCode ^
+      upcomingMatches.hashCode;
   }
 }

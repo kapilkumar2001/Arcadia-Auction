@@ -15,67 +15,128 @@ class AuctionResults extends StatefulWidget {
 
 class _AuctionResultsState extends State<AuctionResults> {
   List<Team> teams = [];
+  bool _isInit = true;
+  bool _isLoading = true;
 
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Teams>(context).fetchAndSetTeams();
+    if (_isInit) {
+      Provider.of<Players>(context, listen: false).fetchAndSetPlayers().then(
+        (value) {
+          Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
+                (value) => setState(
+                  () {
+                    _isLoading = false;
+                    // print(currPlayer);
+                  },
+                ),
+              );
+        },
+      );
+    }
+    _isInit = false;
   }
 
-  //TODO: create UI
+  //TODO: image
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColors.firebaseNavy,
-        title: Text(
-          "Auction Results",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        centerTitle: true,
-      ),
-      body: Material(
-        color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
-        child: ListView.builder(
-          itemCount: teams.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TeamCard(teams[index]);
-          },
-        ),
-      ),
-    );
+    return _isLoading
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: CustomColors.firebaseNavy,
+              title: Text(
+                "Auction Results",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              centerTitle: true,
+            ),
+            body: Material(
+              color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
+              child: ListView.builder(
+                itemCount: teams.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return TeamCard(teams[index]);
+                },
+              ),
+            ),
+          );
   }
 }
 
-class TeamCard extends StatelessWidget {
+class TeamCard extends StatefulWidget {
   final Team team;
   TeamCard(this.team);
+
+  @override
+  _TeamCardState createState() => _TeamCardState();
+}
+
+class _TeamCardState extends State<TeamCard> {
   @override
   Widget build(BuildContext context) {
+    var isexpanded = false;
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
       color: CustomColors.taskez1,
       margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       child: ExpansionTile(
+        onExpansionChanged: (value) {
+          setState(() {
+            isexpanded = !isexpanded;
+          });
+        },
         title: Text(
-          team.teamName,
+          widget.team.teamName,
           style: TextStyle(
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 22),
         ),
         subtitle: Text(
-          "Owner: " + team.ownerName,
+          "Owner: " + widget.team.ownerName,
           style: TextStyle(
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
         ),
+
+        trailing: !isexpanded
+            ? Stack(
+                children: <Widget>[
+                  new Icon(
+                    Icons.person,
+                    size: 42,
+                  ),
+                  new Positioned(
+                    right: 0,
+                    child: new Container(
+                      padding: EdgeInsets.all(2),
+                      decoration: new BoxDecoration(
+                        //color: Color(0xFF89CA72),
+                        color: Color(0xFF2368F8),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      constraints: BoxConstraints(
+                        minWidth: 18,
+                        minHeight: 18,
+                      ),
+                      child: new Text(
+                        widget.team.numPlayer.toString(),
+                        style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )
+                ],
+              )
+            : Icon(Icons.expand_less),
         children: [
-          if (team.playerUid.isEmpty)
-            Text(
-              'empty',
-              style: TextStyle(color: Colors.white),
-            ),
-          ...team.playerUid.map((e) {
+          if (widget.team.playerUid.isEmpty) Container(),
+          ...widget.team.playerUid.map((e) {
             return PlayerTile(
                 player: Provider.of<Players>(context).getPlayer(e));
           }).toList(),

@@ -1,8 +1,5 @@
-import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
-import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -22,7 +22,7 @@ class Teams with ChangeNotifier {
   Future<void> updateTeam(Team t) async {
     CollectionReference teams = FirebaseFirestore.instance.collection('Team');
     await teams.doc(t.teamUid).update(t.toMap()).then((_) {
-      print("Data Updated in firebase for team id - " + t.teamUid);
+      // print("Data Updated in firebase for team id - " + t.teamUid);
     });
     await fetchAndSetTeams();
     notifyListeners();
