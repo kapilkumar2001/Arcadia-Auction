@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_image_compress: ^1.1.0
+  google_fonts: ^2.1.0
   google_sign_in: ^5.0.7
   image_picker: ^0.8.3+2
   intl: ^0.17.0
