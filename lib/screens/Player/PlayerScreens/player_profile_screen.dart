@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
@@ -70,6 +71,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : SafeArea(
+<<<<<<< HEAD
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -110,21 +112,87 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                 color: getCategoryColor(
                                     currPlayer!.playerCategory),
                                 fontSize: 35,
+=======
+          child: Container(
+          
+
+            
+            child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        //  height: double.infinity,
+                        color: CustomColors.firebaseNavy,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 30),
+                              child: FutureBuilder(
+                              future: Provider.of<Players>(context, listen: false)
+                                  .getImageUrl(currPlayer!.uid),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  // print(snapshot.data);
+                                  return CircleAvatar(
+                                    minRadius: 80,
+                                    maxRadius: 80,
+                                    backgroundColor: Colors.greenAccent,
+                                    foregroundColor: Colors.white54,
+                                    backgroundImage:
+                                        NetworkImage(snapshot.data.toString()),
+                                  );
+
+                                  // return Image.network(
+                                  //     snapshot.data.toString());
+                                } else if (snapshot.hasError) {
+                                  return Icon(Icons.image_not_supported_sharp);
+                                } else {
+                                  return CircleAvatar(
+                                    minRadius: 80,
+                                    maxRadius: 80,
+                                    backgroundColor: Colors.greenAccent,
+                                    foregroundColor: Colors.white54,
+                                    backgroundImage: NetworkImage(
+                                      "https://media.licdn.cn/dms/image/C4E03AQH0R-gHUXFypQ/profile-displayphoto-shrink_200_200/0/1608348586517?e=1632960000&v=beta&t=9Blc9LneB2KmVsbS8-C8Dvqa9ZQfLSoqE_7M6PTIXbI",
+                                    ),
+                                  );
+
+                                  //return CircularProgressIndicator();
+                                }
+                              },
+                            ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                currPlayer!.name,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  
+                                  color:
+                                      getCategoryColor(currPlayer!.playerCategory),
+                                  fontSize: 40,
+                                ),
+>>>>>>> 7c81b95365d9e0ddec984c89bd883e961534396a
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Column(
+                      // Divider(
+                      //   height:,
+                      //   color: Colors.white,
+                      // ),
+                      Column(
                         children: [
                           Container(
+                            margin: EdgeInsets.only(top: 20),
                             width: width * 0.9,
                             height: height * 0.2,
                             decoration: BoxDecoration(
-                              color: Color(0xff141E61),
+                              color: CustomColors.primaryColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             padding: const EdgeInsets.all(15),
@@ -174,7 +242,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                   top: 20,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xff5089C6),
+                                      color: CustomColors.firebaseNavy,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
@@ -193,7 +261,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                   child: Text(
                                     'Primary Weapon',
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                     ),
@@ -213,7 +281,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                   top: 20,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xff5089C6),
+                                      color: CustomColors.firebaseNavy,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
@@ -232,7 +300,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                   child: Text(
                                     'Secondary Weapon',
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                     ),
@@ -242,6 +310,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             ),
                           ),
                           ElevatedButton.icon(
+<<<<<<< HEAD
                             onPressed: () async {
                               await Provider.of<Auth>(context, listen: false)
                                   .signOut();
@@ -249,13 +318,26 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             icon: Icon(Icons.arrow_forward),
                             label: Text('Sign Out'),
                           ),
+=======
+                  onPressed: () async {
+                    await Provider.of<Auth>(context, listen: false).signOut();
+                  },
+                  icon: Icon(Icons.arrow_forward),
+                  label: Text('Sign Out'),
+                ),
+>>>>>>> 7c81b95365d9e0ddec984c89bd883e961534396a
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+<<<<<<< HEAD
             ),
           );
+=======
+          ),
+        );
+>>>>>>> 7c81b95365d9e0ddec984c89bd883e961534396a
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
@@ -107,11 +108,12 @@ class _PlayerFormState extends State<PlayerForm> {
       appBar: AppBar(
         title:
             Text("Player Deailts Form", style: TextStyle(color: Colors.white)),
-        backgroundColor: Color(0xff403b58),
+        backgroundColor: CustomColors.firebaseNavy,
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Container(
+          color: CustomColors.firebaseNavy.withOpacity(0.6),
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
           child: Column(
@@ -169,8 +171,9 @@ class _PlayerFormState extends State<PlayerForm> {
                   child: Column(
                     children: [
                       TextFormField(
+                        
                         controller: namecontroller,
-                        decoration: InputDecoration(
+                        decoration: InputDecoration( 
                           hintText: "Ex:- Mani",
                           labelText: "Your Name",
                         ),
