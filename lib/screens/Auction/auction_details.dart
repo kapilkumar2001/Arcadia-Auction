@@ -22,17 +22,14 @@ class _AuctionDetailsState extends State<AuctionDetails> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Players>(context, listen: false).fetchAndSetPlayers().then(
-        (value) {
-          Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
-                (value) => setState(
-                  () {
-                    _isLoading = false;
-                  },
-                ),
-              );
-        },
-      );
+      Provider.of<Players>(context, listen: false)
+          .fetchAndSetPlayers()
+          .then((value) {
+        Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
+        setState(() {
+          _isLoading = false;
+        });
+      });
     }
     _isInit = false;
   }
@@ -138,7 +135,7 @@ class _TeamCardState extends State<TeamCard> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                padding: EdgeInsets.all(25),
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: CustomColors.firebaseNavy,
@@ -154,7 +151,7 @@ class _TeamCardState extends State<TeamCard> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(25),
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: CustomColors.firebaseNavy,

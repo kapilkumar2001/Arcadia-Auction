@@ -1,6 +1,7 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_resell_player.dart';
 import 'package:arcadia/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _AuctionHomeState extends State<AuctionHome> {
       Provider.of<Players>(context, listen: false)
           .fetchAndSetPlayers()
           .then((value) {
-        Provider.of<Players>(context, listen: false).fetchAndSetPlayers();
+        Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
         setState(() {
           _isLoading = false;
         });

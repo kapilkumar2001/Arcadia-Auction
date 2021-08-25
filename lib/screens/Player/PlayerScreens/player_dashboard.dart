@@ -1,6 +1,7 @@
 import 'package:arcadia/screens/Player/PlayerScreens/auction_results.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_profile_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/team_standings.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/update_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
     PlayerProfileScreen(),
     UpdateScreen(),
     AuctionResults(),
-    ScheduleScreen(),
+    TeamStandings(),
   ];
 
   void _onItemTapped(int index) {
