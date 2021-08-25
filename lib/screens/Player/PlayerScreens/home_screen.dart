@@ -146,7 +146,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           Container(
                             color: CustomColors.firebaseNavy.withOpacity(0.2),
                             margin: EdgeInsets.all(10),
-                            height: 200,
+                            height: 150,
                             child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
