@@ -14,6 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
+import '../signin_screen.dart';
+
 class PlayerForm extends StatefulWidget {
   @override
   _PlayerFormState createState() => _PlayerFormState();

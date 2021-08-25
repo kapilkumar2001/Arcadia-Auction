@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,48 +11,6 @@ class AnnouncementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _showSimpleDialog() {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return SimpleDialog(
-              titlePadding: EdgeInsets.fromLTRB(24, 8, 24, 0),
-              backgroundColor: CustomColors.firebaseNavy,
-              title: Text(
-                announcement.title,
-                style: TextStyle(color: Colors.white, fontSize: 32),
-                textAlign: TextAlign.center,
-              ),
-              children: <Widget>[
-                Divider(
-                  color: Colors.white,
-                  height: 20,
-                ),
-                Text(
-                  announcement.subtitle,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  announcement.desc,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: 22,
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            );
-          });
-    }
-
     return GestureDetector(
       onTap: () {
         customDialogBox(context, announcement);
@@ -124,7 +80,8 @@ customDialogBox(BuildContext context, Announcement announcement) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return BackdropFilter(filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: AlertDialog(
               backgroundColor: Colors.white38,
               shape: RoundedRectangleBorder(
@@ -134,47 +91,44 @@ customDialogBox(BuildContext context, Announcement announcement) {
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width,
-                  
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        
                         Center(
                             child: new Text(announcement.title,
-                                style:
-                                    TextStyle(fontWeight: FontWeight.bold,fontSize: 30.0, color: Colors.white)) //
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30.0,
+                                    color: Colors.white)) //
                             ),
-                            SizedBox(
+                        SizedBox(
                           height: 5.0,
                           width: 5.0,
                         ),
-                         Center(
+                        Center(
                             child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: new Text(announcement.subtitle,
-                              style:
-                                  TextStyle(fontSize: 25.0, color: Colors.white)),
+                              style: TextStyle(
+                                  fontSize: 25.0, color: Colors.white)),
                         ) //
                             ),
                         SizedBox(
                           child: Divider(
-                          color: Colors.white,
-                          height: 1.0,
-                          
+                            color: Colors.white,
+                            height: 1.0,
+                          ),
                         ),
-                        ),
-                        
-                         Center(
+                        Center(
                             child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: new Text(announcement.desc,
-                              style:
-                                  TextStyle(fontSize: 18.0, color: Colors.white)),
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.white)),
                         ) //
                             ),
-                        
                         InkWell(
                           child: Container(
                             padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
@@ -201,7 +155,10 @@ customDialogBox(BuildContext context, Announcement announcement) {
                   Positioned(
                     top: 0.0,
                     right: 10.0,
-                    child: Icon(Icons.cancel_sharp,size: 30,),
+                    child: Icon(
+                      Icons.cancel_sharp,
+                      size: 30,
+                    ),
                   ),
                 ],
               )),

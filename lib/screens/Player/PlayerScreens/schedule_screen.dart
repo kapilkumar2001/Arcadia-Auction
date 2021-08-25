@@ -5,6 +5,7 @@ import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/match_details.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ScheduleScreen extends StatefulWidget {
@@ -27,17 +28,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Matches>(context, listen: false)
-          .fetchAndSetMatches()
-          .then((value) {
-        Provider.of<Teams>(context, listen: false)
-            .fetchAndSetTeams()
-            .then((value) => setState(
-                  () {
-                    _isLoading = false;
-                  },
-                ));
-      });
+      Provider.of<Matches>(context, listen: false).fetchAndSetMatches().then(
+        (value) {
+          Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
+                (value) => setState(() {
+                  _isLoading = false;
+                }),
+              );
+        },
+      );
     }
     _isInit = false;
   }
@@ -90,33 +89,19 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 child: Container(
                   child: TabBarView(
                     children: [
-                      SingleChildScrollView(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: upcomingmatches.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return MatchCard(upcomingmatches[index], teams);
-                            },
-                          ),
-                        ),
+                      ListView.builder(
+                        itemCount: upcomingmatches.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return UpcomingMatchCard(
+                              upcomingmatches[index], teams);
+                        },
                       ),
-                      SingleChildScrollView(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: completedmatches.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return MatchCard(completedmatches[index], teams);
-                            },
-                          ),
-                        ),
+                      ListView.builder(
+                        itemCount: completedmatches.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return CompletedMatchCard(
+                              completedmatches[index], teams);
+                        },
                       ),
                     ],
                   ),
@@ -127,19 +112,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 }
 
-class MatchCard extends StatefulWidget {
+class UpcomingMatchCard extends StatelessWidget {
   final Match match;
-  List<Team> teams;
-  MatchCard(this.match, this.teams);
+  final List<Team> teams;
+  UpcomingMatchCard(this.match, this.teams);
 
-  @override
-  _MatchCardState createState() => _MatchCardState();
-}
-
-class _MatchCardState extends State<MatchCard> {
   @override
   Widget build(BuildContext context) {
-    // print("teams=" + widget.teams.toString());
+    // print("teams=" + teams.toString());
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -165,7 +145,8 @@ class _MatchCardState extends State<MatchCard> {
                   minRadius: 25,
                   maxRadius: 25,
                   child: Image.network(
-                      "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  ),
                 ),
               ],
             ),
@@ -175,38 +156,128 @@ class _MatchCardState extends State<MatchCard> {
                   minRadius: 25,
                   maxRadius: 25,
                   child: Image.network(
-                      "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  ),
                 ),
               ],
             ),
             title: Center(
               child: Column(children: [
                 Text(
-                  "Match " + widget.match.matchId,
-                  style: TextStyle(color: Colors.white60),
+                  "Match " + match.matchId,
+                  style: TextStyle(
+                      color: Colors.white60, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 2,
                 ),
                 Text(
-                  widget.teams[int.parse(widget.match.teamId1)].teamName +
-                      " Vs " +
-                      widget.teams[int.parse(widget.match.teamId2)].teamName,
-                  style: TextStyle(color: Colors.white60),
+                  teams[int.parse(match.teamId1)].teamName +
+                      "   Vs   " +
+                      teams[int.parse(match.teamId2)].teamName,
+                  style: TextStyle(
+                      color: Colors.white60, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
-                  "On " +
-                      widget.match.matchTime.toLocal().day.toString() +
-                      "/" +
-                      widget.match.matchTime.toLocal().month.toString() +
-                      "/" +
-                      widget.match.matchTime.toLocal().year.toString() +
-                      " at " +
-                      widget.match.matchTime.hour.toString() +
-                      ":" +
-                      widget.match.matchTime.toLocal().minute.toString(),
+                  "Live at " + DateFormat('hh:mm dMMM').format(match.matchTime),
                   style: TextStyle(color: Colors.white60),
                 ),
+              ]),
+            ),
+          )),
+    );
+  }
+}
+
+class CompletedMatchCard extends StatelessWidget {
+  final Match match;
+  final List<Team> teams;
+  CompletedMatchCard(this.match, this.teams);
+
+  @override
+  Widget build(BuildContext context) {
+    // print("teams=" + teams.toString());
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MatchDetails()),
+        );
+      },
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.blueAccent,
+            ),
+            color: CustomColors.taskez1,
+          ),
+          margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 0),
+          child: ListTile(
+            contentPadding:
+                EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
+            leading: Column(
+              children: [
+                CircleAvatar(
+                  minRadius: 25,
+                  maxRadius: 25,
+                  child: Image.network(
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  ),
+                ),
+              ],
+            ),
+            trailing: Column(
+              children: [
+                CircleAvatar(
+                  minRadius: 25,
+                  maxRadius: 25,
+                  child: Image.network(
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  ),
+                ),
+              ],
+            ),
+            title: Center(
+              child: Column(children: [
+                Text(
+                  "Match " + match.matchId,
+                  style: TextStyle(
+                      color: Colors.white60, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  teams[int.parse(match.teamId1)].teamName +
+                      "   Vs   " +
+                      teams[int.parse(match.teamId2)].teamName,
+                  style: TextStyle(
+                      color: Colors.white60, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                (match.points![match.teamId1] == match.points![match.teamId2])
+                    ? Text(
+                        "Match Draw",
+                        style: TextStyle(color: Colors.white60),
+                      )
+                    : ((match.points![match.teamId1]!.toInt()) >
+                            (match.points![match.teamId2]!.toInt()))
+                        ? Text(
+                            teams[int.parse(match.teamId1)].teamName +
+                                " won the match",
+                            style: TextStyle(color: Colors.white60),
+                          )
+                        : Text(
+                            teams[int.parse(match.teamId2)].teamName +
+                                " won the match",
+                            style: TextStyle(color: Colors.white60),
+                          )
               ]),
             ),
           )),

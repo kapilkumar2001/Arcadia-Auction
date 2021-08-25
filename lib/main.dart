@@ -17,6 +17,7 @@ import 'package:provider/provider.dart';
 
 import 'constants/app_theme.dart';
 import 'screens/Auction/auction_resell_player.dart';
+import 'screens/Player/PlayerScreens/player_profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,11 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  Future<void> initialiseFirebase() async {
+    await Firebase.initializeApp();
+    Auth.setUid();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -56,7 +61,7 @@ class MyApp extends StatelessWidget {
           ),
           home: FutureBuilder(
             // Initialize FlutterFire:
-            future: _initialization,
+            future: initialiseFirebase(),
             builder: (context, snapshot) {
               // Once complete, show your application
               if (snapshot.connectionState == ConnectionState.done) {
@@ -82,6 +87,7 @@ class MyApp extends StatelessWidget {
             AuctionDetails.routeName: (ctx) => AuctionDetails(),
             TeamDetails.routeName: (ctx) => TeamDetails(),
             ScheduleScreen.routeName: (ctx) => ScheduleScreen(),
+            PlayerProfileScreen.routeName: (ctx) => PlayerProfileScreen(),
           },
         ),
       ),

@@ -84,28 +84,28 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                 .getImageUrl(currPlayer.uid),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                // print(snapshot.data);
                                 return CircleAvatar(
                                   minRadius: 80,
                                   maxRadius: 80,
                                   backgroundColor: Colors.greenAccent,
                                   foregroundColor: Colors.white54,
-                                  backgroundImage:
-                                      NetworkImage(snapshot.data.toString()),
+                                  backgroundImage: NetworkImage(
+                                    snapshot.data.toString(),
+                                  ),
                                 );
-
-                                // return Image.network(
-                                //     snapshot.data.toString());
                               } else if (snapshot.hasError) {
                                 return Icon(Icons.image_not_supported_sharp);
                               } else {
-                                return CircularProgressIndicator();
-
-                                //return CircularProgressIndicator();
+                                return CircleAvatar(
+                                  minRadius: 80,
+                                  maxRadius: 80,
+                                  backgroundColor: Colors.greenAccent,
+                                  foregroundColor: Colors.white54,
+                                  child: CircularProgressIndicator(),
+                                );
                               }
                             },
                           ),
-                          //  Provider.of<Players>(context,listen: false).getImageUrl(currPlayer)
                         ),
                       ),
                       Container(
