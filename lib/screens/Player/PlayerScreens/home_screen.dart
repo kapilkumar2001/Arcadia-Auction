@@ -1,18 +1,16 @@
-import 'dart:math';
-
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/provider/matches.dart';
+import 'package:arcadia/provider/teams.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/player_profile_screen.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:arcadia/provider/match.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class UpdateScreen extends StatefulWidget {
   @override
@@ -23,7 +21,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   List<Announcement> announcementList = [];
   bool _isInit = true;
   bool _isLoading = true;
-  List<Match> matchList = [];
+  List<Match> upcomingMatchList = [];
 
   final sugg = [
     'assets/gif.gif',
@@ -33,54 +31,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
   ];
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Announcements>(context, listen: false)
-          .fetchAndSetAnnouncement()
-          .then((value) {
-        Provider.of<Matches>(context, listen: false).fetchAndSetMatches();
-        setState(() {
-          _isLoading = false;
-        });
+      await Provider.of<Announcements>(context, listen: false)
+          .fetchAndSetAnnouncement();
+
+      await Provider.of<Matches>(context, listen: false).fetchAndSetMatches();
+      await Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
+      setState(() {
+        _isLoading = false;
       });
     }
     _isInit = false;
   }
 
-  // Future<void> _showDeleteDialog() async {
-  //   await showDialog(
-  //     context: context,
-  //     builder: (ctx) => AlertDialog(
-  //       title: Text('Confirm Delete Team?',
-  //           style: TextStyle(
-  //               fontWeight: FontWeight.w600,
-  //               fontSize: 25,
-  //               color: AppTheme.darkGreen)),
-  //       content: Text(
-  //           '${} and all its associated data will be deleted. This action is irreversible. Are you sure?',
-  //           style: kTextStylez4Subtitle),
-  //       actions: [
-  //         // _buildFlatButton('Delete', 15, _onDelete),
-  //         // _buildFlatButton('Cancel', 15, _onCancel),
-  //       ],
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.all(
-  //           Radius.circular(20),
-  //         ),
-  //       ),
-  //       backgroundColor: AppTheme.offWhite,
-  //     ),
-  //   );
-  // }
-
-  static const IconData my_library_books_outlined = IconData(0xf160, fontFamily: 'MaterialIcons');
+  static const IconData my_library_books_outlined =
+      IconData(0xf160, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
     announcementList =
         Provider.of<Announcements>(context, listen: false).announcement;
-    matchList = Provider.of<Matches>(context, listen: false).matches;
+    upcomingMatchList =
+        Provider.of<Matches>(context, listen: false).upcomingMatches;
     // print('announcements :   $announcementList');
     return _isLoading
         ? Center(
@@ -89,20 +63,28 @@ class _UpdateScreenState extends State<UpdateScreen> {
         : Scaffold(
             appBar: AppBar(
               actions: [
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                 my_library_books_outlined,
-                  size: 30,
-              ),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed(PlayerProfileScreen.routeName);
+                    },
+                    icon: Icon(
+                      CupertinoIcons.profile_circled,
+                      size: 30,
+                    ),
+                  ),
                 )
               ],
-              leading: GestureDetector(
-                  child: Icon(
-                CupertinoIcons.profile_circled,
-                size: 30,
-              )),
+              leading: IconButton(
+                  onPressed: () {
+                    //TODO: Insert a pdf to the rule book or a URL to the docs
+                  },
+                  icon: Icon(
+                    my_library_books_outlined,
+                    size: 28,
+                  )),
               centerTitle: true,
               title: Text(
                 'Arcadia CSGO League',
@@ -123,8 +105,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                            height: 20,
-                          ),
+                      height: 20,
+                    ),
                     // VxSwiper.builder(
                     //   itemCount: sugg.length,
                     //   height: 50.0,
@@ -145,8 +127,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     // ),
 
                     Container(
-                      // height: 200,
-                      // width: 200,
                       child: Column(
                         children: [
                           Text(
@@ -170,10 +150,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
-                                  ...matchList
+                                  ...upcomingMatchList
                                       .map((e) => GestureDetector(
-                                        // onTap: ,
-                                        child: UpcomingMatchCard(match: e)))
+                                          // onTap: ,
+                                          child: UpcomingMatchCard(match: e)))
                                       .toList(),
                                 ]),
                           ),

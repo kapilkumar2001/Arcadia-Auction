@@ -13,6 +13,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
+import '../signin_screen.dart';
+
 class PlayerForm extends StatefulWidget {
   @override
   _PlayerFormState createState() => _PlayerFormState();
@@ -171,9 +173,8 @@ class _PlayerFormState extends State<PlayerForm> {
                   child: Column(
                     children: [
                       TextFormField(
-                        
                         controller: namecontroller,
-                        decoration: InputDecoration( 
+                        decoration: InputDecoration(
                           hintText: "Ex:- Mani",
                           labelText: "Your Name",
                         ),
@@ -336,6 +337,10 @@ class _PlayerFormState extends State<PlayerForm> {
                         onPressed: () async {
                           await Provider.of<Auth>(context, listen: false)
                               .signOut();
+                          Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SignInScreen();
+                          }), (route) => false);
                         },
                         icon: Icon(Icons.arrow_forward),
                         label: Text('Sign Out'),

@@ -1,6 +1,5 @@
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,26 +42,18 @@ class _AuctionOverviewState extends State<AuctionOverview> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
-      bottomNavigationBar: Material(
-        elevation: 100,
-        child: Container(
-          height: 60,
-          width: 600,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(30.0)),
-            child: BottomNavigationBar(
-              items: _item,
-              type: BottomNavigationBarType.shifting,
-              currentIndex: _currentIndex,
-              // selectedItemColor: Colors.white38,
-              unselectedItemColor: Colors.white38,
-              onTap: _onTapped,
-              // backgroundColor: Colors.white38,
-            ),
-          ),
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
+        backgroundColor: Colors.white38,
+        iconSize: 30,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        items: _item,
+        type: BottomNavigationBarType.shifting,
+        currentIndex: _currentIndex,
+        unselectedItemColor: Colors.white38,
+        onTap: _onTapped,
       ),
       body: _tabs[_currentIndex],
     );

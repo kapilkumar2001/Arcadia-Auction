@@ -19,6 +19,10 @@ class Auth with ChangeNotifier {
   //   return user == null ? false : true;
   // }
 
+  static setUid() {
+    uid = FirebaseAuth.instance.currentUser!.uid.toString();
+  }
+
   static Future<User?> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
