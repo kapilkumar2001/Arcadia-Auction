@@ -71,53 +71,8 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : SafeArea(
-<<<<<<< HEAD
-            child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 280,
-                      color: Color(0xff787A91),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30),
-                            child: CircleAvatar(
-                              minRadius: 90,
-                              backgroundColor:
-                                  getCategoryColor(currPlayer!.playerCategory),
-                              child: CircleAvatar(
-                                minRadius: 80,
-                                backgroundColor: Colors.greenAccent,
-                                foregroundColor: Colors.white54,
-                                child: IconButton(
-                                  icon: Icon(Icons.add_a_photo_rounded),
-                                  onPressed: () {
-                                    //TODO:
-                                    // this._getImage();
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: const EdgeInsets.only(top: 20, left: 20),
-                            child: Text(
-                              currPlayer!.name,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: getCategoryColor(
-                                    currPlayer!.playerCategory),
-                                fontSize: 35,
-=======
-          child: Container(
-          
-
-            
-            child: SingleChildScrollView(
+            child: Container(
+              child: SingleChildScrollView(
                 child: Center(
                   child: Column(
                     children: [
@@ -130,39 +85,41 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             Container(
                               margin: const EdgeInsets.only(top: 30),
                               child: FutureBuilder(
-                              future: Provider.of<Players>(context, listen: false)
-                                  .getImageUrl(currPlayer!.uid),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  // print(snapshot.data);
-                                  return CircleAvatar(
-                                    minRadius: 80,
-                                    maxRadius: 80,
-                                    backgroundColor: Colors.greenAccent,
-                                    foregroundColor: Colors.white54,
-                                    backgroundImage:
-                                        NetworkImage(snapshot.data.toString()),
-                                  );
+                                future:
+                                    Provider.of<Players>(context, listen: false)
+                                        .getImageUrl(currPlayer!.uid),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    // print(snapshot.data);
+                                    return CircleAvatar(
+                                      minRadius: 80,
+                                      maxRadius: 80,
+                                      backgroundColor: Colors.greenAccent,
+                                      foregroundColor: Colors.white54,
+                                      backgroundImage: NetworkImage(
+                                          snapshot.data.toString()),
+                                    );
 
-                                  // return Image.network(
-                                  //     snapshot.data.toString());
-                                } else if (snapshot.hasError) {
-                                  return Icon(Icons.image_not_supported_sharp);
-                                } else {
-                                  return CircleAvatar(
-                                    minRadius: 80,
-                                    maxRadius: 80,
-                                    backgroundColor: Colors.greenAccent,
-                                    foregroundColor: Colors.white54,
-                                    backgroundImage: NetworkImage(
-                                      "https://media.licdn.cn/dms/image/C4E03AQH0R-gHUXFypQ/profile-displayphoto-shrink_200_200/0/1608348586517?e=1632960000&v=beta&t=9Blc9LneB2KmVsbS8-C8Dvqa9ZQfLSoqE_7M6PTIXbI",
-                                    ),
-                                  );
+                                    // return Image.network(
+                                    //     snapshot.data.toString());
+                                  } else if (snapshot.hasError) {
+                                    return Icon(
+                                        Icons.image_not_supported_sharp);
+                                  } else {
+                                    return CircleAvatar(
+                                      minRadius: 80,
+                                      maxRadius: 80,
+                                      backgroundColor: Colors.greenAccent,
+                                      foregroundColor: Colors.white54,
+                                      backgroundImage: NetworkImage(
+                                        "https://media.licdn.cn/dms/image/C4E03AQH0R-gHUXFypQ/profile-displayphoto-shrink_200_200/0/1608348586517?e=1632960000&v=beta&t=9Blc9LneB2KmVsbS8-C8Dvqa9ZQfLSoqE_7M6PTIXbI",
+                                      ),
+                                    );
 
-                                  //return CircularProgressIndicator();
-                                }
-                              },
-                            ),
+                                    //return CircularProgressIndicator();
+                                  }
+                                },
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -170,12 +127,10 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                 currPlayer!.name,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  
-                                  color:
-                                      getCategoryColor(currPlayer!.playerCategory),
+                                  color: getCategoryColor(
+                                      currPlayer!.playerCategory),
                                   fontSize: 40,
                                 ),
->>>>>>> 7c81b95365d9e0ddec984c89bd883e961534396a
                               ),
                             ),
                           ],
@@ -310,7 +265,6 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             ),
                           ),
                           ElevatedButton.icon(
-<<<<<<< HEAD
                             onPressed: () async {
                               await Provider.of<Auth>(context, listen: false)
                                   .signOut();
@@ -318,26 +272,13 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             icon: Icon(Icons.arrow_forward),
                             label: Text('Sign Out'),
                           ),
-=======
-                  onPressed: () async {
-                    await Provider.of<Auth>(context, listen: false).signOut();
-                  },
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Sign Out'),
-                ),
->>>>>>> 7c81b95365d9e0ddec984c89bd883e961534396a
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-<<<<<<< HEAD
             ),
           );
-=======
-          ),
-        );
->>>>>>> 7c81b95365d9e0ddec984c89bd883e961534396a
   }
 }
