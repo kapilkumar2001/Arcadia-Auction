@@ -1,5 +1,4 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/widgets/team_standing_card.dart';
