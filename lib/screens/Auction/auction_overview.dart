@@ -44,7 +44,6 @@ class _AuctionOverviewState extends State<AuctionOverview> {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
-    print('uid : '  + auth.currentUser!.uid.toString());
     return Scaffold(
       bottomNavigationBar: Material(
         elevation: 100,

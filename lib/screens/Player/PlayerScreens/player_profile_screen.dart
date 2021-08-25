@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../signin_screen.dart';
+
 class PlayerProfileScreen extends StatefulWidget {
   const PlayerProfileScreen({Key? key}) : super(key: key);
 
@@ -66,25 +68,22 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : SafeArea(
-          child: Container(
-          
-
-            
             child: SingleChildScrollView(
-                child: Center(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        //  height: double.infinity,
-                        color: CustomColors.firebaseNavy,
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(top: 30),
-                              child: FutureBuilder(
-                              future: Provider.of<Players>(context, listen: false)
-                                  .getImageUrl(currPlayer!.uid),
+              child: Center(
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      //  height: double.infinity,
+                      color: CustomColors.secondaryColor,
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 30),
+                            child: FutureBuilder(
+                              future:
+                                  Provider.of<Players>(context, listen: false)
+                                      .getImageUrl(currPlayer!.uid),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   // print(snapshot.data);
@@ -93,14 +92,15 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                     maxRadius: 80,
                                     backgroundColor: Colors.greenAccent,
                                     foregroundColor: Colors.white54,
-                                    backgroundImage:
-                                        NetworkImage(snapshot.data.toString()),
+                                    backgroundImage: NetworkImage(
+                                        snapshot.data.toString()),
                                   );
 
                                   // return Image.network(
                                   //     snapshot.data.toString());
                                 } else if (snapshot.hasError) {
-                                  return Icon(Icons.image_not_supported_sharp);
+                                  return Icon(
+                                      Icons.image_not_supported_sharp);
                                 } else {
                                   return CircleAvatar(
                                     minRadius: 80,
@@ -116,35 +116,36 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                 }
                               },
                             ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                currPlayer!.name,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  
-                                  color:
-                                      getCategoryColor(currPlayer!.playerCategory),
-                                  fontSize: 40,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              currPlayer!.name,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: getCategoryColor(
+                                    currPlayer!.playerCategory),
+                                fontSize: 40,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      // Divider(
-                      //   height:,
-                      //   color: Colors.white,
-                      // ),
-                      Column(
+                    ),
+                    // Divider(
+                    //   height:,
+                    //   color: Colors.white,
+                    // ),
+                    Container(
+                      color: CustomColors.secondaryColor,
+                      child: Column(
                         children: [
                           Container(
                             margin: EdgeInsets.only(top: 20),
                             width: width * 0.9,
                             height: height * 0.2,
                             decoration: BoxDecoration(
-                              color: CustomColors.primaryColor,
+                              color: CustomColors.firebaseNavy,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             padding: const EdgeInsets.all(15),
@@ -194,7 +195,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                   top: 20,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: CustomColors.firebaseNavy,
+                                      color: CustomColors.primaryColor,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
@@ -233,7 +234,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                   top: 20,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: CustomColors.firebaseNavy,
+                                      color: CustomColors.primaryColor,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
@@ -258,24 +259,28 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                     ),
                                   ),
                                 ),
-                                
                               ],
                             ),
                           ),
                           ElevatedButton.icon(
-                  onPressed: () async {
-                    await Provider.of<Auth>(context, listen: false).signOut();
-                  },
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Sign Out'),
-                ),
+                            onPressed: () async {
+                              await Provider.of<Auth>(context, listen: false)
+                                  .signOut();
+                              Navigator.pushAndRemoveUntil(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return SignInScreen();
+                              }), (route) => false);
+                            },
+                            icon: Icon(Icons.arrow_forward),
+                            label: Text('Sign Out'),
+                          ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-          ),
-        );
+            ),
+          );
   }
 }

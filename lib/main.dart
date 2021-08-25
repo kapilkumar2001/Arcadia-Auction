@@ -48,8 +48,9 @@ class MyApp extends StatelessWidget {
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Arcadia CSGO League',
           theme: ThemeData(
-            primarySwatch: Colors.purple,
-            accentColor: Colors.deepOrange,
+            primaryColor: CustomColors.primaryColor,
+            // primarySwatch: Colors.purple,
+            accentColor: CustomColors.secondaryColor,
             fontFamily: 'lato',
           ),
           home: FutureBuilder(
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
               // Once complete, show your application
               if (snapshot.connectionState == ConnectionState.done) {
                 if (auth.isAuth) {
-                  Provider.of<Auth>(context).checkAndSetAuth();
+                  // Provider.of<Auth>(context).checkAndSetAuth();
                   return Wrapper();
                 } else {
                   return OnboardingPage();

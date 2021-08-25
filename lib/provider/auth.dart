@@ -13,11 +13,11 @@ class Auth with ChangeNotifier {
     return user == null ? false : true;
   }
 
-  bool checkAndSetAuth() {
-    User? user = FirebaseAuth.instance.currentUser;
-    uid = FirebaseAuth.instance.currentUser!.uid.toString();
-    return user == null ? false : true;
-  }
+  // bool checkAndSetAuth() {
+  //   User? user = FirebaseAuth.instance.currentUser;
+  //   uid = FirebaseAuth.instance.currentUser!.uid.toString();
+  //   return user == null ? false : true;
+  // }
 
   static Future<User?> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -42,6 +42,7 @@ class Auth with ChangeNotifier {
             await auth.signInWithCredential(credential);
 
         user = userCredential.user;
+        uid = FirebaseAuth.instance.currentUser!.uid.toString();
       } on FirebaseAuthException catch (e) {
         throw HttpException(e.code);
       }
@@ -57,7 +58,7 @@ class Auth with ChangeNotifier {
         await googleSignIn.signOut();
       }
       await FirebaseAuth.instance.signOut();
+      uid = null;
     } catch (e) {}
-    notifyListeners();
   }
 }
