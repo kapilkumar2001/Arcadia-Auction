@@ -3,6 +3,7 @@ import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/match_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,12 +30,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       Provider.of<Matches>(context, listen: false)
           .fetchAndSetMatches()
           .then((value) {
-        Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
-        setState(
-          () {
-            _isLoading = false;
-          },
-        );
+        Provider.of<Teams>(context, listen: false)
+            .fetchAndSetTeams()
+            .then((value) => setState(
+                  () {
+                    _isLoading = false;
+                  },
+                ));
       });
     }
     _isInit = false;
@@ -139,7 +141,12 @@ class _MatchCardState extends State<MatchCard> {
   Widget build(BuildContext context) {
     // print("teams=" + widget.teams.toString());
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MatchDetails()),
+        );
+      },
       child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),

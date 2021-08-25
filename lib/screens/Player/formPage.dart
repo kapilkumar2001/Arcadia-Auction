@@ -6,6 +6,7 @@ import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
+import 'package:arcadia/screens/signin_screen.dart';
 import 'package:arcadia/widgets/blue_box.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -171,9 +172,8 @@ class _PlayerFormState extends State<PlayerForm> {
                   child: Column(
                     children: [
                       TextFormField(
-                        
                         controller: namecontroller,
-                        decoration: InputDecoration( 
+                        decoration: InputDecoration(
                           hintText: "Ex:- Mani",
                           labelText: "Your Name",
                         ),
@@ -336,6 +336,10 @@ class _PlayerFormState extends State<PlayerForm> {
                         onPressed: () async {
                           await Provider.of<Auth>(context, listen: false)
                               .signOut();
+                          Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SignInScreen();
+                          }), (route) => false);
                         },
                         icon: Icon(Icons.arrow_forward),
                         label: Text('Sign Out'),

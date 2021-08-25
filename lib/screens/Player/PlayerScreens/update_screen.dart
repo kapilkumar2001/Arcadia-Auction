@@ -74,7 +74,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
   //   );
   // }
 
-  static const IconData my_library_books_outlined = IconData(0xf160, fontFamily: 'MaterialIcons');
+  static const IconData my_library_books_outlined =
+      IconData(0xf160, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
@@ -89,13 +90,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
         : Scaffold(
             appBar: AppBar(
               actions: [
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
-                 my_library_books_outlined,
-                  size: 30,
-              ),
+                    my_library_books_outlined,
+                    size: 30,
+                  ),
                 )
               ],
               leading: GestureDetector(
@@ -123,8 +123,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                            height: 20,
-                          ),
+                      height: 20,
+                    ),
                     // VxSwiper.builder(
                     //   itemCount: sugg.length,
                     //   height: 50.0,
@@ -172,8 +172,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                                 children: [
                                   ...matchList
                                       .map((e) => GestureDetector(
-                                        // onTap: ,
-                                        child: UpcomingMatchCard(match: e)))
+                                          // onTap: ,
+                                          child: UpcomingMatchCard(match: e)))
                                       .toList(),
                                 ]),
                           ),
