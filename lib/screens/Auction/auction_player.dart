@@ -21,7 +21,6 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
   String imageUrl =
       "https://pbs.twimg.com/profile_images/1372030169985163266/ceCabVlu.jpg";
 
-
   Color getCategoryColor(PlayerCategory cat) {
     switch (cat) {
       case PlayerCategory.gold:
@@ -47,6 +46,11 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
     super.initState();
     _teams = '0';
     _playerStatus = PlayerStatus.unassigned;
+  }
+
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
   }
 
   @override
@@ -95,15 +99,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                               } else if (snapshot.hasError) {
                                 return Icon(Icons.image_not_supported_sharp);
                               } else {
-                                return CircleAvatar(
-                                  minRadius: 80,
-                                  maxRadius: 80,
-                                  backgroundColor: Colors.greenAccent,
-                                  foregroundColor: Colors.white54,
-                                  backgroundImage: NetworkImage(
-                                    "https://media.licdn.cn/dms/image/C4E03AQH0R-gHUXFypQ/profile-displayphoto-shrink_200_200/0/1608348586517?e=1632960000&v=beta&t=9Blc9LneB2KmVsbS8-C8Dvqa9ZQfLSoqE_7M6PTIXbI",
-                                  ),
-                                );
+                                return CircularProgressIndicator();
 
                                 //return CircularProgressIndicator();
                               }
