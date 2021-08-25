@@ -36,6 +36,7 @@ dependencies:
   intl: ^0.17.0
   permission_handler: ^8.1.4+2
   provider: ^6.0.0
+  velocity_x: ^3.3.0
 
 dev_dependencies:
   flutter_test:

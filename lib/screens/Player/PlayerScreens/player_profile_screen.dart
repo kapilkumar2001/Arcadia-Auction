@@ -65,217 +65,215 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
         ? Center(
             child: CircularProgressIndicator(),
           )
-        : SafeArea(
-          child: Container(
-          
-
-            
-            child: SingleChildScrollView(
-                child: Center(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        //  height: double.infinity,
-                        color: CustomColors.firebaseNavy,
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(top: 30),
-                              child: FutureBuilder(
-                              future: Provider.of<Players>(context, listen: false)
-                                  .getImageUrl(currPlayer!.uid),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  // print(snapshot.data);
-                                  return CircleAvatar(
-                                    minRadius: 80,
-                                    maxRadius: 80,
-                                    backgroundColor: Colors.greenAccent,
-                                    foregroundColor: Colors.white54,
-                                    backgroundImage:
-                                        NetworkImage(snapshot.data.toString()),
-                                  );
-
-                                  // return Image.network(
-                                  //     snapshot.data.toString());
-                                } else if (snapshot.hasError) {
-                                  return Icon(Icons.image_not_supported_sharp);
-                                } else {
-                                  return CircleAvatar(
-                                    minRadius: 80,
-                                    maxRadius: 80,
-                                    backgroundColor: Colors.greenAccent,
-                                    foregroundColor: Colors.white54,
-                                    backgroundImage: NetworkImage(
-                                      "https://media.licdn.cn/dms/image/C4E03AQH0R-gHUXFypQ/profile-displayphoto-shrink_200_200/0/1608348586517?e=1632960000&v=beta&t=9Blc9LneB2KmVsbS8-C8Dvqa9ZQfLSoqE_7M6PTIXbI",
-                                    ),
-                                  );
-
-                                  //return CircularProgressIndicator();
-                                }
-                              },
-                            ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                currPlayer!.name,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  
-                                  color:
-                                      getCategoryColor(currPlayer!.playerCategory),
-                                  fontSize: 40,
+        : Scaffold(
+            appBar: AppBar(
+              leading: Icon(Icons.backspace),
+            ),
+            body: SafeArea(
+              child: Material(
+                color: CustomColors.firebaseNavy.withOpacity(0.7),
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          //  height: double.infinity,
+                          color: CustomColors.firebaseNavy,
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(top: 30),
+                                child: FutureBuilder(
+                                  future: Provider.of<Players>(context,
+                                          listen: false)
+                                      .getImageUrl(currPlayer!.uid),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return CircleAvatar(
+                                        minRadius: 80,
+                                        maxRadius: 80,
+                                        backgroundColor: Colors.greenAccent,
+                                        foregroundColor: Colors.white54,
+                                        backgroundImage: NetworkImage(
+                                            snapshot.data.toString()),
+                                      );
+                                    } else if (snapshot.hasError) {
+                                      return CircleAvatar(
+                                        minRadius: 80,
+                                        maxRadius: 80,
+                                        child: Icon(Icons.image_not_supported),
+                                      );
+                                    } else {
+                                      return CircleAvatar(
+                                        minRadius: 80,
+                                        maxRadius: 80,
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  },
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      // Divider(
-                      //   height:,
-                      //   color: Colors.white,
-                      // ),
-                      Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 20),
-                            width: width * 0.9,
-                            height: height * 0.2,
-                            decoration: BoxDecoration(
-                              color: CustomColors.primaryColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'IGN    :   ${currPlayer!.inGameName}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xffEEEEEE),
-                                    fontSize: 20,
-                                    // fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                                Text(
-                                  'Category   :   ${currPlayer!.playerCategory.toString().split('.').last}',
-                                  textAlign: TextAlign.center,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  currPlayer!.name,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: getCategoryColor(
                                         currPlayer!.playerCategory),
-                                    fontSize: 20,
-                                    // fontWeight: FontWeight.bold
+                                    fontSize: 40,
                                   ),
                                 ),
-                                Text(
-                                  'Hrs Played :   ${currPlayer!.hoursPlayed}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xffEEEEEE),
-                                    fontSize: 20,
-                                    // fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20),
-                            height: height * 0.15,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  width: width * 0.9,
-                                  height: height * 0.1,
-                                  top: 20,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: CustomColors.firebaseNavy,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 5,
-                                  left: -15,
-                                  child: Image.asset(
-                                    getGunImage(currPlayer!.primaryWeapon),
-                                    width: width * 0.6,
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 40,
-                                  top: 50,
-                                  child: Text(
-                                    'Primary Weapon',
+                        ),
+                        // Divider(
+                        //   height:,
+                        //   color: Colors.white,
+                        // ),
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 20),
+                              width: width * 0.9,
+                              height: height * 0.2,
+                              decoration: BoxDecoration(
+                                color: CustomColors.primaryColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'IGN    :   ${currPlayer!.inGameName}',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xffEEEEEE),
                                       fontSize: 20,
+                                      // fontWeight: FontWeight.bold
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20),
-                            height: height * 0.15,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  width: width * 0.9,
-                                  height: height * 0.1,
-                                  top: 20,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: CustomColors.firebaseNavy,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 5,
-                                  left: -15,
-                                  child: Image.asset(
-                                    getGunImage(currPlayer!.secondaryWeapon),
-                                    width: width * 0.6,
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 30,
-                                  top: 50,
-                                  child: Text(
-                                    'Secondary Weapon',
+                                  Text(
+                                    'Category   :   ${currPlayer!.playerCategory.toString().split('.').last}',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
+                                      color: getCategoryColor(
+                                          currPlayer!.playerCategory),
                                       fontSize: 20,
+                                      // fontWeight: FontWeight.bold
                                     ),
                                   ),
-                                ),
-                                
-                              ],
+                                  Text(
+                                    'Hrs Played :   ${currPlayer!.hoursPlayed}',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xffEEEEEE),
+                                      fontSize: 20,
+                                      // fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          ElevatedButton.icon(
-                  onPressed: () async {
-                    await Provider.of<Auth>(context, listen: false).signOut();
-                  },
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Sign Out'),
-                ),
-                        ],
-                      ),
-                    ],
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: height * 0.15,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    width: width * 0.9,
+                                    height: height * 0.1,
+                                    top: 20,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: CustomColors.firebaseNavy,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 5,
+                                    left: -15,
+                                    child: Image.asset(
+                                      getGunImage(currPlayer!.primaryWeapon),
+                                      width: width * 0.6,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    right: 40,
+                                    top: 50,
+                                    child: Text(
+                                      'Primary Weapon',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              height: height * 0.15,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    width: width * 0.9,
+                                    height: height * 0.1,
+                                    top: 20,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: CustomColors.firebaseNavy,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 5,
+                                    left: -15,
+                                    child: Image.asset(
+                                      getGunImage(currPlayer!.secondaryWeapon),
+                                      width: width * 0.6,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    right: 30,
+                                    top: 50,
+                                    child: Text(
+                                      'Secondary Weapon',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            ElevatedButton.icon(
+                              onPressed: () async {
+                                await Provider.of<Auth>(context, listen: false)
+                                    .signOut();
+                              },
+                              icon: Icon(Icons.arrow_forward),
+                              label: Text('Sign Out'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-          ),
-        );
+            ),
+          );
   }
 }

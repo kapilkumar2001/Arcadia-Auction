@@ -19,7 +19,7 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    PlayerProfileScreen(),
+    // PlayerProfileScreen(),
     UpdateScreen(),
     AuctionResults(),
     ScheduleScreen(),
@@ -49,10 +49,10 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
             showUnselectedLabels: false,
             type: BottomNavigationBarType.shifting,
             items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.profile_circled),
-                  label: 'Profile',
-                  backgroundColor: Colors.black),
+              // BottomNavigationBarItem(
+              //     icon: Icon(CupertinoIcons.profile_circled),
+              //     label: 'Profile',
+              //     backgroundColor: Colors.black),
               BottomNavigationBarItem(
                   icon: Icon(Icons.add_alert),
                   label: 'Updates',
