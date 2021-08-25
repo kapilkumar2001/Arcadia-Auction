@@ -22,6 +22,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   bool _isLoading = true;
   int currindex = 0;
 
+  
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -112,7 +114,7 @@ class MatchCard extends StatelessWidget {
   final Match match;
   final List<Team> teams;
   MatchCard(this.match, this.teams);
-
+final String teamImage = 'assets/AWP.png';
   @override
   Widget build(BuildContext context) {
     // print("teams=" + teams.toString());
@@ -135,8 +137,8 @@ class MatchCard extends StatelessWidget {
                 CircleAvatar(
                   minRadius: 25,
                   maxRadius: 25,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  child: Image.asset(
+                    teamImage,
                   ),
                 ),
               ],
@@ -146,8 +148,8 @@ class MatchCard extends StatelessWidget {
                 CircleAvatar(
                   minRadius: 25,
                   maxRadius: 25,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  child: Image.asset(
+                    teamImage,
                   ),
                 ),
               ],
@@ -156,16 +158,29 @@ class MatchCard extends StatelessWidget {
               child: Column(children: [
                 Text(
                   "Match " + match.matchId,
-                  style: TextStyle(color: Colors.white60),
+                  style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.white60),
                 ),
+                SizedBox(height: 12,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  
+                
                 Text(
-                  teams[int.parse(match.teamId1)].teamName +
-                      " Vs " +
-                      teams[int.parse(match.teamId2)].teamName,
-                  style: TextStyle(color: Colors.white60),
+      Provider.of<Teams>(context).getTeam(int.parse(match.teamId1)).teamName ,
+                     style: TextStyle(fontSize: 22,color: Colors.white60),
                 ),
-                SizedBox(
-                  height: 5,
+                SizedBox(width: 12,),
+                Text("vs", style: TextStyle(fontSize: 22,color: Colors.white60),),
+                SizedBox(width: 12,),
+                Text( 
+                      Provider.of<Teams>(context).getTeam(int.parse(match.teamId2)).teamName,
+                  style: TextStyle(fontSize: 24,color: Colors.white60),)
+                ],),
+                
+                Divider(
+                  height: 20,
+                  color: Colors.white,
                 ),
                 Text(
                   "On " +
