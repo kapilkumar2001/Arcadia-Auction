@@ -16,14 +16,13 @@ class PlayerDashBoard extends StatefulWidget {
 }
 
 class _PlayerDashBoardState extends State<PlayerDashBoard> {
-
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
     PlayerProfileScreen(),
     UpdateScreen(),
-    AuctionResults(),
     TeamStandings(),
+    ScheduleScreen(),
   ];
 
   void _onItemTapped(int index) {
