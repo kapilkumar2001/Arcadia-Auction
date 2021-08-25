@@ -22,7 +22,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   List<Team> teams = [];
   bool _isInit = true;
   bool _isLoading = true;
-  int currindex = 0;
 
   @override
   void didChangeDependencies() {
@@ -124,7 +123,8 @@ class UpcomingMatchCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MatchDetails()),
+          MaterialPageRoute(
+              builder: (context) => MatchDetails(match.matchId.toString())),
         );
       },
       child: Container(
@@ -166,20 +166,25 @@ class UpcomingMatchCard extends StatelessWidget {
                 Text(
                   "Match " + match.matchId,
                   style: TextStyle(
-                      color: Colors.white60, fontWeight: FontWeight.bold),
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white60),
                 ),
                 SizedBox(
-                  height: 2,
+                  height: 12,
                 ),
                 Text(
                   teams[int.parse(match.teamId1)].teamName +
                       "   Vs   " +
                       teams[int.parse(match.teamId2)].teamName,
                   style: TextStyle(
-                      color: Colors.white60, fontWeight: FontWeight.bold),
+                      color: Colors.white60,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
                 ),
-                SizedBox(
-                  height: 5,
+                Divider(
+                  height: 20,
+                  color: Colors.white,
                 ),
                 Text(
                   "Live at " + DateFormat('hh:mm dMMM').format(match.matchTime),
@@ -204,7 +209,8 @@ class CompletedMatchCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MatchDetails()),
+          MaterialPageRoute(
+              builder: (context) => MatchDetails(match.matchId.toString())),
         );
       },
       child: Container(
@@ -246,20 +252,25 @@ class CompletedMatchCard extends StatelessWidget {
                 Text(
                   "Match " + match.matchId,
                   style: TextStyle(
-                      color: Colors.white60, fontWeight: FontWeight.bold),
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white60),
                 ),
                 SizedBox(
-                  height: 2,
+                  height: 12,
                 ),
                 Text(
                   teams[int.parse(match.teamId1)].teamName +
                       "   Vs   " +
                       teams[int.parse(match.teamId2)].teamName,
                   style: TextStyle(
-                      color: Colors.white60, fontWeight: FontWeight.bold),
+                      color: Colors.white60,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
                 ),
-                SizedBox(
-                  height: 5,
+                Divider(
+                  height: 20,
+                  color: Colors.white,
                 ),
                 (match.points![match.teamId1] == match.points![match.teamId2])
                     ? Text(
