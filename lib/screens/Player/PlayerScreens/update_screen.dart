@@ -68,10 +68,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     // SizedBox(
                     //   height: 20,
                     // ),
-                     Container(
-                      decoration: BoxDecoration(
-                        
-                      ),
+                    Container(
+                      decoration: BoxDecoration(),
                       width: MediaQuery.of(context).size.width,
                       // padding: EdgeInsets.all(30),
                       child: Text(

@@ -4,6 +4,8 @@ import 'match.dart';
 
 class Matches with ChangeNotifier {
   List<Match> matches = [];
+  List<Match> upcomingMatches = [];
+  List<Match> completedMatches = [];
 
   Future<void> fetchAndSetMatches() async {
     CollectionReference _collectionRef =
@@ -16,6 +18,11 @@ class Matches with ChangeNotifier {
         .toList()
         .map((e) => Match.fromMap(e as Map<String, dynamic>))
         .toList();
+    upcomingMatches =
+        matches.where((element) => element.isCompleted == false).toList();
+    completedMatches =
+        matches.where((element) => element.isCompleted == true).toList();
+    notifyListeners();
   }
 
   Future<void> updateMatches(Match m) async {

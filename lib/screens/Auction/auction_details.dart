@@ -42,24 +42,24 @@ class _AuctionDetailsState extends State<AuctionDetails> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColors.firebaseNavy,
-        title: Text(
-          "Auction Status",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        centerTitle: true,
-      ),
-      body: Material(
-        color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
-        child: ListView.builder(
-          itemCount: teams.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TeamCard(teams[index]);
-          },
-        ),
-      ),
-    );
+            appBar: AppBar(
+              backgroundColor: CustomColors.firebaseNavy,
+              title: Text(
+                "Auction Status",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              centerTitle: true,
+            ),
+            body: Material(
+              color: CustomColors.firebaseNavy, //Colors.deepPurpleAccent,
+              child: ListView.builder(
+                itemCount: teams.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return TeamCard(teams[index]);
+                },
+              ),
+            ),
+          );
   }
 }
 
