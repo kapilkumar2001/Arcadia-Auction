@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+
 class Match {
   final String matchId;
   final DateTime matchTime;
@@ -86,29 +87,29 @@ class Match {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Match &&
-      other.matchId == matchId &&
-      other.matchTime == matchTime &&
-      other.teamId1 == teamId1 &&
-      other.teamId2 == teamId2 &&
-      other.isCompleted == isCompleted &&
-      mapEquals(other.points, points) &&
-      other.mvpId == mvpId &&
-      mapEquals(other.roundsWon, roundsWon) &&
-      other.roundDiff == roundDiff;
+        other.matchId == matchId &&
+        other.matchTime == matchTime &&
+        other.teamId1 == teamId1 &&
+        other.teamId2 == teamId2 &&
+        other.isCompleted == isCompleted &&
+        mapEquals(other.points, points) &&
+        other.mvpId == mvpId &&
+        mapEquals(other.roundsWon, roundsWon) &&
+        other.roundDiff == roundDiff;
   }
 
   @override
   int get hashCode {
     return matchId.hashCode ^
-      matchTime.hashCode ^
-      teamId1.hashCode ^
-      teamId2.hashCode ^
-      isCompleted.hashCode ^
-      points.hashCode ^
-      mvpId.hashCode ^
-      roundsWon.hashCode ^
-      roundDiff.hashCode;
+        matchTime.hashCode ^
+        teamId1.hashCode ^
+        teamId2.hashCode ^
+        isCompleted.hashCode ^
+        points.hashCode ^
+        mvpId.hashCode ^
+        roundsWon.hashCode ^
+        roundDiff.hashCode;
   }
 }
