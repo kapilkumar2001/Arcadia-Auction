@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 class Teams with ChangeNotifier {
   List<Team> teams = [];
 
+  Team getTeam(int index) {
+    return teams[index];
+  }
+
   Future<void> fetchAndSetTeams() async {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection('Team');

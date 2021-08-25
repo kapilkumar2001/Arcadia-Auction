@@ -26,16 +26,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Matches>(context, listen: false)
-          .fetchAndSetMatches()
-          .then((value) {
-        Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
-        setState(
-          () {
-            _isLoading = false;
-          },
-        );
-      });
+      Provider.of<Matches>(context, listen: false).fetchAndSetMatches().then(
+        (value) {
+          Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
+                (value) => setState(() {
+                  _isLoading = false;
+                }),
+              );
+        },
+      );
     }
     _isInit = false;
   }
@@ -88,33 +87,17 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 child: Container(
                   child: TabBarView(
                     children: [
-                      SingleChildScrollView(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: upcomingmatches.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return MatchCard(upcomingmatches[index], teams);
-                            },
-                          ),
-                        ),
+                      ListView.builder(
+                        itemCount: upcomingmatches.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return MatchCard(upcomingmatches[index], teams);
+                        },
                       ),
-                      SingleChildScrollView(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: completedmatches.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return MatchCard(completedmatches[index], teams);
-                            },
-                          ),
-                        ),
+                      ListView.builder(
+                        itemCount: completedmatches.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return MatchCard(completedmatches[index], teams);
+                        },
                       ),
                     ],
                   ),
@@ -125,19 +108,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 }
 
-class MatchCard extends StatefulWidget {
+class MatchCard extends StatelessWidget {
   final Match match;
-  List<Team> teams;
+  final List<Team> teams;
   MatchCard(this.match, this.teams);
 
   @override
-  _MatchCardState createState() => _MatchCardState();
-}
-
-class _MatchCardState extends State<MatchCard> {
-  @override
   Widget build(BuildContext context) {
-    // print("teams=" + widget.teams.toString());
+    // print("teams=" + teams.toString());
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -158,7 +136,8 @@ class _MatchCardState extends State<MatchCard> {
                   minRadius: 25,
                   maxRadius: 25,
                   child: Image.network(
-                      "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  ),
                 ),
               ],
             ),
@@ -168,20 +147,21 @@ class _MatchCardState extends State<MatchCard> {
                   minRadius: 25,
                   maxRadius: 25,
                   child: Image.network(
-                      "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  ),
                 ),
               ],
             ),
             title: Center(
               child: Column(children: [
                 Text(
-                  "Match " + widget.match.matchId,
+                  "Match " + match.matchId,
                   style: TextStyle(color: Colors.white60),
                 ),
                 Text(
-                  widget.teams[int.parse(widget.match.teamId1)].teamName +
+                  teams[int.parse(match.teamId1)].teamName +
                       " Vs " +
-                      widget.teams[int.parse(widget.match.teamId2)].teamName,
+                      teams[int.parse(match.teamId2)].teamName,
                   style: TextStyle(color: Colors.white60),
                 ),
                 SizedBox(
@@ -189,15 +169,15 @@ class _MatchCardState extends State<MatchCard> {
                 ),
                 Text(
                   "On " +
-                      widget.match.matchTime.toLocal().day.toString() +
+                      match.matchTime.toLocal().day.toString() +
                       "/" +
-                      widget.match.matchTime.toLocal().month.toString() +
+                      match.matchTime.toLocal().month.toString() +
                       "/" +
-                      widget.match.matchTime.toLocal().year.toString() +
+                      match.matchTime.toLocal().year.toString() +
                       " at " +
-                      widget.match.matchTime.hour.toString() +
+                      match.matchTime.hour.toString() +
                       ":" +
-                      widget.match.matchTime.toLocal().minute.toString(),
+                      match.matchTime.toLocal().minute.toString(),
                   style: TextStyle(color: Colors.white60),
                 ),
               ]),
