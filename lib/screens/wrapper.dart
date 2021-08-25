@@ -18,6 +18,7 @@ class _WrapperState extends State<Wrapper> {
   bool isLoading = true;
 
   void initiate() async {
+        Auth.setUid();
     var uid = Auth.uid;
     await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {

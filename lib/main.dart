@@ -27,7 +27,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   Future<void> initialiseFirebase() async {
     await Firebase.initializeApp();
-    Auth.setUid();
   }
 
   @override
