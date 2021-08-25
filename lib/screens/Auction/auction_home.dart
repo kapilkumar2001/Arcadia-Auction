@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
@@ -42,7 +43,7 @@ class _AuctionHomeState extends State<AuctionHome> {
             child: CircularProgressIndicator(),
           )
         : Material(
-            color: Colors.deepPurpleAccent,
+            color: CustomColors.primaryColor,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
