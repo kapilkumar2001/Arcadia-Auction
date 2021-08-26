@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/match.dart';
@@ -68,6 +70,7 @@ class _MatchDetailsState extends State<MatchDetails> {
               centerTitle: true,
             ),
             body: SingleChildScrollView(
+              physics: ScrollPhysics(),
               child: Container(
                 color: CustomColors.primaryColor,
                 height: MediaQuery.of(context).size.height,
@@ -90,7 +93,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                             height: 20,
                           ),
                           Text(
-                            teams[int.parse(match.teamId1)].teamName,
+                            teams[int.parse(match.teamId1)].teamName[0] +
+                                teams[int.parse(match.teamId1)].teamName[1] +
+                                teams[int.parse(match.teamId1)].teamName[2] +
+                                "...",
                             style: TextStyle(
                                 color: Colors.amberAccent,
                                 fontSize: 20,
@@ -115,7 +121,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                             height: 20,
                           ),
                           Text(
-                            teams[int.parse(match.teamId2)].teamName,
+                            teams[int.parse(match.teamId2)].teamName[0] +
+                                teams[int.parse(match.teamId2)].teamName[1] +
+                                teams[int.parse(match.teamId2)].teamName[2] +
+                                "...",
                             style: TextStyle(
                                 color: Colors.amberAccent,
                                 fontSize: 20,
@@ -301,88 +310,320 @@ class _MatchDetailsState extends State<MatchDetails> {
                             ),
                           ),
 
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      color: CustomColors.taskez1,
-                      margin: EdgeInsets.only(
-                          left: 20, right: 20, top: 30, bottom: 10),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20, bottom: 20, right: 20, left: 20),
-                        child: Column(children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    teams[int.parse(match.teamId1)].teamName,
-                                    style: TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  ...teams[int.parse(match.teamId1)]
-                                      .playerUid
-                                      .map(
-                                        (e) => (Column(children: [
-                                          Text(
-                                              Provider.of<Players>(context,
-                                                      listen: false)
-                                                  .getPlayer(e.toString())
-                                                  .inGameName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white60,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold)),
-                                          SizedBox(height: 4)
-                                        ])),
-                                      )
-                                      .toList(),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    teams[int.parse(match.teamId2)].teamName,
-                                    style: TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  ...teams[int.parse(match.teamId2)]
-                                      .playerUid
-                                      .map(
-                                        (e) => (Column(children: [
-                                          Text(
-                                              Provider.of<Players>(context,
-                                                      listen: false)
-                                                  .getPlayer(e.toString())
-                                                  .inGameName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white60,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold)),
-                                          SizedBox(height: 4)
-                                        ])),
-                                      )
-                                      .toList(),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ]),
-                      ),
-                    )
+                    // Container(
+                    //   width: MediaQuery.of(context).size.width,
+                    //   height: MediaQuery.of(context).size.height,
+                    //   child: Card(
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(20))),
+                    //     color: CustomColors.taskez1,
+                    //     margin: EdgeInsets.only(
+                    //         left: 20, right: 20, top: 30, bottom: 10),
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.only(
+                    //           top: 20, bottom: 20, right: 20, left: 20),
+                    //       child: DefaultTabController(
+                    //           length: 2,
+                    //           initialIndex: 0,
+                    //           child: Column(
+                    //             children: [
+                    //               TabBar(
+                    //                 indicatorColor: Colors.white70,
+                    //                 tabs: [
+                    //                   Tab(
+                    //                     child: Text(
+                    //                         teams[int.parse(match.teamId1)]
+                    //                             .teamName
+                    //                             .toString()),
+                    //                   ),
+                    //                   Tab(
+                    //                     child: Text(
+                    //                         teams[int.parse(match.teamId2)]
+                    //                             .teamName
+                    //                             .toString()),
+                    //                   )
+                    //                 ],
+                    //               ),
+                    //               TabBarView(
+                    //                   physics: ScrollPhysics(),
+                    //                   children: [
+                    //                     Column(
+                    //                       mainAxisAlignment:
+                    //                           MainAxisAlignment.center,
+                    //                       crossAxisAlignment:
+                    //                           CrossAxisAlignment.start,
+                    //                       children: [
+                    //                         Text(
+                    //                           teams[int.parse(match.teamId1)]
+                    //                               .teamName,
+                    //                           style: TextStyle(
+                    //                               color: Colors.amberAccent,
+                    //                               fontSize: 20,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                         SizedBox(
+                    //                           height: 25,
+                    //                         ),
+                    //                         SizedBox(
+                    //                             height: 50,
+                    //                             child: Column(
+                    //                               children: [
+                    //                                 ...teams[int.parse(
+                    //                                         match.teamId1)]
+                    //                                     .playerUid
+                    //                                     .map(
+                    //                                       (e) => (Column(
+                    //                                           children: [
+                    //                                             Text(
+                    //                                                 Provider.of<Players>(
+                    //                                                         context,
+                    //                                                         listen:
+                    //                                                             false)
+                    //                                                     .getPlayer(e
+                    //                                                         .toString())
+                    //                                                     .inGameName
+                    //                                                     .toString(),
+                    //                                                 style: TextStyle(
+                    //                                                     color: Colors
+                    //                                                         .white60,
+                    //                                                     fontSize:
+                    //                                                         20,
+                    //                                                     fontWeight:
+                    //                                                         FontWeight.bold)),
+                    //                                             SizedBox(
+                    //                                               height: 4,
+                    //                                             )
+                    //                                           ])),
+                    //                                     )
+                    //                                     .toList(),
+                    //                               ],
+                    //                             )),
+                    //                       ],
+                    //                     ),
+                    //                     Column(
+                    //                       children: [
+                    //                         Text(
+                    //                           teams[int.parse(match.teamId2)]
+                    //                               .teamName,
+                    //                           style: TextStyle(
+                    //                               color: Colors.amberAccent,
+                    //                               fontSize: 20,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                         SizedBox(
+                    //                           height: 20,
+                    //                         ),
+                    //                         // ...teams[int.parse(match.teamId2)]
+                    //                         //     .playerUid
+                    //                         //     .map(
+                    //                         //       (e) => (Column(children: [
+                    //                         //         Text(
+                    //                         //             Provider.of<Players>(
+                    //                         //                     context,
+                    //                         //                     listen: false)
+                    //                         //                 .getPlayer(
+                    //                         //                     e.toString())
+                    //                         //                 .inGameName
+                    //                         //                 .toString(),
+                    //                         //             style: TextStyle(
+                    //                         //                 color:
+                    //                         //                     Colors.white60,
+                    //                         //                 fontSize: 20,
+                    //                         //                 fontWeight:
+                    //                         //                     FontWeight
+                    //                         //                         .bold)),
+                    //                         //         SizedBox(height: 4)
+                    //                         //       ])),
+                    //                         //     )
+                    //                         //     .toList(),
+                    //                         SizedBox(
+                    //                             height: 50,
+                    //                             child: Column(
+                    //                               children: [
+                    //                                 ...teams[int.parse(
+                    //                                         match.teamId1)]
+                    //                                     .playerUid
+                    //                                     .map(
+                    //                                       (e) => (Column(
+                    //                                           children: [
+                    //                                             Text(
+                    //                                                 Provider.of<Players>(
+                    //                                                         context,
+                    //                                                         listen:
+                    //                                                             false)
+                    //                                                     .getPlayer(e
+                    //                                                         .toString())
+                    //                                                     .inGameName
+                    //                                                     .toString(),
+                    //                                                 style: TextStyle(
+                    //                                                     color: Colors
+                    //                                                         .white60,
+                    //                                                     fontSize:
+                    //                                                         20,
+                    //                                                     fontWeight:
+                    //                                                         FontWeight.bold)),
+                    //                                             SizedBox(
+                    //                                               height: 4,
+                    //                                             )
+                    //                                           ])),
+                    //                                     )
+                    //                                     .toList(),
+                    //                               ],
+                    //                             )),
+                    //                       ],
+                    //                     ),
+                    //                   ])
+                    //             ],
+                    //           )
+
+                    //       //                           child: Row(
+                    //       //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //       //   children: [
+                    //       //     Column(
+                    //       //       children: [
+                    //       //         Text(
+                    //       //           teams[int.parse(match.teamId1)].teamName,
+                    //       //           style: TextStyle(
+                    //       //               color: Colors.amberAccent,
+                    //       //               fontSize: 20,
+                    //       //               fontWeight: FontWeight.bold),
+                    //       //         ),
+                    //       //         SizedBox(
+                    //       //           height: 25,
+                    //       //         ),
+                    //       //         ...teams[int.parse(match.teamId1)]
+                    //       //             .playerUid
+                    //       //             .map(
+                    //       //               (e) => (Column(children: [
+                    //       //                 Text(
+                    //       //                     Provider.of<Players>(context,
+                    //       //                             listen: false)
+                    //       //                         .getPlayer(e.toString())
+                    //       //                         .inGameName
+                    //       //                         .toString(),
+                    //       //                     style: TextStyle(
+                    //       //                         color: Colors.white60,
+                    //       //                         fontSize: 20,
+                    //       //                         fontWeight: FontWeight.bold)),
+                    //       //                 SizedBox(
+                    //       //                   height: 4,
+                    //       //                 )
+                    //       //               ])),
+                    //       //             )
+                    //       //             .toList(),
+                    //       //       ],
+                    //       //     ),
+                    //       //     Column(
+                    //       //       children: [
+                    //       //         Text(
+                    //       //           teams[int.parse(match.teamId2)].teamName,
+                    //       //           style: TextStyle(
+                    //       //               color: Colors.amberAccent,
+                    //       //               fontSize: 20,
+                    //       //               fontWeight: FontWeight.bold),
+                    //       //         ),
+                    //       //         SizedBox(
+                    //       //           height: 20,
+                    //       //         ),
+                    //       //         ...teams[int.parse(match.teamId2)]
+                    //       //             .playerUid
+                    //       //             .map(
+                    //       //               (e) => (Column(children: [
+                    //       //                 Text(
+                    //       //                     Provider.of<Players>(context,
+                    //       //                             listen: false)
+                    //       //                         .getPlayer(e.toString())
+                    //       //                         .inGameName
+                    //       //                         .toString(),
+                    //       //                     style: TextStyle(
+                    //       //                         color: Colors.white60,
+                    //       //                         fontSize: 20,
+                    //       //                         fontWeight: FontWeight.bold)),
+                    //       //                 SizedBox(height: 4)
+                    //       //               ])),
+                    //       //             )
+                    //       //             .toList(),
+                    //       //       ],
+                    //       //     ),
+                    //       //   ],
+                    //       // ),
+
+                    //       //    TabBarView(children: [
+                    //       //   Column(
+                    //       //     children: [
+                    //       //       Text(
+                    //       //         teams[int.parse(match.teamId1)].teamName,
+                    //       //         style: TextStyle(
+                    //       //             color: Colors.amberAccent,
+                    //       //             fontSize: 20,
+                    //       //             fontWeight: FontWeight.bold),
+                    //       //       ),
+                    //       //       SizedBox(
+                    //       //         height: 25,
+                    //       //       ),
+                    //       //       ...teams[int.parse(match.teamId1)]
+                    //       //           .playerUid
+                    //       //           .map(
+                    //       //             (e) => (Column(children: [
+                    //       //               Text(
+                    //       //                   Provider.of<Players>(context,
+                    //       //                           listen: false)
+                    //       //                       .getPlayer(e.toString())
+                    //       //                       .inGameName
+                    //       //                       .toString(),
+                    //       //                   style: TextStyle(
+                    //       //                       color: Colors.white60,
+                    //       //                       fontSize: 20,
+                    //       //                       fontWeight: FontWeight.bold)),
+                    //       //               SizedBox(
+                    //       //                 height: 4,
+                    //       //               )
+                    //       //             ])),
+                    //       //           )
+                    //       //           .toList(),
+                    //       //     ],
+                    //       //   ),
+                    //       //   Column(
+                    //       //     children: [
+                    //       //       Text(
+                    //       //         teams[int.parse(match.teamId2)].teamName,
+                    //       //         style: TextStyle(
+                    //       //             color: Colors.amberAccent,
+                    //       //             fontSize: 20,
+                    //       //             fontWeight: FontWeight.bold),
+                    //       //       ),
+                    //       //       SizedBox(
+                    //       //         height: 20,
+                    //       //       ),
+                    //       //       ...teams[int.parse(match.teamId2)]
+                    //       //           .playerUid
+                    //       //           .map(
+                    //       //             (e) => (Column(children: [
+                    //       //               Text(
+                    //       //                   Provider.of<Players>(context,
+                    //       //                           listen: false)
+                    //       //                       .getPlayer(e.toString())
+                    //       //                       .inGameName
+                    //       //                       .toString(),
+                    //       //                   style: TextStyle(
+                    //       //                       color: Colors.white60,
+                    //       //                       fontSize: 20,
+                    //       //                       fontWeight: FontWeight.bold)),
+                    //       //               SizedBox(height: 4)
+                    //       //             ])),
+                    //       //           )
+                    //       //           .toList(),
+                    //       //     ],
+                    //       //   ),
+                    //       // ])
+                    //       ),
+                    // ),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 30,
+                    ),
                   ],
                 ),
               ),

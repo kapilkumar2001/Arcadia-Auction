@@ -118,7 +118,6 @@ class UpcomingMatchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print("teams=" + teams.toString());
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -173,14 +172,39 @@ class UpcomingMatchCard extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                Text(
-                  teams[int.parse(match.teamId1)].teamName +
-                      "   Vs   " +
-                      teams[int.parse(match.teamId2)].teamName,
-                  style: TextStyle(
-                      color: Colors.white60,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      teams[int.parse(match.teamId1)].teamName[0] +
+                          teams[int.parse(match.teamId1)].teamName[1] +
+                          teams[int.parse(match.teamId1)].teamName[2] +
+                          "...",
+                      overflow: TextOverflow.visible,
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    Text(
+                      "   Vs   ",
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    Text(
+                      teams[int.parse(match.teamId2)].teamName[0] +
+                          teams[int.parse(match.teamId2)].teamName[1] +
+                          teams[int.parse(match.teamId2)].teamName[2] +
+                          "...",
+                      overflow: TextOverflow.visible,
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ],
                 ),
                 Divider(
                   height: 20,
@@ -259,14 +283,39 @@ class CompletedMatchCard extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                Text(
-                  teams[int.parse(match.teamId1)].teamName +
-                      "   Vs   " +
-                      teams[int.parse(match.teamId2)].teamName,
-                  style: TextStyle(
-                      color: Colors.white60,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      teams[int.parse(match.teamId1)].teamName[0] +
+                          teams[int.parse(match.teamId1)].teamName[1] +
+                          teams[int.parse(match.teamId1)].teamName[2] +
+                          "...",
+                      overflow: TextOverflow.visible,
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    Text(
+                      "   Vs   ",
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    Text(
+                      teams[int.parse(match.teamId2)].teamName[0] +
+                          teams[int.parse(match.teamId2)].teamName[1] +
+                          teams[int.parse(match.teamId2)].teamName[2] +
+                          "...",
+                      overflow: TextOverflow.visible,
+                      style: TextStyle(
+                          color: Colors.white60,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ],
                 ),
                 Divider(
                   height: 20,
