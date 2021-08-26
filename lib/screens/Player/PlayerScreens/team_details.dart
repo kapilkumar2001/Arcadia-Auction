@@ -6,6 +6,7 @@ import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/widgets/player_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -67,7 +68,7 @@ class _TeamDetailsState extends State<TeamDetails> {
                           maxRadius: 80,
                           backgroundColor: Colors.greenAccent,
                           foregroundColor: Colors.white54,
-                          backgroundImage: NetworkImage(
+                          backgroundImage: CachedNetworkImageProvider(
                             'https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png',
                           ),
                         ),
