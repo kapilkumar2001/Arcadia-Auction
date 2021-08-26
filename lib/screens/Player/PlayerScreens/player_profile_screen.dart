@@ -4,6 +4,7 @@ import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/screens/onBoardingScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -275,7 +276,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                     .signOut();
                                 Navigator.pushAndRemoveUntil(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return SignInScreen();
+                                  return OnboardingScreen();
                                 }), (route) => false);
                               },
                               icon: Icon(Icons.arrow_forward),

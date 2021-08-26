@@ -8,6 +8,7 @@ import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Auction/auction_player.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/team_details.dart';
+import 'package:arcadia/screens/onBoardingScreen.dart';
 import 'package:arcadia/screens/wrapper.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:arcadia/screens/signin_screen.dart';
@@ -22,6 +23,7 @@ import 'screens/Player/PlayerScreens/player_profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   runApp(MyApp());
 }
 
@@ -53,6 +55,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Arcadia CSGO League',
+          
           theme: ThemeData(
             primaryColor: CustomColors.primaryColor,
             // primarySwatch: Colors.purple,
@@ -70,7 +73,7 @@ class MyApp extends StatelessWidget {
                   // Provider.of<Auth>(context).checkAndSetAuth();
                   return Wrapper();
                 } else {
-                  return OnboardingPage();
+                  return OnboardingScreen();
                 }
               }
               return CircularProgressIndicator(
@@ -89,6 +92,7 @@ class MyApp extends StatelessWidget {
             TeamDetails.routeName: (ctx) => TeamDetails(),
             ScheduleScreen.routeName: (ctx) => ScheduleScreen(),
             PlayerProfileScreen.routeName: (ctx) => PlayerProfileScreen(),
+            SignInScreen.routeName: (ctx)=>SignInScreen()
           },
         ),
       ),
@@ -96,22 +100,5 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class OnboardingPage extends StatefulWidget {
-  @override
-  _OnboardingPageState createState() => _OnboardingPageState();
-}
 
-class _OnboardingPageState extends State<OnboardingPage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Arcadia CSGO League',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        brightness: Brightness.dark,
-      ),
-      home: SignInScreen(),
-    );
-  }
-}
+
