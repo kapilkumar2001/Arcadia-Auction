@@ -44,22 +44,24 @@ class _TeamDetailsState extends State<TeamDetails> {
       return e.teamId1 == team.teamUid || e.teamId2 == team.teamUid;
     }).toList();
     return _isLoading
-        ? CircularProgressIndicator()
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
         : SafeArea(
-          child: Scaffold(
+            child: Scaffold(
               backgroundColor: CustomColors.primaryColor,
               appBar: AppBar(
                 elevation: 0,
               ),
-              body: Container(
-                padding: EdgeInsets.all(10),
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 40),
+              body: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
                         child: CircleAvatar(
                           minRadius: 80,
                           maxRadius: 80,
@@ -70,67 +72,96 @@ class _TeamDetailsState extends State<TeamDetails> {
                           ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Padding(
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          team.teamName,
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.white30,
+                      ),
+                      Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'Upcoming Matches',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.lato(
-                            fontSize: 25,
+                            fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      flex: 2,
-                      child: Container(
-                        color: CustomColors.primaryColor.withAlpha(100),
-                        margin: EdgeInsets.all(10),
-                        height: 150,
-                        child: ListView.builder(
-                          itemCount: upcomingMatchList.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (_, index) {
-                            return UpcomingMatchCard(
-                              match: upcomingMatchList[index],
-                            );
-                          },
-                        ),
+                      upcomingMatchList.isEmpty
+                          ? Container(
+                              height: 50,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  // color: Colors.white24,
+                                  ),
+                              child: Center(
+                                child: Text(
+                                  'No upcoming matches',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 18,
+                                    color: Colors.white38,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              // color: CustomColors.primaryColor.withAlpha(100),
+                              margin: EdgeInsets.all(10),
+                              height: 150,
+                              child: ListView.builder(
+                                itemCount: upcomingMatchList.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (_, index) {
+                                  return UpcomingMatchCard(
+                                    match: upcomingMatchList[index],
+                                  );
+                                },
+                              ),
+                            ),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.white30,
                       ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20,top: 20),
+                      Container(
+                        // margin: const EdgeInsets.only(bottom: 20,top: 20),
                         child: Text(
                           'Players',
                           style: GoogleFonts.lato(
-                            fontSize: 25,
+                            fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      fit: FlexFit.tight,
-                      child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: players.length,
-                        itemBuilder: (_, index) {
-                          return PlayerCard(players[index]);
-                        },
-                      ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: players.length,
+                          itemBuilder: (_, index) {
+                            return PlayerCard(players[index]);
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-        );
+          );
   }
 }

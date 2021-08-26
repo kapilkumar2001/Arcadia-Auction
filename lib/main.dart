@@ -13,6 +13,7 @@ import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:arcadia/screens/signin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'constants/app_theme.dart';
@@ -56,7 +57,8 @@ class MyApp extends StatelessWidget {
             primaryColor: CustomColors.primaryColor,
             // primarySwatch: Colors.purple,
             accentColor: CustomColors.secondaryColor,
-            fontFamily: 'lato',
+            // fontFamily: 'lato',
+             textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           ),
           home: FutureBuilder(
             // Initialize FlutterFire:

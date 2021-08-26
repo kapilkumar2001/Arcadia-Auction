@@ -34,7 +34,7 @@ class _TeamStandingsState extends State<TeamStandings> {
   }
 
   TextStyle standingTextStyle = TextStyle(
-    fontSize: 20,
+    fontSize: 18,
     color: CustomColors.firebaseGrey,
   );
 
@@ -45,7 +45,7 @@ class _TeamStandingsState extends State<TeamStandings> {
       listen: false,
     ).teams;
     if (_isLoading) {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     } else {
       return Container(
         child: CustomScrollView(

@@ -135,7 +135,7 @@ class UpcomingMatchCard extends StatelessWidget {
             ),
             color: CustomColors.taskez1,
           ),
-          margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 0),
+          margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
           child: ListTile(
             contentPadding:
                 EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
