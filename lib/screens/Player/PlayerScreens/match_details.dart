@@ -69,60 +69,76 @@ class _MatchDetailsState extends State<MatchDetails> {
             ),
             body: SingleChildScrollView(
               child: Container(
-                color: CustomColors.primaryColor,
+                color: CustomColors.firebaseNavy,
                 height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
                     SizedBox(
                       height: 40,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(children: [
-                          CircleAvatar(
-                            minRadius: 50,
-                            maxRadius: 50,
-                            child: Image.network(
-                                "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: Column(children: [
+                              CircleAvatar(
+                                minRadius: 50,
+                                maxRadius: 50,
+                                child: Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                              
+                                teams[int.parse(match.teamId1)].teamName,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Colors.amberAccent,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ]),
                           ),
-                          SizedBox(
-                            height: 20,
+                          Flexible(
+                            flex: 2,
+                            child: Text(
+                              "Vs",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white24,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          Text(
-                            teams[int.parse(match.teamId1)].teamName,
-                            style: TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ]),
-                        Text(
-                          "Vs",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.blueAccent,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Column(children: [
-                          CircleAvatar(
-                            minRadius: 50,
-                            maxRadius: 50,
-                            child: Image.network(
-                                "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                          Flexible(
+                            flex: 2,
+                            child: Column(children: [
+                              CircleAvatar(
+                                minRadius: 50,
+                                maxRadius: 50,
+                                child: Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                teams[int.parse(match.teamId2)].teamName,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Colors.amberAccent,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ]),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            teams[int.parse(match.teamId2)].teamName,
-                            style: TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ]),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -292,11 +308,11 @@ class _MatchDetailsState extends State<MatchDetails> {
                                   top: 20, bottom: 20, right: 30, left: 30),
                               child: Text(
                                   "Match will be live at " +
-                                      DateFormat('hh:mm dMMM')
+                                      DateFormat('hh:mm d MMM')
                                           .format(match.matchTime),
                                   style: TextStyle(
                                       color: Colors.amberAccent,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold)),
                             ),
                           ),
@@ -313,15 +329,22 @@ class _MatchDetailsState extends State<MatchDetails> {
                         child: Column(children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    teams[int.parse(match.teamId1)].teamName,
-                                    style: TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
+                                  Container(
+                                    width: 100,
+                                    height: 30,
+                                    child: Text(
+                                      teams[int.parse(match.teamId1)].teamName,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          color: Colors.amberAccent,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 25,
@@ -346,17 +369,28 @@ class _MatchDetailsState extends State<MatchDetails> {
                                       .toList(),
                                 ],
                               ),
+                              Text("VS",style: TextStyle(
+                                                  color: Colors.white60,
+                                                  fontSize: 20,
+                                                  // fontWeight: FontWeight.bold)
+                                                  ),),
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    teams[int.parse(match.teamId2)].teamName,
-                                    style: TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
+                                  Container(
+                                    width: 100,
+                                    height: 30,
+                                    child: Text(
+                                      teams[int.parse(match.teamId2)].teamName,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          color: Colors.amberAccent,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 25,
                                   ),
                                   ...teams[int.parse(match.teamId2)]
                                       .playerUid
@@ -377,6 +411,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                                       )
                                       .toList(),
                                 ],
+                              
                               ),
                             ],
                           ),
