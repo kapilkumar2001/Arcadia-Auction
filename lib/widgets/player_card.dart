@@ -2,6 +2,7 @@ import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -88,7 +89,7 @@ class PlayerCard extends StatelessWidget {
                 radius: 20,
                 backgroundColor: Colors.greenAccent,
                 foregroundColor: Colors.white54,
-                backgroundImage: NetworkImage(
+                backgroundImage: CachedNetworkImageProvider(
                   snapshot.data.toString(),
                 ),
               );

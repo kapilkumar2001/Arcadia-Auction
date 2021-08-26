@@ -24,7 +24,9 @@ class PlayerForm extends StatefulWidget {
 class _PlayerFormState extends State<PlayerForm> {
   var imageUrl;
   var uid = Auth.uid;
-
+  var _image;
+  var imagePicker;
+  var type;
   final namecontroller = new TextEditingController();
   final studentIDcontroller = new TextEditingController();
   final iGNcontroller = new TextEditingController();
@@ -67,8 +69,8 @@ class _PlayerFormState extends State<PlayerForm> {
 
   uploadImage() async {
     final _firebaseStorage = FirebaseStorage.instance;
-    final _imagePicker = ImagePicker();
-    PickedFile image;
+    final imagePicker = ImagePicker();
+    // PickedFile image;
     //Check Permissions
     await Permission.photos.request();
 
@@ -76,21 +78,21 @@ class _PlayerFormState extends State<PlayerForm> {
 
     if (permissionStatus.isGranted) {
       //Select Image
-      image = (await _imagePicker.getImage(source: ImageSource.gallery))!;
-      var file = File(image.path);
-
-      if (image != null) {
+      // image = (await _imagePicker.getImage(source: ImageSource.gallery))!;
+      // var file = File(image.path);
+      var image = await imagePicker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+      );
+      setState(() {
+        _image = File(image!.path);
+      });
+      if (_image != null) {
         //Upload to Firebase
         var snapshot = await _firebaseStorage
             .ref()
             .child('PlayerProfileImages/$uid/image')
-            .putFile(file);
-        // StorageReference storageReference = FirebaseStorage.instance
-        //  .ref()
-        //  .child('images/imageName');
-        // StorageUploadTask snapshot = storageReference.putFile(image);
-        // await snapshot.onComplete;
-        // print('File Uploaded');
+            .putFile(_image);
         var downloadUrl = await snapshot.ref.getDownloadURL();
         setState(() {
           imageUrl = downloadUrl;
@@ -108,15 +110,18 @@ class _PlayerFormState extends State<PlayerForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
-        title:
-            Text("Player Deailts Form", style: TextStyle(color: Colors.white)),
-        backgroundColor: CustomColors.firebaseNavy,
+        title: Text(
+          "Player Deailts Form",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: CustomColors.firebaseNavy.withOpacity(0.6),
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
           child: Column(
@@ -124,47 +129,57 @@ class _PlayerFormState extends State<PlayerForm> {
               SizedBox(
                 height: 12,
               ),
-              Container(
-                  margin: EdgeInsets.all(15),
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
-                    ),
-                    border: Border.all(color: Colors.white),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        offset: Offset(2, 2),
-                        spreadRadius: 2,
-                        blurRadius: 1,
-                      ),
-                    ],
+              // Container(
+              //     margin: EdgeInsets.all(15),
+              //     padding: EdgeInsets.all(15),
+              //     decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.all(
+              //         Radius.circular(15),
+              //       ),
+              //       border: Border.all(color: Colors.white),
+              //       boxShadow: [
+              //         BoxShadow(
+              //           color: Colors.black12,
+              //           offset: Offset(2, 2),
+              //           spreadRadius: 2,
+              //           blurRadius: 1,
+              //         ),
+              //       ],
+              //     ),
+              //     child: (imageUrl != null)
+              //         ? Image.network(imageUrl)
+              //         : Image.network('https://i.imgur.com/sUFH1Aq.png')),
+              // SizedBox(
+              //   height: 20.0,
+              // ),
+              Center(
+                child: GestureDetector(
+                  onTap: () async {
+                    await uploadImage();
+                  },
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(color: Colors.red[200]),
+                    child: _image != null
+                        ? Image.file(
+                            _image,
+                            width: 200.0,
+                            height: 200.0,
+                            fit: BoxFit.fitHeight,
+                          )
+                        : Container(
+                            decoration: BoxDecoration(color: Colors.red[200]),
+                            width: 200,
+                            height: 200,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
+                          ),
                   ),
-                  child: (imageUrl != null)
-                      ? Image.network(imageUrl)
-                      : Image.network('https://i.imgur.com/sUFH1Aq.png')),
-              SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                child: Text("Upload Your Profile",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
-                onPressed: () {
-                  uploadImage();
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.blue)),
-                elevation: 5.0,
-                color: Colors.blue,
-                textColor: Colors.white,
-                padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                splashColor: Colors.grey,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -190,7 +205,13 @@ class _PlayerFormState extends State<PlayerForm> {
                         height: 40.0,
                       ),
                       TextFormField(
+                        cursorColor: CustomColors.primaryColor,
                         controller: studentIDcontroller,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: CustomColors.primaryColor,
+                        ),
                         decoration: InputDecoration(
                           hintText: "Ex:-20195513",
                           labelText: "Student ID",

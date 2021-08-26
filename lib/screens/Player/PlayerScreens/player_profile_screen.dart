@@ -5,6 +5,7 @@ import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/screens/onBoardingScreen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +104,8 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                                         maxRadius: 80,
                                         backgroundColor: Colors.greenAccent,
                                         foregroundColor: Colors.white54,
-                                        backgroundImage: NetworkImage(
+                                        backgroundImage:
+                                            CachedNetworkImageProvider(
                                           snapshot.data.toString(),
                                         ),
                                       );

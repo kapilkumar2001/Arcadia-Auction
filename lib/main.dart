@@ -23,7 +23,6 @@ import 'screens/Player/PlayerScreens/player_profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
   runApp(MyApp());
 }
 
@@ -55,7 +54,6 @@ class MyApp extends StatelessWidget {
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Arcadia CSGO League',
-          
           theme: ThemeData(
             primaryColor: CustomColors.primaryColor,
             // primarySwatch: Colors.purple,
@@ -92,7 +90,7 @@ class MyApp extends StatelessWidget {
             TeamDetails.routeName: (ctx) => TeamDetails(),
             ScheduleScreen.routeName: (ctx) => ScheduleScreen(),
             PlayerProfileScreen.routeName: (ctx) => PlayerProfileScreen(),
-            SignInScreen.routeName: (ctx)=>SignInScreen()
+            SignInScreen.routeName: (ctx)=>SignInScreen(),
           },
         ),
       ),
