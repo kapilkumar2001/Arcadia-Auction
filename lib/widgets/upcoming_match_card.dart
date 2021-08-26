@@ -156,6 +156,7 @@ class UpcomingMatchCard extends StatelessWidget {
                         Provider.of<Teams>(context)
                             .getTeam(int.parse(match.teamId1))
                             .teamName,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.white60,
@@ -219,6 +220,7 @@ class UpcomingMatchCard extends StatelessWidget {
                         Provider.of<Teams>(context)
                             .getTeam(int.parse(match.teamId2))
                             .teamName,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.white60,

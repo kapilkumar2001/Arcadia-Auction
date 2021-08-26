@@ -25,6 +25,8 @@ class PlayerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
           color: CustomColors.secondaryColor,
           borderRadius: BorderRadius.circular(10)),
@@ -79,7 +81,7 @@ class PlayerCard extends StatelessWidget {
         ),
         leading: FutureBuilder(
           future: Provider.of<Players>(context, listen: false)
-              .getImageUrl(currPlayer!.uid),
+              .getImageUrl(currPlayer.uid),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return CircleAvatar(
@@ -94,8 +96,7 @@ class PlayerCard extends StatelessWidget {
               return Icon(Icons.image_not_supported_sharp);
             } else {
               return CircleAvatar(
-                minRadius: 80,
-                maxRadius: 80,
+                radius: 20,
                 backgroundColor: Colors.greenAccent,
                 foregroundColor: Colors.white54,
                 child: CircularProgressIndicator(),

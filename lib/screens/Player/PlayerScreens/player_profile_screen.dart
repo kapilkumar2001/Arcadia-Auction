@@ -80,7 +80,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                     children: [
                       Container(
                         width: double.infinity,
-                        height: height * 0.35,
+                        height: height * 0.39,
                         color: CustomColors.secondaryColor,
                         child: Column(
                           children: [
@@ -89,8 +89,8 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                               child: CircleAvatar(
                                 minRadius: 90,
                                 maxRadius: 90,
-                                backgroundColor:
-                                    getCategoryColor(currPlayer!.playerCategory),
+                                backgroundColor: getCategoryColor(
+                                    currPlayer!.playerCategory),
                                 child: FutureBuilder(
                                   future: Provider.of<Players>(context,
                                           listen: false)
@@ -137,10 +137,10 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                           ],
                         ),
                       ),
-                      // Divider(
-                      //   height:,
-                      //   color: Colors.white,
-                      // ),
+                      Divider(
+                        height: 1,
+                        color: Colors.white24,
+                      ),
                       Container(
                         height: height * 0.65,
                         color: CustomColors.secondaryColor,

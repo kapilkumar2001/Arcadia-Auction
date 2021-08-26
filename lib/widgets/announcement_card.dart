@@ -20,57 +20,31 @@ class AnnouncementCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 2,
         height: MediaQuery.of(context).size.height / 12,
         decoration: BoxDecoration(
-            color: Colors.white24, borderRadius: BorderRadius.circular(30)),
-
+          color: Colors.white24,
+          borderRadius: BorderRadius.circular(15),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/arcadia-logo3.png'),
-            Text(
-              announcement.title,
-              style: TextStyle(color: Colors.white, fontSize: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Image.asset('assets/arcadia-logo3.png'),
+            ),
+            Container(
+              width: 220,
+              child: Text(
+                announcement.title,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
             Text(
-              DateFormat('hh:mm dMMM').format(announcement.createddateTime),
+              DateFormat('hh:mm d MMM').format(announcement.createddateTime),
               style: TextStyle(color: Colors.white, fontSize: 12),
               textAlign: TextAlign.start,
             ),
           ],
         ),
-        // child:  ListTile(
-        //     contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        //     leading: Container(
-        //       padding: EdgeInsets.only(right: 12.0),
-        //       decoration: new BoxDecoration(
-
-        //         border: new Border(
-        //           right: new BorderSide(width: 1.0, color: Colors.red),
-
-        //         ),
-        //       ),
-        //       child: Image.asset('assets/arcadia-logo3.png'),
-        //     ),
-        //     tileColor: Colors.grey,
-        //     title: Padding(
-        //         padding: EdgeInsets.only(left: 5),
-        //         child: Column(
-        //           children: [
-        //             Text(
-        //               announcement.title,
-        //               style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
-        //             ),
-        //           ],
-        //         )),
-        //     trailing: Text(
-        //       DateFormat('hh:mm dMMM').format(announcement.createddateTime),
-        //       style: TextStyle(color: Colors.white,fontSize: 12),
-        //       textAlign: TextAlign.start,
-        //     ),
-        //     onTap: () {
-        //       _showSimpleDialog();
-        //     },
-        //   ),
       ),
     );
   }
@@ -97,24 +71,27 @@ customDialogBox(BuildContext context, Announcement announcement) {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Center(
-                            child: new Text(announcement.title,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30.0,
-                                    color: Colors.white)) //
+                          child: new Text(
+                            announcement.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white,
                             ),
-                        SizedBox(
-                          height: 5.0,
-                          width: 5.0,
+                          ),
                         ),
                         Center(
-                            child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: new Text(announcement.subtitle,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: new Text(
+                              announcement.subtitle,
                               style: TextStyle(
-                                  fontSize: 25.0, color: Colors.white)),
-                        ) //
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
                             ),
+                          ),
+                        ),
                         SizedBox(
                           child: Divider(
                             color: Colors.white,
@@ -124,14 +101,18 @@ customDialogBox(BuildContext context, Announcement announcement) {
                         Center(
                             child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: new Text(announcement.desc,
-                              style: TextStyle(
-                                  fontSize: 18.0, color: Colors.white)),
+                          child: new Text(
+                            announcement.desc,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.white,
+                            ),
+                          ),
                         ) //
                             ),
                         InkWell(
                           child: Container(
-                            padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -153,11 +134,15 @@ customDialogBox(BuildContext context, Announcement announcement) {
                     ),
                   ),
                   Positioned(
-                    top: 0.0,
-                    right: 10.0,
-                    child: Icon(
-                      Icons.cancel_sharp,
-                      size: 30,
+                    top: -10.0,
+                    right: 0.0,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(
+                        Icons.cancel,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ],
