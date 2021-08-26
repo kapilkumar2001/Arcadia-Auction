@@ -80,11 +80,11 @@ class _RulesPdfViewerState extends State<RulesPdfViewer> {
         ],
       ),
       body: Container(
-        child: SfPdfViewer.network(
-          pdfUrl,
-          initialZoomLevel: 2,
-          // interactionMode: PdfInteractionMode.pan,
-        ),
+        // child: SfPdfViewer.network(
+        //   pdfUrl,
+        //   initialZoomLevel: 2,
+        // ),
+        child: SfPdfViewer.asset('assets/docs/RuleBook.pdf'),
       ),
     );
   }
