@@ -301,30 +301,6 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                           ),
                                         )
                                         .toList(),
-                                    // DropdownMenuItem(
-                                    //   value: '0',
-                                    //   child: Text('${teams[0].teamName}'),
-                                    // ),
-                                    // DropdownMenuItem(
-                                    //   value: '1',
-                                    //   child: Text('${teams[1].teamName}'),
-                                    // ),
-                                    // DropdownMenuItem(
-                                    //   value: '2',
-                                    //   child: Text('${teams[2].teamName}'),
-                                    // ),
-                                    // DropdownMenuItem(
-                                    //   value: '3',
-                                    //   child: Text('${teams[3].teamName}'),
-                                    // ),
-                                    // DropdownMenuItem(
-                                    //   value: '4',
-                                    //   child: Text('${teams[4].teamName}'),
-                                    // ),
-                                    // DropdownMenuItem(
-                                    //   value: '5',
-                                    //   child: Text('${teams[5].teamName}'),
-                                    // ),
                                   ],
                                 ),
                               ),

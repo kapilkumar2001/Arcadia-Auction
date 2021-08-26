@@ -35,7 +35,7 @@ class _TeamCardState extends State<TeamCard> {
               fontSize: 18),
         ),
         subtitle: Text(
-          "Owner" + widget.team.ownerName,
+          "Owner: " + widget.team.ownerName,
           style: TextStyle(
               color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 15),
         ),
