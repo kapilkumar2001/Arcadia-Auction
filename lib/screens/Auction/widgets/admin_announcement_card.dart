@@ -21,7 +21,10 @@ class AdminAnnouncementCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 2,
         height: MediaQuery.of(context).size.height / 12,
         decoration: BoxDecoration(
-          color: Colors.white24,
+          border: Border.all(
+            color: Colors.blueAccent,
+          ),
+          color: CustomColors.secondaryColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -43,7 +46,7 @@ class AdminAnnouncementCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: CircleAvatar(
-                backgroundColor: CustomColors.secondaryColor,
+                backgroundColor: Colors.blueAccent,
                 child: IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {},

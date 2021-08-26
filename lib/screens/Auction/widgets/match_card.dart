@@ -13,96 +13,167 @@ class MatchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: Colors.blueAccent,
-          ),
-          color: CustomColors.taskez1,
-        ),
-        margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
-        child: ListTile(
-          contentPadding:
-              EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
-          // leading: Column(
-          //   children: [
-          //     CircleAvatar(
-          //       minRadius: 25,
-          //       maxRadius: 25,
-          //       child: Image.network(
-          //         "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // trailing: Column(
-          //   children: [
-          //     CircleAvatar(
-          //       minRadius: 25,
-          //       maxRadius: 25,
-          //       child: Image.network(
-          //         "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          title: Center(
-            child: Column(children: [
-              Text(
-                "Match " + match.matchId,
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white60),
+    return match.isCompleted
+        ? Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.blueAccent,
               ),
-              SizedBox(
-                height: 12,
+              color: CustomColors.taskez1,
+            ),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
+            child: ListTile(
+              contentPadding:
+                  EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
+              trailing: CircleAvatar(
+                child: IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {},
+                ),
+                backgroundColor: Colors.blueAccent,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    teams[int.parse(match.teamId1)].teamName[0] +
-                        teams[int.parse(match.teamId1)].teamName[1] +
-                        teams[int.parse(match.teamId1)].teamName[2] +
-                        "...",
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                        color: Colors.white60,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  Text(
-                    "   Vs   ",
-                    style: TextStyle(
-                        color: Colors.white60,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  Text(
-                    teams[int.parse(match.teamId2)].teamName[0] +
-                        teams[int.parse(match.teamId2)].teamName[1] +
-                        teams[int.parse(match.teamId2)].teamName[2] +
-                        "...",
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                        color: Colors.white60,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                ],
+              title: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Center(
+                  child: Column(children: [
+                    Text(
+                      "Match " + match.matchId,
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white60),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          teams[int.parse(match.teamId1)].teamName,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        Text(
+                          "   Vs   ",
+                          style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        Text(
+                          teams[int.parse(match.teamId2)].teamName,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                    (match.points![match.teamId1] ==
+                            match.points![match.teamId2])
+                        ? Text(
+                            "Match Draw",
+                            style: TextStyle(color: Colors.white60),
+                          )
+                        : ((match.points![match.teamId1]!.toInt()) >
+                                (match.points![match.teamId2]!.toInt()))
+                            ? Text(
+                                teams[int.parse(match.teamId1)].teamName +
+                                    " won the match",
+                                style: TextStyle(color: Colors.white60),
+                              )
+                            : Text(
+                                teams[int.parse(match.teamId2)].teamName +
+                                    " won the match",
+                                style: TextStyle(color: Colors.white60),
+                              )
+                  ]),
+                ),
               ),
-              Divider(
-                height: 20,
-                color: Colors.white,
+            ))
+        : Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.blueAccent,
               ),
-              Text(
-                "Live at " + DateFormat('hh:mm dMMM').format(match.matchTime),
-                style: TextStyle(color: Colors.white60),
+              color: CustomColors.taskez1,
+            ),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
+            child: ListTile(
+              contentPadding:
+                  EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
+              trailing: CircleAvatar(
+                child: IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {},
+                ),
+                backgroundColor: Colors.blueAccent,
               ),
-            ]),
-          ),
-        ));
+              title: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Center(
+                  child: Column(children: [
+                    Text(
+                      "Match " + match.matchId,
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white60),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          teams[int.parse(match.teamId1)].teamName,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        Text(
+                          "   Vs   ",
+                          style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        Text(
+                          teams[int.parse(match.teamId2)].teamName,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "Live at " +
+                          DateFormat('hh:mm dMMM').format(match.matchTime),
+                      style: TextStyle(color: Colors.white60),
+                    ),
+                  ]),
+                ),
+              ),
+            ));
   }
 }
