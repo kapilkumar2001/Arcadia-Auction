@@ -11,8 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../signin_screen.dart';
-
 class PlayerProfileScreen extends StatefulWidget {
   static const routeName = '/profile';
   const PlayerProfileScreen({Key? key}) : super(key: key);

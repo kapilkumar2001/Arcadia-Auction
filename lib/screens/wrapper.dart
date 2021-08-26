@@ -1,6 +1,6 @@
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
-import 'package:arcadia/screens/Player/formPage.dart';
+import 'package:arcadia/screens/Player/player_form.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Player/PlayerScreens/player_dashboard.dart';
