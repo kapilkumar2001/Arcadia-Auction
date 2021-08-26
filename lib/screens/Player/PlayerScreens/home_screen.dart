@@ -4,6 +4,7 @@ import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_profile_screen.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:arcadia/provider/match.dart';
-
 
 class UpdateScreen extends StatefulWidget {
   @override
@@ -80,7 +80,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
               ],
               leading: IconButton(
                   onPressed: () {
-                    //TODO: Insert a pdf to the rule book or a URL to the docs
+                    Navigator.of(context).pushNamed(
+                      RulesPdfViewer.routeName,
+                      arguments:
+                          'https://docs.google.com/spreadsheets/d/e/2PACX-1vSIp5J_vPUXk75yzdl_LMzEF8xx8JRUCmLY6icmgMJqykMkDj19sw0hH3a4KU6ClhtOz-Wznr5CNakU/pub?gid=2112538771&single=true&output=pdf',
+                    );
                   },
                   icon: Icon(
                     my_library_books_outlined,
@@ -144,21 +148,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                          Center(
-                            child: Container(
-                              color: CustomColors.firebaseNavy.withOpacity(0.2),
-                              margin: EdgeInsets.all(10),
-                              height: 150,
-                              child: ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: [
-                                    ...upcomingMatchList
-                                        .map((e) => GestureDetector(
-                                            // onTap: ,
-                                            child: UpcomingMatchCard(match: e)))
-                                        .toList(),
-                                  ]),
-                            ),
+                          Container(
+                            color: CustomColors.firebaseNavy.withOpacity(0.2),
+                            margin: EdgeInsets.all(10),
+                            height: 150,
+                            child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  ...upcomingMatchList
+                                      .map((e) => GestureDetector(
+                                          // onTap: ,
+                                          child: UpcomingMatchCard(match: e)))
+                                      .toList(),
+                                ]),
                           ),
                         ],
                       ),

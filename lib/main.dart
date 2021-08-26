@@ -6,6 +6,7 @@ import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Auction/auction_player.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/team_details.dart';
 import 'package:arcadia/screens/wrapper.dart';
@@ -58,7 +59,8 @@ class MyApp extends StatelessWidget {
             // primarySwatch: Colors.purple,
             accentColor: CustomColors.secondaryColor,
             // fontFamily: 'lato',
-             textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+            textTheme:
+                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           ),
           home: FutureBuilder(
             // Initialize FlutterFire:
@@ -89,6 +91,7 @@ class MyApp extends StatelessWidget {
             TeamDetails.routeName: (ctx) => TeamDetails(),
             ScheduleScreen.routeName: (ctx) => ScheduleScreen(),
             PlayerProfileScreen.routeName: (ctx) => PlayerProfileScreen(),
+            RulesPdfViewer.routeName: (ctx) => RulesPdfViewer(),
           },
         ),
       ),
