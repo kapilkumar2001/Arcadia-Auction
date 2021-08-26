@@ -13,12 +13,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:arcadia/provider/match.dart';
 
-class UpdateScreen extends StatefulWidget {
+class PlayerHomeScreen extends StatefulWidget {
   @override
-  _UpdateScreenState createState() => _UpdateScreenState();
+  _PlayerHomeScreenState createState() => _PlayerHomeScreenState();
 }
 
-class _UpdateScreenState extends State<UpdateScreen> {
+class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   List<Announcement> announcementList = [];
   bool _isInit = true;
   bool _isLoading = true;
@@ -107,6 +107,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
               child: Container(
                 color: CustomColors.firebaseNavy,
                 // padding: EdgeInsets.all(10),
+                width: double.infinity,
+                // height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
                     SizedBox(
@@ -130,80 +132,68 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     // SizedBox(
                     //   height: 20,
                     // ),
-
+                    Text(
+                      'Upcoming Matches',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        // textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        // fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
-                      child: Column(
+                      color: CustomColors.firebaseNavy.withOpacity(0.2),
+                      margin: EdgeInsets.all(10),
+                      height: 150,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
                         children: [
-                          Text(
-                            'Upcoming Matches',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.lato(
-                              // textStyle: Theme.of(context).textTheme.headline4,
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              // fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            color: CustomColors.firebaseNavy.withOpacity(0.2),
-                            margin: EdgeInsets.all(10),
-                            height: 150,
-                            child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  ...upcomingMatchList
-                                      .map((e) => GestureDetector(
-                                          // onTap: ,
-                                          child: UpcomingMatchCard(match: e)))
-                                      .toList(),
-                                ]),
-                          ),
+                          ...upcomingMatchList
+                              .map((e) => GestureDetector(
+                                  // onTap: ,
+                                  child: UpcomingMatchCard(match: e)))
+                              .toList(),
                         ],
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          'Annoucements',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.lato(
-                            // textStyle: Theme.of(context).textTheme.headline4,
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            // fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          color: CustomColors.firebaseNavy,
-                          height: MediaQuery.of(context).size.height / 2,
-                          child: ListView(children: [
+                    Text(
+                      'Annoucements',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        // textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        // fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      color: CustomColors.firebaseNavy,
+                      child: ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
                             ...announcementList
                                 .map((e) => AnnouncementCard(announcement: e))
                                 .toList(),
                           ]),
-                        ),
-                      ],
                     ),
                   ],
                 ),
               ),
             ),
-            // floatingActionButton: FloatingActionButton(
-            //   child: Icon(Icons.library_add),
-            //   onPressed: () {},
-            // ),
           );
   }
 }
