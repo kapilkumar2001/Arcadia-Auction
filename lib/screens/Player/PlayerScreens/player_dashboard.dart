@@ -18,7 +18,7 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
 
   List<Widget> _widgetOptions = <Widget>[
     // PlayerProfileScreen(),
-    UpdateScreen(),
+    PlayerHomeScreen(),
     TeamStandings(),
     ScheduleScreen(),
   ];

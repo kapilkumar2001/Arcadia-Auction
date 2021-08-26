@@ -8,7 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class Auth with ChangeNotifier {
   static String? uid;
 
-  bool get isAuth {
+  static bool get isAuth {
     User? user = FirebaseAuth.instance.currentUser;
     return user == null ? false : true;
   }
