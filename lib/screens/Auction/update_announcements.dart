@@ -38,22 +38,24 @@ class _UpdateAnnouncementsState extends State<UpdateAnnouncements> {
         ? Center(
             child: CircularProgressIndicator(),
           )
-        : Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                color: CustomColors.firebaseNavy,
-                height: MediaQuery.of(context).size.height / 2,
-                child: ListView(children: [
-                  ...announcementList
-                      .map((e) => AdminAnnouncementCard(announcement: e))
-                      .toList(),
-                ]),
-              ),
-            ],
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  color: CustomColors.firebaseNavy,
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView(children: [
+                    ...announcementList
+                        .map((e) => AdminAnnouncementCard(announcement: e))
+                        .toList(),
+                  ]),
+                ),
+              ],
+            ),
           );
   }
 }

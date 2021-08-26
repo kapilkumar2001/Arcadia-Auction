@@ -1,6 +1,7 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
+import 'package:arcadia/screens/Auction/forms/add_announcement_form.dart';
 import 'package:arcadia/screens/Auction/update_announcements.dart';
 import 'package:arcadia/screens/Auction/update_matches.dart';
 import 'package:arcadia/screens/Auction/update_teams.dart';
@@ -16,7 +17,9 @@ class AdminDashboard extends StatefulWidget {
   _AdminDashboardState createState() => _AdminDashboardState();
 }
 
-class _AdminDashboardState extends State<AdminDashboard> {
+class _AdminDashboardState extends State<AdminDashboard>
+    with SingleTickerProviderStateMixin {
+  // late TabController _tabController;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,7 +32,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
           ),
           bottom: const TabBar(
             indicatorColor: Colors.white70,
-            tabs: [
+            //  controller: _tabController,
+            tabs: <Tab>[
               Tab(
                 child: Text("Announcements"),
               ),
@@ -53,6 +57,16 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 UpdateTeams(),
               ],
             ))),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blueAccent,
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddAnnouncementForm()),
+            );
+          },
+        ),
       ),
     );
   }

@@ -31,4 +31,13 @@ class Teams with ChangeNotifier {
     await fetchAndSetTeams();
     notifyListeners();
   }
+
+  Future<void> addTeam(Team t) async {
+    CollectionReference teams = FirebaseFirestore.instance.collection('Team');
+    String uid = t.teamUid;
+    await teams.doc(uid).set(t.toMap());
+    await fetchAndSetTeams();
+    notifyListeners();
+    return;
+  }
 }
