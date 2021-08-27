@@ -92,7 +92,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                   )),
               centerTitle: true,
               title: Text(
-                'Arcadia CSGO League',
+                'CSGO League',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lato(
                   // textStyle: Theme.of(context).textTheme.headline4,
