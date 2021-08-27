@@ -22,23 +22,24 @@ class _RulesPdfViewerState extends State<RulesPdfViewer> {
 
   @override
   Widget build(BuildContext context) {
-    String pdfUrl = ModalRoute.of(context)!.settings.arguments as String;
+    //  String pdfUrl = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schedule'),
+        centerTitle: true,
+        title: Text('Rules'),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            onPressed: () async {
-              _searchResult = await _pdfViewerController?.searchText(
-                'the',
-                searchOption: TextSearchOption.caseSensitive,
-              );
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.search,
+          //     color: Colors.white,
+          //   ),
+          //   onPressed: () async {
+          //     _searchResult = await _pdfViewerController?.searchText(
+          //       'the',
+          //       searchOption: TextSearchOption.caseSensitive,
+          //     );
+          //   },
+          // ),
           Visibility(
             visible: _searchResult?.hasResult ?? false,
             child: IconButton(
