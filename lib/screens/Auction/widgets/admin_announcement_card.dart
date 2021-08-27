@@ -17,7 +17,7 @@ class AdminAnnouncementCard extends StatelessWidget {
         customDialogBox(context, announcement);
       },
       child: Container(
-        margin: EdgeInsets.fromLTRB(5, 20, 5, 5),
+        margin: EdgeInsets.fromLTRB(15, 20, 15, 5),
         width: MediaQuery.of(context).size.width / 2,
         height: MediaQuery.of(context).size.height / 12,
         decoration: BoxDecoration(

@@ -1,6 +1,7 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
+import 'package:arcadia/screens/Auction/forms/add_team_form.dart';
 import 'package:arcadia/screens/Auction/widgets/team_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,11 +40,58 @@ class _UpdateTeamsState extends State<UpdateTeams> {
           )
         : Material(
             color: CustomColors.primaryColor,
-            child: ListView.builder(
-              itemCount: teams.length,
-              itemBuilder: (BuildContext context, int index) {
-                return TeamCard(teams[index]);
-              },
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddTeamForm()),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(15, 20, 15, 5),
+                    width: MediaQuery.of(context).size.width / 5,
+                    height: MediaQuery.of(context).size.height / 14,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blueAccent,
+                      ),
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add, color: Colors.white),
+                            Text(
+                              "  Add Team",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ]),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text(
+                    "Teams",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white54,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ...teams.map((e) => TeamCard(e)).toList(),
+              ],
             ),
           );
   }
