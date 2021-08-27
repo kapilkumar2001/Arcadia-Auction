@@ -56,35 +56,33 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          iconSize: 30,
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.shifting,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-                backgroundColor: Colors.black),
-            BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.app_badge_fill),
-                label: 'Standings',
-                backgroundColor: Colors.black),
-            BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.table_badge_more_fill),
-                label: 'Schedule',
-                backgroundColor: Colors.black),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.white,
-          onTap: _onItemTapped,
-          backgroundColor: Colors.white38,
-        ),
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 30,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.shifting,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.black),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.app_badge_fill),
+              label: 'Standings',
+              backgroundColor: Colors.black),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.table_badge_more_fill),
+              label: 'Schedule',
+              backgroundColor: Colors.black),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: _onItemTapped,
+        backgroundColor: Colors.white38,
       ),
     );
   }

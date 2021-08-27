@@ -41,22 +41,20 @@ class _AuctionOverviewState extends State<AuctionOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.white,
-          backgroundColor: Colors.white38,
-          iconSize: 30,
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
-          items: _item,
-          type: BottomNavigationBarType.shifting,
-          currentIndex: _currentIndex,
-          unselectedItemColor: Colors.white38,
-          onTap: _onTapped,
-        ),
-        body: _tabs[_currentIndex],
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
+        backgroundColor: Colors.white38,
+        iconSize: 30,
+        showSelectedLabels: true,
+        showUnselectedLabels: false,
+        items: _item,
+        type: BottomNavigationBarType.shifting,
+        currentIndex: _currentIndex,
+        unselectedItemColor: Colors.white38,
+        onTap: _onTapped,
       ),
+      body: _tabs[_currentIndex],
     );
   }
 }

@@ -48,124 +48,122 @@ class _TeamDetailsState extends State<TeamDetails> {
         ? Center(
             child: CircularProgressIndicator(),
           )
-        : SafeArea(
-            child: Scaffold(
-              backgroundColor: CustomColors.firebaseNavy,
-              appBar: AppBar(
-                centerTitle: true,
-                title: Text('Team Profile'),
-                // elevation: 0,
-              ),
-              body: SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: CircleAvatar(
-                          minRadius: 80,
-                          maxRadius: 80,
-                          backgroundColor: Colors.greenAccent,
-                          foregroundColor: Colors.white54,
-                          backgroundImage: CachedNetworkImageProvider(
-                            'https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png',
-                          ),
-                        ),
+        : Scaffold(
+          backgroundColor: CustomColors.firebaseNavy,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text('Team Profile'),
+            // elevation: 0,
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: CircleAvatar(
+                      minRadius: 80,
+                      maxRadius: 80,
+                      backgroundColor: Colors.greenAccent,
+                      foregroundColor: Colors.white54,
+                      backgroundImage: CachedNetworkImageProvider(
+                        'https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png',
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          team.teamName,
-                          
-                          style: GoogleFonts.poppins(
-                            fontSize: 24,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      team.teamName,
+                      
+                      style: GoogleFonts.poppins(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.white30,
+                    ),
+                  ),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.white30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Upcoming Matches',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Upcoming Matches',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.lato(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      upcomingMatchList.isEmpty
-                          ? Container(
-                              height: 50,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  // color: Colors.white24,
-                                  ),
-                              child: Center(
-                                child: Text(
-                                  'No upcoming matches',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 18,
-                                    color: Colors.white38,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+                    ),
+                  ),
+                  upcomingMatchList.isEmpty
+                      ? Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              // color: Colors.white24,
                               ),
-                            )
-                          : Container(
-                              // color: CustomColors.primaryColor.withAlpha(100),
-                              margin: EdgeInsets.all(10),
-                              height: 150,
-                              child: ListView.builder(
-                                itemCount: upcomingMatchList.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (_, index) {
-                                  return UpcomingMatchCard(
-                                    match: upcomingMatchList[index],
-                                  );
-                                },
+                          child: Center(
+                            child: Text(
+                              'No upcoming matches',
+                              style: GoogleFonts.lato(
+                                fontSize: 18,
+                                color: Colors.white38,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.white30,
-                      ),
-                      Container(
-                        // margin: const EdgeInsets.only(bottom: 20,top: 20),
-                        child: Text(
-                          'Players',
-                          style: GoogleFonts.lato(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
+                          ),
+                        )
+                      : Container(
+                          // color: CustomColors.primaryColor.withAlpha(100),
+                          margin: EdgeInsets.all(10),
+                          height: 150,
+                          child: ListView.builder(
+                            itemCount: upcomingMatchList.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (_, index) {
+                              return UpcomingMatchCard(
+                                match: upcomingMatchList[index],
+                              );
+                            },
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: players.length,
-                          itemBuilder: (_, index) {
-                            return PlayerCard(players[index]);
-                          },
-                        ),
-                      )
-                    ],
+                  Divider(
+                    thickness: 1,
+                    color: Colors.white30,
                   ),
-                ),
+                  Container(
+                    // margin: const EdgeInsets.only(bottom: 20,top: 20),
+                    child: Text(
+                      'Players',
+                      style: GoogleFonts.lato(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: players.length,
+                      itemBuilder: (_, index) {
+                        return PlayerCard(players[index]);
+                      },
+                    ),
+                  )
+                ],
               ),
             ),
-          );
+          ),
+        );
   }
 }
