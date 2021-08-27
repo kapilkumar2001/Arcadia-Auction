@@ -36,6 +36,7 @@ dependencies:
   intl: ^0.17.0
   permission_handler: ^8.1.4+2
   provider: ^6.0.0
+  date_format: ^2.0.4
   syncfusion_flutter_pdfviewer: ^19.1.69-beta
   firebase_messaging: ^10.0.6
   

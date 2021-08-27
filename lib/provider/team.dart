@@ -16,6 +16,7 @@ class Team {
   final int points;
   final List<String> completeMatches;
   final List<String> upcomingMatches;
+  final String teamAbbreviation;
   Team({
     required this.teamName,
     required this.teamUid,
@@ -30,38 +31,39 @@ class Team {
     required this.points,
     required this.completeMatches,
     required this.upcomingMatches,
+    required this.teamAbbreviation,
   });
 
-  Team copyWith({
-    String? teamName,
-    String? teamUid,
-    List<String>? playerUid,
-    int? credits,
-    String? ownerName,
-    int? numPlayer,
-    int? matchesWon,
-    int? matchesLost,
-    int? matchesDraw,
-    int? roundDifference,
-    int? points,
-    List<String>? completeMatches,
-    List<String>? upcomingMatches,
-  }) {
+  Team copyWith(
+      {String? teamName,
+      String? teamUid,
+      List<String>? playerUid,
+      int? credits,
+      String? ownerName,
+      int? numPlayer,
+      int? matchesWon,
+      int? matchesLost,
+      int? matchesDraw,
+      int? roundDifference,
+      int? points,
+      List<String>? completeMatches,
+      List<String>? upcomingMatches,
+      String? teamAbbreviation}) {
     return Team(
-      teamName: teamName ?? this.teamName,
-      teamUid: teamUid ?? this.teamUid,
-      playerUid: playerUid ?? this.playerUid,
-      credits: credits ?? this.credits,
-      ownerName: ownerName ?? this.ownerName,
-      numPlayer: numPlayer ?? this.numPlayer,
-      matchesWon: matchesWon ?? this.matchesWon,
-      matchesLost: matchesLost ?? this.matchesLost,
-      matchesDraw: matchesDraw ?? this.matchesDraw,
-      roundDifference: roundDifference ?? this.roundDifference,
-      points: points ?? this.points,
-      completeMatches: completeMatches ?? this.completeMatches,
-      upcomingMatches: upcomingMatches ?? this.upcomingMatches,
-    );
+        teamName: teamName ?? this.teamName,
+        teamUid: teamUid ?? this.teamUid,
+        playerUid: playerUid ?? this.playerUid,
+        credits: credits ?? this.credits,
+        ownerName: ownerName ?? this.ownerName,
+        numPlayer: numPlayer ?? this.numPlayer,
+        matchesWon: matchesWon ?? this.matchesWon,
+        matchesLost: matchesLost ?? this.matchesLost,
+        matchesDraw: matchesDraw ?? this.matchesDraw,
+        roundDifference: roundDifference ?? this.roundDifference,
+        points: points ?? this.points,
+        completeMatches: completeMatches ?? this.completeMatches,
+        upcomingMatches: upcomingMatches ?? this.upcomingMatches,
+        teamAbbreviation: teamAbbreviation ?? this.teamAbbreviation);
   }
 
   Map<String, dynamic> toMap() {
@@ -79,25 +81,26 @@ class Team {
       'points': points,
       'completeMatches': completeMatches,
       'upcomingMatches': upcomingMatches,
+      'teamAbbreviation': teamAbbreviation
     };
   }
 
   factory Team.fromMap(Map<String, dynamic> map) {
     return Team(
-      teamName: map['teamName'],
-      teamUid: map['teamUid'],
-      playerUid: List<String>.from(map['playerUid']),
-      credits: map['credits'],
-      ownerName: map['ownerName'],
-      numPlayer: map['numPlayer'],
-      matchesWon: map['matchesWon'] ?? 0,
-      matchesLost: map['matchesLost'] ?? 0,
-      matchesDraw: map['matchesDraw'] ?? 0,
-      roundDifference: map['roundDifference'] ?? 0,
-      points: map['points'] ?? 0,
-      completeMatches: List<String>.from(map['completeMatches'] ?? {}),
-      upcomingMatches: List<String>.from(map['upcomingMatches'] ?? {}),
-    );
+        teamName: map['teamName'],
+        teamUid: map['teamUid'],
+        playerUid: List<String>.from(map['playerUid']),
+        credits: map['credits'],
+        ownerName: map['ownerName'],
+        numPlayer: map['numPlayer'],
+        matchesWon: map['matchesWon'] ?? 0,
+        matchesLost: map['matchesLost'] ?? 0,
+        matchesDraw: map['matchesDraw'] ?? 0,
+        roundDifference: map['roundDifference'] ?? 0,
+        points: map['points'] ?? 0,
+        completeMatches: List<String>.from(map['completeMatches'] ?? {}),
+        upcomingMatches: List<String>.from(map['upcomingMatches'] ?? {}),
+        teamAbbreviation: map['teamAbbreviation']);
   }
 
   String toJson() => json.encode(toMap());
@@ -106,43 +109,45 @@ class Team {
 
   @override
   String toString() {
-    return 'Team(teamName: $teamName, teamUid: $teamUid, playerUid: $playerUid, credits: $credits, ownerName: $ownerName, numPlayer: $numPlayer, matchesWon: $matchesWon, matchesLost: $matchesLost, matchesDraw: $matchesDraw, roundDifference: $roundDifference, points: $points, completeMatches: $completeMatches, upcomingMatches: $upcomingMatches)';
+    return 'Team(teamName: $teamName, teamUid: $teamUid, playerUid: $playerUid, credits: $credits, ownerName: $ownerName, numPlayer: $numPlayer, matchesWon: $matchesWon, matchesLost: $matchesLost, matchesDraw: $matchesDraw, roundDifference: $roundDifference, points: $points, completeMatches: $completeMatches, upcomingMatches: $upcomingMatches, teamAbbreviation: $teamAbbreviation)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Team &&
-      other.teamName == teamName &&
-      other.teamUid == teamUid &&
-      listEquals(other.playerUid, playerUid) &&
-      other.credits == credits &&
-      other.ownerName == ownerName &&
-      other.numPlayer == numPlayer &&
-      other.matchesWon == matchesWon &&
-      other.matchesLost == matchesLost &&
-      other.matchesDraw == matchesDraw &&
-      other.roundDifference == roundDifference &&
-      other.points == points &&
-      listEquals(other.completeMatches, completeMatches) &&
-      listEquals(other.upcomingMatches, upcomingMatches);
+        other.teamName == teamName &&
+        other.teamUid == teamUid &&
+        listEquals(other.playerUid, playerUid) &&
+        other.credits == credits &&
+        other.ownerName == ownerName &&
+        other.numPlayer == numPlayer &&
+        other.matchesWon == matchesWon &&
+        other.matchesLost == matchesLost &&
+        other.matchesDraw == matchesDraw &&
+        other.roundDifference == roundDifference &&
+        other.points == points &&
+        listEquals(other.completeMatches, completeMatches) &&
+        listEquals(other.upcomingMatches, upcomingMatches) &&
+        other.teamAbbreviation == teamAbbreviation;
   }
 
   @override
   int get hashCode {
     return teamName.hashCode ^
-      teamUid.hashCode ^
-      playerUid.hashCode ^
-      credits.hashCode ^
-      ownerName.hashCode ^
-      numPlayer.hashCode ^
-      matchesWon.hashCode ^
-      matchesLost.hashCode ^
-      matchesDraw.hashCode ^
-      roundDifference.hashCode ^
-      points.hashCode ^
-      completeMatches.hashCode ^
-      upcomingMatches.hashCode;
+        teamUid.hashCode ^
+        playerUid.hashCode ^
+        credits.hashCode ^
+        ownerName.hashCode ^
+        numPlayer.hashCode ^
+        matchesWon.hashCode ^
+        matchesLost.hashCode ^
+        matchesDraw.hashCode ^
+        roundDifference.hashCode ^
+        points.hashCode ^
+        completeMatches.hashCode ^
+        upcomingMatches.hashCode ^
+        teamAbbreviation.hashCode;
   }
 }

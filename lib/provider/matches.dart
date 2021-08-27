@@ -26,8 +26,8 @@ class Matches with ChangeNotifier {
   }
 
   Future<void> updateMatches(Match m) async {
-    CollectionReference teams = FirebaseFirestore.instance.collection('Team');
-    await teams.doc(m.matchId).update(m.toMap()).then((_) {
+    CollectionReference match = FirebaseFirestore.instance.collection('Match');
+    await match.doc(m.matchId).update(m.toMap()).then((_) {
       print("Data Updated in firebase for team id - " + m.matchId);
     });
     await fetchAndSetMatches();

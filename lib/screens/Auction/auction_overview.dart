@@ -1,3 +1,4 @@
+import 'package:arcadia/screens/Auction/admin_dashboard.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,25 +14,23 @@ class _AuctionOverviewState extends State<AuctionOverview> {
   int _currentIndex = 0;
   List<BottomNavigationBarItem> _item = [
     BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined),
-        label: "Home",
+        icon: Icon(Icons.edit_attributes),
+        label: "DashBoard",
+        backgroundColor: Colors.black),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Auction",
         backgroundColor: Colors.black),
     BottomNavigationBarItem(
         icon: Icon(Icons.query_stats_outlined),
         label: "Status",
         backgroundColor: Colors.black),
-    BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.person),
-        label: "Profile",
-        backgroundColor: Colors.black),
   ];
 
   static List<Widget> _tabs = <Widget>[
+    AdminDashboard(),
     AuctionHome(),
     AuctionDetails(),
-    Center(
-      child: Text('profile'),
-    )
   ];
 
   void _onTapped(int index) {

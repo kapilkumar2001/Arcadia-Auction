@@ -113,7 +113,7 @@ class _PlayerFormState extends State<PlayerForm> {
       // backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
         title: Text(
-          "Player Deailts Form",
+          "Player Details Form",
           style: TextStyle(
             color: Colors.white,
           ),

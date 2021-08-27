@@ -89,8 +89,9 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                       maxRadius: 80,
                                       backgroundColor: Colors.greenAccent,
                                       foregroundColor: Colors.white54,
-                                      backgroundImage: CachedNetworkImageProvider(
-                                          snapshot.data.toString()),
+                                      backgroundImage:
+                                          CachedNetworkImageProvider(
+                                              snapshot.data.toString()),
                                     );
                                   } else if (snapshot.hasError) {
                                     return Icon(

@@ -27,7 +27,6 @@ class _AuctionResultsState extends State<AuctionResults> {
                 (value) => setState(
                   () {
                     _isLoading = false;
-                    // print(currPlayer);
                   },
                 ),
               );

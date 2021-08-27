@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
               ),
             ],
             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Arcadia CSGO League',
               theme: ThemeData(
                 primaryColor: CustomColors.primaryColor,

@@ -1,6 +1,7 @@
 import 'package:arcadia/provider/team.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class Teams with ChangeNotifier {
   List<Team> teams = [];
@@ -30,5 +31,24 @@ class Teams with ChangeNotifier {
     });
     await fetchAndSetTeams();
     notifyListeners();
+  }
+
+  Future<void> addTeam(Team t) async {
+    CollectionReference teams = FirebaseFirestore.instance.collection('Team');
+    String uid = t.teamUid;
+    await teams.doc(uid).set(t.toMap());
+    await fetchAndSetTeams();
+    notifyListeners();
+    return;
+  }
+
+  Future<String> getImageUrl(String id) async {
+    String imageUrl = await firebase_storage.FirebaseStorage.instance
+        .ref('TeamLogos/$id/image')
+        .getDownloadURL();
+    // print(imageUrl);
+    return imageUrl;
+    // Within your widgets:
+    // Image.network(downloadURL);
   }
 }
