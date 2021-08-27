@@ -30,8 +30,9 @@ class TeamStandingCard extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    team.teamName,
+                    team.teamAbbreviation,
                     textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                     style: standingTextStyle,
                   ),
                 ),
