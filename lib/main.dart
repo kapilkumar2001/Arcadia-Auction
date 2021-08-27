@@ -7,6 +7,7 @@ import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Auction/auction_player.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/home_screen.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/team_details.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
               ),
             ],
             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Arcadia CSGO League',
               theme: ThemeData(
                 primaryColor: CustomColors.primaryColor,
@@ -99,7 +101,7 @@ class MyApp extends StatelessWidget {
         return PlayerForm();
       // break;
       case 1:
-        return PlayerHomeScreen();
+        return PlayerDashBoard();
       // break;
       case 2:
         return AuctionOverview();
