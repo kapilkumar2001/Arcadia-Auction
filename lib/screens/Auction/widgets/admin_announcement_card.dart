@@ -43,17 +43,17 @@ class AdminAnnouncementCard extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: CircleAvatar(
-                backgroundColor: Colors.blueAccent,
-                child: IconButton(
-                  icon: Icon(Icons.edit),
-                  onPressed: () {},
-                  color: Colors.white54,
-                ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: CircleAvatar(
+            //     backgroundColor: Colors.blueAccent,
+            //     child: IconButton(
+            //       icon: Icon(Icons.edit),
+            //       onPressed: () {},
+            //       color: Colors.white54,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
