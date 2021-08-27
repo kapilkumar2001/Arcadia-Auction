@@ -36,7 +36,6 @@ class _AuctionResultsState extends State<AuctionResults> {
     _isInit = false;
   }
 
-  //TODO: image
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;

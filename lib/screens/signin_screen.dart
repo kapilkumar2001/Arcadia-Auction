@@ -1,4 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/widgets/anon_signin_button.dart';
 import 'package:arcadia/widgets/google_sign_in_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,21 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
             GoogleSignInButton(),
-            // FutureBuilder(
-            //   future: Auth.initializeFirebase(context: context),
-            //   builder: (context, snapshot) {
-            //     if (snapshot.hasError) {
-            //       return Text('Error initializing Firebase');
-            //     } else if (snapshot.connectionState == ConnectionState.done) {
-            //       return GoogleSignInButton();
-            //     }
-            //     return CircularProgressIndicator(
-            //       valueColor: AlwaysStoppedAnimation<Color>(
-            //         CustomColors.firebaseOrange,
-            //       ),
-            //     );
-            //   },
-            // ),
+            AnonSignInButton(),
           ],
         ),
       ),

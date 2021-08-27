@@ -4,7 +4,6 @@ import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/screens/onBoardingScreen.dart';
 import 'package:arcadia/screens/signin_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';

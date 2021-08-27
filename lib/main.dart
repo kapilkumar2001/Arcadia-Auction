@@ -135,7 +135,7 @@ class Init {
       print('Message clicked!');
     });
     if (!Auth.isAuth) {
-      if (Auth.didSignOut) {
+      if (!Auth.didSignOut) {
         return 3;
       }
       return -1;
@@ -147,7 +147,11 @@ class Init {
           .doc(Auth.uid)
           .get();
       if (!documentSnapshot.exists) {
-        return 0;
+        if (Auth.getIsAnon) {
+          return 1;
+        } else {
+          return 0;
+        }
       } else if (!documentSnapshot.data()!['isAdmin']) {
         return 1;
       } else {
