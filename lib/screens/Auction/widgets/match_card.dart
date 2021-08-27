@@ -1,10 +1,8 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/team.dart';
-import 'package:arcadia/provider/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class MatchCard extends StatelessWidget {
   Match match;

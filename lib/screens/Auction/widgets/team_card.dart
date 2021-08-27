@@ -1,6 +1,9 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/team.dart';
+import 'package:arcadia/provider/teams.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TeamCard extends StatefulWidget {
   Team team;
@@ -24,8 +27,35 @@ class _TeamCardState extends State<TeamCard> {
       margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
       child: ListTile(
         leading: CircleAvatar(
-          child: Image.network(
-              "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+          minRadius: 20,
+          maxRadius: 20,
+          child: FutureBuilder(
+            future: Provider.of<Teams>(context, listen: false)
+                .getImageUrl(widget.team.teamUid),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return CircleAvatar(
+                  minRadius: 20,
+                  maxRadius: 20,
+                  backgroundColor: CustomColors.primaryColor,
+                  foregroundColor: Colors.white54,
+                  backgroundImage: CachedNetworkImageProvider(
+                    snapshot.data.toString(),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Icon(Icons.image_not_supported_sharp);
+              } else {
+                return CircleAvatar(
+                  minRadius: 20,
+                  maxRadius: 20,
+                  backgroundColor: CustomColors.primaryColor,
+                  foregroundColor: Colors.white54,
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
         ),
         title: Text(
           widget.team.teamName,
