@@ -176,11 +176,11 @@ class UpcomingMatchCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      teams[int.parse(match.teamId1)].teamName[0] +
-                          teams[int.parse(match.teamId1)].teamName[1] +
-                          teams[int.parse(match.teamId1)].teamName[2] +
-                          "...",
-                      overflow: TextOverflow.visible,
+                      teams[int.parse(match.teamId1)].teamAbbreviation[0] +
+                          teams[int.parse(match.teamId1)].teamAbbreviation[1] +
+                          teams[int.parse(match.teamId1)].teamAbbreviation[2] ,
+                          
+                      // overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
                           fontWeight: FontWeight.bold,
@@ -194,10 +194,9 @@ class UpcomingMatchCard extends StatelessWidget {
                           fontSize: 18),
                     ),
                     Text(
-                      teams[int.parse(match.teamId2)].teamName[0] +
-                          teams[int.parse(match.teamId2)].teamName[1] +
-                          teams[int.parse(match.teamId2)].teamName[2] +
-                          "...",
+                      teams[int.parse(match.teamId2)].teamAbbreviation[0] +
+                          teams[int.parse(match.teamId2)].teamAbbreviation[1] +
+                          teams[int.parse(match.teamId2)].teamAbbreviation[2],
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -287,10 +286,10 @@ class CompletedMatchCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      teams[int.parse(match.teamId1)].teamName[0] +
-                          teams[int.parse(match.teamId1)].teamName[1] +
-                          teams[int.parse(match.teamId1)].teamName[2] +
-                          "...",
+                      teams[int.parse(match.teamId1)].teamAbbreviation[0] +
+                          teams[int.parse(match.teamId1)].teamAbbreviation[1] +
+                          teams[int.parse(match.teamId1)].teamAbbreviation[2] 
+                          ,
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -305,10 +304,10 @@ class CompletedMatchCard extends StatelessWidget {
                           fontSize: 18),
                     ),
                     Text(
-                      teams[int.parse(match.teamId2)].teamName[0] +
-                          teams[int.parse(match.teamId2)].teamName[1] +
-                          teams[int.parse(match.teamId2)].teamName[2] +
-                          "...",
+                      teams[int.parse(match.teamId2)].teamAbbreviation[0] +
+                          teams[int.parse(match.teamId2)].teamAbbreviation[1] +
+                          teams[int.parse(match.teamId2)].teamAbbreviation[2] 
+                          ,
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,

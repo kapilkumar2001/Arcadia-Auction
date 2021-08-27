@@ -72,6 +72,14 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              title: Text('Player Proflie'),
+              centerTitle: true,
+            ),
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Center(
@@ -271,6 +279,9 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                               ),
                             ),
                             ElevatedButton.icon(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.red),
+                              ),
                               onPressed: () async {
                                 await Provider.of<Auth>(context, listen: false)
                                     .signOut();

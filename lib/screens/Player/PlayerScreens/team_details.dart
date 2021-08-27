@@ -50,9 +50,11 @@ class _TeamDetailsState extends State<TeamDetails> {
           )
         : SafeArea(
             child: Scaffold(
-              backgroundColor: CustomColors.primaryColor,
+              backgroundColor: CustomColors.firebaseNavy,
               appBar: AppBar(
-                elevation: 0,
+                centerTitle: true,
+                title: Text('Team Profile'),
+                // elevation: 0,
               ),
               body: SingleChildScrollView(
                 child: Container(
@@ -77,6 +79,7 @@ class _TeamDetailsState extends State<TeamDetails> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           team.teamName,
+                          
                           style: GoogleFonts.poppins(
                             fontSize: 24,
                             color: Colors.white,

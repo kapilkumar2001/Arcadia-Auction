@@ -155,7 +155,7 @@ class UpcomingMatchCard extends StatelessWidget {
                       Text(
                         Provider.of<Teams>(context)
                             .getTeam(int.parse(match.teamId1))
-                            .teamName,
+                            .teamAbbreviation,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15,
@@ -219,7 +219,7 @@ class UpcomingMatchCard extends StatelessWidget {
                       Text(
                         Provider.of<Teams>(context)
                             .getTeam(int.parse(match.teamId2))
-                            .teamName,
+                            .teamAbbreviation,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15,
