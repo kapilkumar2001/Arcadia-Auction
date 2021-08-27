@@ -90,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Center(
                               child: Image.asset(
                                 
-                                  'assets/gif1.gif',
+                                  'assets/onboarding.png',
                                 
                                 height: 400.0,
                                 width: 400.0,
@@ -122,7 +122,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
                               child: Image.asset(
                                 
-                                  'assets/gif2.gif',
+                                  'assets/onboarding1.png',
                                 
                                 height: 400.0,
                                 width: 400.0,
@@ -147,7 +147,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                            Center(
                               child: Image.asset(
                                 
-                                  'assets/gif.gif',
+                                  'assets/onboarding.png',
                                 
                                 height: 400.0,
                                 width: 400.0,
@@ -213,7 +213,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
-              height: 100.0,
+              height: 80.0,
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
@@ -222,7 +222,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 30.0),
+                    padding: EdgeInsets.only(bottom: 15.0),
                     child: Text(
                       'Get started',
                       style: TextStyle(

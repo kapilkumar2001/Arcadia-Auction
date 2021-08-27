@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Arcadia CSGO League',
+              title: 'CSGO League',
               theme: ThemeData(
                 primaryColor: CustomColors.primaryColor,
                 accentColor: CustomColors.secondaryColor,

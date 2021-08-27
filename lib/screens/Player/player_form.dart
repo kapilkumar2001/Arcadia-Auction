@@ -35,6 +35,9 @@ class _PlayerFormState extends State<PlayerForm> {
   final streamURLcontroller = new TextEditingController();
   final gameHRScontroller = new TextEditingController();
 
+  Weapons? primaryWeapons = Weapons.AWP;
+  Weapons? secondadryWeapons =Weapons.USP;
+
   @override
   void initState() {
     super.initState();
@@ -261,39 +264,70 @@ class _PlayerFormState extends State<PlayerForm> {
                       SizedBox(
                         height: 40.0,
                       ),
-                      TextFormField(
-                        controller: primaryWcontroller,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          hintText: "Ex:- AWP",
-                          labelText: "Primary Weapons",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Cannot be empty";
-                          }
-                          return null;
-                        },
+                      Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          
+                          Text("Primary Weapon:",style:TextStyle(
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold
+                          ) ,),
+                          // SizedBox(width: 20,),
+                          DropdownButton<Weapons>(
+
+                            underline: Container(
+                              // child: Text("Primary Weapons"),
+                              color: Colors.transparent),
+                            value: primaryWeapons,
+                            items: Weapons.values.map((Weapons value) {
+                              return DropdownMenuItem<Weapons>(
+                                value: value,
+                                child: Text(value.toString().split('.').last),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                // print('value is : $value');
+                                primaryWeapons = value!;
+                              });
+                            },
+                            // hint: Text(_playerStatus.toString().split('.').last),
+                          ),
+
+                        ],
                       ),
                       SizedBox(
                         height: 40.0,
                       ),
-                      TextFormField(
-                        controller: secondaryWcontroller,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          hintText: "Ex:- Deagle",
-                          labelText: "Secondary Weapons",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Cannot be empty";
-                          }
-                          return null;
-                        },
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                           Text(" Secondary Weapon:",style:TextStyle(
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold
+                          ) ,),
+                          
+                          DropdownButton<Weapons>(
+                            underline: Container(color: Colors.transparent),
+                            value: secondadryWeapons,
+                            items: Weapons.values.map((Weapons value) {
+                              return DropdownMenuItem<Weapons>(
+                                value: value,
+                                child: Text(value.toString().split('.').last),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                // print('value is : $value');
+                                secondadryWeapons = value!;
+                              });
+                            },
+                            // hint: Text(_playerStatus.toString().split('.').last),
+                          ),
+                        ],
                       ),
                       SizedBox(
-                        height: 60.0,
+                        height: 20.0,
                       ),
                       TextFormField(
                         controller: streamURLcontroller,
@@ -326,17 +360,15 @@ class _PlayerFormState extends State<PlayerForm> {
                                       primaryWeapon: Weapons.values.firstWhere(
                                         (e) =>
                                             e.toString() ==
-                                            'Weapons.' +
-                                                primaryWcontroller.text
-                                                    .toUpperCase(),
+                                            // 'Weapons.' +
+                                            primaryWeapons.toString(),
                                       ),
                                       secondaryWeapon:
                                           Weapons.values.firstWhere(
                                         (e) =>
                                             e.toString() ==
-                                            'Weapons.' +
-                                                secondaryWcontroller.text
-                                                    .toUpperCase(),
+                                            // 'Weapons.' +
+                                            secondadryWeapons.toString(),
                                       ),
                                       hoursPlayed:
                                           int.parse(gameHRScontroller.text),
