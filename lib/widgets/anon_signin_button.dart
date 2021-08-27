@@ -1,15 +1,18 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/auth.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
 import 'package:arcadia/screens/wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class GoogleSignInButton extends StatefulWidget {
+class AnonSignInButton extends StatefulWidget {
   @override
-  _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
+  _AnonSignInButtonState createState() => _AnonSignInButtonState();
 }
 
-class _GoogleSignInButtonState extends State<GoogleSignInButton> {
+class _AnonSignInButtonState extends State<AnonSignInButton> {
   bool _isSigningIn = false;
 
   @override
@@ -34,17 +37,16 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   _isSigningIn = true;
                 });
 
-                User? user = await Auth.signInWithGoogle();
+                User? user = await Auth.signInAnon();
 
                 setState(() {
                   _isSigningIn = false;
                 });
 
                 if (user != null) {
-                  
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => Wrapper(),
+                      builder: (context) => PlayerDashBoard(),
                     ),
                   );
                 }
@@ -54,19 +56,27 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image(
-                      image: AssetImage("assets/google_logo.png"),
-                      height: 35.0,
+                    Center(
+                      child: Icon(
+                        FontAwesomeIcons.userSecret,
+                        color: CustomColors.primaryColor,
+                        size: 35,
+                      ),
                     ),
+                    // Icon(Icons.)
+                    // Image(
+                    //   image: AssetImage("assets/google_logo.png"),
+                    //   height: 35.0,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        'Sign in with Google',
+                        'Sign in Anonymously',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black54,

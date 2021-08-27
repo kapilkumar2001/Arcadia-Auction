@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 class RulesPdfViewer extends StatefulWidget {
   static const routeName = '/rules-pdf-viewer';

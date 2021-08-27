@@ -8,10 +8,16 @@ import 'package:google_sign_in/google_sign_in.dart';
 class Auth with ChangeNotifier {
   static bool didSignOut = false;
   static String? uid;
+  static bool isAnonymous = false;
 
   static bool get isAuth {
     User? user = FirebaseAuth.instance.currentUser;
     return user == null ? false : true;
+  }
+
+  static bool get getIsAnon {
+    isAnonymous = FirebaseAuth.instance.currentUser!.email == null;
+    return isAnonymous;
   }
 
   // bool checkAndSetAuth() {
@@ -52,6 +58,20 @@ class Auth with ChangeNotifier {
         throw HttpException(e.code);
       }
     }
+    return user;
+  }
+
+  static Future<User?> signInAnon() async {
+    User? user;
+    try {
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInAnonymously();
+      user = userCredential.user;
+      uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    } on FirebaseAuthException catch (e) {
+      throw HttpException(e.code);
+    }
+    isAnonymous = true;
     return user;
   }
 

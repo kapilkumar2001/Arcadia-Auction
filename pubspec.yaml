@@ -39,6 +39,7 @@ dependencies:
   date_format: ^2.0.4
   syncfusion_flutter_pdfviewer: ^19.1.69-beta
   firebase_messaging: ^10.0.6
+  font_awesome_flutter: ^9.1.0
   
 dev_dependencies:
   flutter_test:
