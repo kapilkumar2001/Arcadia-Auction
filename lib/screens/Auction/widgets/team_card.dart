@@ -69,12 +69,12 @@ class _TeamCardState extends State<TeamCard> {
           style: TextStyle(
               color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 15),
         ),
-        trailing: CircleAvatar(
-          child: IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () {},
-          ),
-        ),
+        // trailing: CircleAvatar(
+        //   child: IconButton(
+        //     icon: Icon(Icons.edit),
+        //     onPressed: () {},
+        //   ),
+        // ),
       ),
     );
   }

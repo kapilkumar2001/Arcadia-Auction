@@ -1,6 +1,7 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/team.dart';
+import 'package:arcadia/screens/Auction/forms/update_match_form.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -98,7 +99,12 @@ class MatchCard extends StatelessWidget {
                   minRadius: 25,
                   child: IconButton(
                     icon: Icon(Icons.edit),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateMatchForm(match)));
+                    },
                   ),
                   backgroundColor: Colors.blueAccent,
                 ),
@@ -178,7 +184,12 @@ class MatchCard extends StatelessWidget {
                   minRadius: 25,
                   child: IconButton(
                     icon: Icon(Icons.edit),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateMatchForm(match)));
+                    },
                   ),
                   backgroundColor: Colors.blueAccent,
                 ),
