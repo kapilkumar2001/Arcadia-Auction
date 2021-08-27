@@ -6,17 +6,17 @@ import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/screens/Auction/auction_player.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/home_screen.dart';
+import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/team_details.dart';
 import 'package:arcadia/screens/onBoardingScreen.dart';
 import 'package:arcadia/screens/splash_screen.dart';
-import 'package:arcadia/screens/wrapper.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:arcadia/screens/signin_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,14 +31,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+      FirebaseMessaging.onBackgroundMessage(_messageHandler);
   runApp(MyApp());
 }
+
+Future<void> _messageHandler(RemoteMessage message) async {
+  print('background message ${message.notification!.body}');
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Init.instance.initialize(),
+      future: Init.instance.initialize(context),
       builder: (context, AsyncSnapshot snapshot) {
         // Show splash screen while waiting for app resources to load:
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -99,7 +105,7 @@ class MyApp extends StatelessWidget {
         return PlayerForm();
       // break;
       case 1:
-        return PlayerHomeScreen();
+        return PlayerDashBoard();
       // break;
       case 2:
         return AuctionOverview();
@@ -114,8 +120,17 @@ class Init {
   Init._();
   static final instance = Init._();
 
-  Future<int?> initialize() async {
+  Future<int?> initialize(BuildContext context) async {
     await Firebase.initializeApp();
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    //initiate default subscription topic
+    messaging.subscribeToTopic("announcement");
+    messaging.getToken().then((value) {
+      print(value);
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      print('Message clicked!');
+    });
     if (!Auth.isAuth) {
       return -1;
     } else {

@@ -21,15 +21,14 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   cached_network_image: ^3.1.0
   cloud_firestore: ^2.5.0
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.0.2
   firebase_core: ^1.5.0
   firebase_storage: ^10.0.2
-  flutter:
-    sdk: flutter
-  flutter_image_compress: ^1.1.0
   flutter_native_splash: ^1.2.1
   google_fonts: ^2.1.0
   google_sign_in: ^5.0.7
@@ -38,7 +37,8 @@ dependencies:
   permission_handler: ^8.1.4+2
   provider: ^6.0.0
   syncfusion_flutter_pdfviewer: ^19.1.69-beta
-
+  firebase_messaging: ^10.0.6
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
