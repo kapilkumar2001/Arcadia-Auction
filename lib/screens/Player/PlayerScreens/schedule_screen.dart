@@ -74,15 +74,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     )
                   ],
                 ),
-                actions: [
-                  Icon(
-                    Icons.filter,
-                    color: Colors.white60,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                ],
+                // actions: [
+                //   Icon(
+                //     Icons.filter,
+                //     color: Colors.white60,
+                //   ),
+                //   SizedBox(
+                //     width: 20,
+                //   ),
+                // ],
                 centerTitle: true,
               ),
               body: Material(
