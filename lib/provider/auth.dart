@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth with ChangeNotifier {
+  static bool didSignOut = false;
   static String? uid;
 
   static bool get isAuth {
@@ -55,6 +56,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> signOut() async {
+    didSignOut = true;
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {

@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/constants/const_strings.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -90,14 +92,45 @@ class _MatchDetailsState extends State<MatchDetails> {
                               CircleAvatar(
                                 minRadius: 50,
                                 maxRadius: 50,
-                                child: Image.network(
-                                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                                child: FutureBuilder(
+                                  future:
+                                      Provider.of<Teams>(context, listen: false)
+                                          .getImageUrl(
+                                              teams[int.parse(match.teamId1)]
+                                                  .teamUid),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                            CustomColors.primaryColor,
+                                        foregroundColor: Colors.white54,
+                                        backgroundImage:
+                                            CachedNetworkImageProvider(
+                                          snapshot.data.toString(),
+                                        ),
+                                      );
+                                    } else if (snapshot.hasError) {
+                                      return Icon(
+                                          Icons.image_not_supported_sharp);
+                                    } else {
+                                      return CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                            CustomColors.primaryColor,
+                                        foregroundColor: Colors.white54,
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
-                                teams[int.parse(match.teamId1)].teamAbbreviation,
+                                teams[int.parse(match.teamId1)]
+                                    .teamAbbreviation,
                                 // overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     color: Colors.amberAccent,
@@ -122,14 +155,45 @@ class _MatchDetailsState extends State<MatchDetails> {
                               CircleAvatar(
                                 minRadius: 50,
                                 maxRadius: 50,
-                                child: Image.network(
-                                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png"),
+                                child: FutureBuilder(
+                                  future:
+                                      Provider.of<Teams>(context, listen: false)
+                                          .getImageUrl(
+                                              teams[int.parse(match.teamId1)]
+                                                  .teamUid),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                            CustomColors.primaryColor,
+                                        foregroundColor: Colors.white54,
+                                        backgroundImage:
+                                            CachedNetworkImageProvider(
+                                          snapshot.data.toString(),
+                                        ),
+                                      );
+                                    } else if (snapshot.hasError) {
+                                      return Icon(
+                                          Icons.image_not_supported_sharp);
+                                    } else {
+                                      return CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                            CustomColors.primaryColor,
+                                        foregroundColor: Colors.white54,
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
-                                teams[int.parse(match.teamId2)].teamAbbreviation,
+                                teams[int.parse(match.teamId2)]
+                                    .teamAbbreviation,
                                 // overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     color: Colors.amberAccent,
@@ -309,7 +373,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                                   top: 20, bottom: 20, right: 30, left: 30),
                               child: Text(
                                   "Match will be live at " +
-                                      DateFormat('hh:mm d MMM')
+                                      DateFormat(dateFormat)
                                           .format(match.matchTime),
                                   style: TextStyle(
                                       color: Colors.amberAccent,
@@ -354,7 +418,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                     //                   .playerUid
                     //                   .map(
                     //                     (e) => (Column(
-                                          
+
                     //                       children: [
                     //                       Text(
                     //                           Provider.of<Players>(context,

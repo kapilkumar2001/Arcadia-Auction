@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:arcadia/constants/const_strings.dart';
 import 'package:arcadia/provider/announcement.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class AnnouncementCard extends StatelessWidget {
               ),
             ),
             Text(
-              DateFormat('hh:mm d MMM').format(announcement.createddateTime),
+              DateFormat(dateFormat).format(announcement.createddateTime),
               style: TextStyle(color: Colors.white, fontSize: 12),
               textAlign: TextAlign.start,
             ),

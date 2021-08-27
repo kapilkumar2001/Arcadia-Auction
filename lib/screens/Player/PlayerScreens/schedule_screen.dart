@@ -1,9 +1,11 @@
 import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/constants/const_strings.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/match_details.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -143,8 +145,30 @@ class UpcomingMatchCard extends StatelessWidget {
                 CircleAvatar(
                   minRadius: 25,
                   maxRadius: 25,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  child: FutureBuilder(
+                    future: Provider.of<Teams>(context, listen: false)
+                        .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CircleAvatar(
+                          radius: 25,
+                          backgroundColor: CustomColors.primaryColor,
+                          foregroundColor: Colors.white54,
+                          backgroundImage: CachedNetworkImageProvider(
+                            snapshot.data.toString(),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Icon(Icons.image_not_supported_sharp);
+                      } else {
+                        return CircleAvatar(
+                          radius: 25,
+                          backgroundColor: CustomColors.primaryColor,
+                          foregroundColor: Colors.white54,
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
                   ),
                 ),
               ],
@@ -154,8 +178,30 @@ class UpcomingMatchCard extends StatelessWidget {
                 CircleAvatar(
                   minRadius: 25,
                   maxRadius: 25,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+                  child: FutureBuilder(
+                    future: Provider.of<Teams>(context, listen: false)
+                        .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CircleAvatar(
+                          radius: 25,
+                          backgroundColor: CustomColors.primaryColor,
+                          foregroundColor: Colors.white54,
+                          backgroundImage: CachedNetworkImageProvider(
+                            snapshot.data.toString(),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Icon(Icons.image_not_supported_sharp);
+                      } else {
+                        return CircleAvatar(
+                          radius: 25,
+                          backgroundColor: CustomColors.primaryColor,
+                          foregroundColor: Colors.white54,
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
                   ),
                 ),
               ],
@@ -178,8 +224,8 @@ class UpcomingMatchCard extends StatelessWidget {
                     Text(
                       teams[int.parse(match.teamId1)].teamAbbreviation[0] +
                           teams[int.parse(match.teamId1)].teamAbbreviation[1] +
-                          teams[int.parse(match.teamId1)].teamAbbreviation[2] ,
-                          
+                          teams[int.parse(match.teamId1)].teamAbbreviation[2],
+
                       // overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -210,7 +256,7 @@ class UpcomingMatchCard extends StatelessWidget {
                   color: Colors.white,
                 ),
                 Text(
-                  "Live at " + DateFormat('hh:mm dMMM').format(match.matchTime),
+                  "Live at " + DateFormat(dateFormat).format(match.matchTime),
                   style: TextStyle(color: Colors.white60),
                 ),
               ]),
@@ -250,23 +296,59 @@ class CompletedMatchCard extends StatelessWidget {
                 EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
             leading: Column(
               children: [
-                CircleAvatar(
-                  minRadius: 25,
-                  maxRadius: 25,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-                  ),
+                FutureBuilder(
+                  future: Provider.of<Teams>(context, listen: false)
+                      .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: CustomColors.primaryColor,
+                        foregroundColor: Colors.white54,
+                        backgroundImage: CachedNetworkImageProvider(
+                          snapshot.data.toString(),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Icon(Icons.image_not_supported_sharp);
+                    } else {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: CustomColors.primaryColor,
+                        foregroundColor: Colors.white54,
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
             trailing: Column(
               children: [
-                CircleAvatar(
-                  minRadius: 25,
-                  maxRadius: 25,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-                  ),
+                FutureBuilder(
+                  future: Provider.of<Teams>(context, listen: false)
+                      .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: CustomColors.primaryColor,
+                        foregroundColor: Colors.white54,
+                        backgroundImage: CachedNetworkImageProvider(
+                          snapshot.data.toString(),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Icon(Icons.image_not_supported_sharp);
+                    } else {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: CustomColors.primaryColor,
+                        foregroundColor: Colors.white54,
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
@@ -288,8 +370,7 @@ class CompletedMatchCard extends StatelessWidget {
                     Text(
                       teams[int.parse(match.teamId1)].teamAbbreviation[0] +
                           teams[int.parse(match.teamId1)].teamAbbreviation[1] +
-                          teams[int.parse(match.teamId1)].teamAbbreviation[2] 
-                          ,
+                          teams[int.parse(match.teamId1)].teamAbbreviation[2],
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -306,8 +387,7 @@ class CompletedMatchCard extends StatelessWidget {
                     Text(
                       teams[int.parse(match.teamId2)].teamAbbreviation[0] +
                           teams[int.parse(match.teamId2)].teamAbbreviation[1] +
-                          teams[int.parse(match.teamId2)].teamAbbreviation[2] 
-                          ,
+                          teams[int.parse(match.teamId2)].teamAbbreviation[2],
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,

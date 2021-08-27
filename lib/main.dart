@@ -31,7 +31,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.bottom, SystemUiOverlay.top]);
-      FirebaseMessaging.onBackgroundMessage(_messageHandler);
+  FirebaseMessaging.onBackgroundMessage(_messageHandler);
   runApp(MyApp());
 }
 
@@ -111,6 +111,8 @@ class MyApp extends StatelessWidget {
       case 2:
         return AuctionOverview();
       // break;
+      case 3:
+        return SignInScreen();
       default:
         return Center(child: Text('Something Went wrong : ((((('));
     }
@@ -133,6 +135,9 @@ class Init {
       print('Message clicked!');
     });
     if (!Auth.isAuth) {
+      if (Auth.didSignOut) {
+        return 3;
+      }
       return -1;
     } else {
       Auth.setUid();

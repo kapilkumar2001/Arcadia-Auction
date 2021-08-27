@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:date_format/date_format.dart';
-import 'package:intl/intl.dart';
 
 class AddMatchForm extends StatefulWidget {
   const AddMatchForm({Key? key}) : super(key: key);
@@ -22,6 +21,7 @@ class _AddMatchFormState extends State<AddMatchForm> {
   String _team1 = "";
   String _team2 = "";
 
+  // ignore: unused_field
   late String _setTime, _setDate;
   late String _hour, _minute, _time;
   late String dateTime;

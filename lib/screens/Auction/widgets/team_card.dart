@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TeamCard extends StatefulWidget {
-  Team team;
+  final Team team;
   TeamCard(this.team);
 
   @override
@@ -26,36 +26,30 @@ class _TeamCardState extends State<TeamCard> {
       ),
       margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
       child: ListTile(
-        leading: CircleAvatar(
-          minRadius: 20,
-          maxRadius: 20,
-          child: FutureBuilder(
-            future: Provider.of<Teams>(context, listen: false)
-                .getImageUrl(widget.team.teamUid),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return CircleAvatar(
-                  minRadius: 20,
-                  maxRadius: 20,
-                  backgroundColor: CustomColors.primaryColor,
-                  foregroundColor: Colors.white54,
-                  backgroundImage: CachedNetworkImageProvider(
-                    snapshot.data.toString(),
-                  ),
-                );
-              } else if (snapshot.hasError) {
-                return Icon(Icons.image_not_supported_sharp);
-              } else {
-                return CircleAvatar(
-                  minRadius: 20,
-                  maxRadius: 20,
-                  backgroundColor: CustomColors.primaryColor,
-                  foregroundColor: Colors.white54,
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          ),
+        leading: FutureBuilder(
+          future: Provider.of<Teams>(context, listen: false)
+              .getImageUrl(widget.team.teamUid),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return CircleAvatar(
+                radius: 20,
+                backgroundColor: CustomColors.primaryColor,
+                foregroundColor: Colors.white54,
+                backgroundImage: CachedNetworkImageProvider(
+                  snapshot.data.toString(),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Icon(Icons.image_not_supported_sharp);
+            } else {
+              return CircleAvatar(
+                radius: 20,
+                backgroundColor: CustomColors.primaryColor,
+                foregroundColor: Colors.white54,
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ),
         title: Text(
           widget.team.teamName,
