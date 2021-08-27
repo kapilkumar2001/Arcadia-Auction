@@ -5,6 +5,7 @@ import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/screens/onBoardingScreen.dart';
+import 'package:arcadia/screens/signin_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -87,7 +88,6 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                   children: [
                     Container(
                       width: double.infinity,
-                      height: height * 0.39,
                       color: CustomColors.secondaryColor,
                       child: Column(
                         children: [
@@ -96,12 +96,12 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             child: CircleAvatar(
                               minRadius: 90,
                               maxRadius: 90,
-                              backgroundColor: getCategoryColor(
-                                  currPlayer!.playerCategory),
+                              backgroundColor:
+                                  getCategoryColor(currPlayer!.playerCategory),
                               child: FutureBuilder(
-                                future: Provider.of<Players>(context,
-                                        listen: false)
-                                    .getImageUrl(currPlayer!.uid),
+                                future:
+                                    Provider.of<Players>(context, listen: false)
+                                        .getImageUrl(currPlayer!.uid),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
                                     return CircleAvatar(
@@ -164,8 +164,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                             ),
                             padding: const EdgeInsets.all(15),
                             child: Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -279,14 +278,15 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
                           ),
                           ElevatedButton.icon(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.red),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.red),
                             ),
                             onPressed: () async {
                               await Provider.of<Auth>(context, listen: false)
                                   .signOut();
                               Navigator.pushAndRemoveUntil(context,
                                   MaterialPageRoute(builder: (context) {
-                                return OnboardingScreen();
+                                return SignInScreen();
                               }), (route) => false);
                             },
                             icon: Icon(Icons.arrow_forward),
@@ -302,3 +302,21 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
           );
   }
 }
+
+
+// style: ButtonStyle(
+//                                 backgroundColor: MaterialStateProperty.all(Colors.red),
+//                               ),
+//                               onPressed: () async {
+//                                 await Provider.of<Auth>(context, listen: false)
+//                                     .signOut();
+//                                 Navigator.pushAndRemoveUntil(context,
+//                                     MaterialPageRoute(builder: (context) {
+//                                   return SignInScreen();
+//                                 }), (route) => false);
+//                               },
+//                               icon: Icon(Icons.arrow_forward),
+//                               label: Text('Sign Out'),
+//                             )
+//                             ),
+//                           ),

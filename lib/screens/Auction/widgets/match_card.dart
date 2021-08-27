@@ -1,4 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/constants/const_strings.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/screens/Auction/forms/update_match_form.dart';
@@ -6,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class MatchCard extends StatelessWidget {
-  Match match;
-  List<Team> teams;
+  final Match match;
+  final List<Team> teams;
   MatchCard(this.match, this.teams);
 
   @override
@@ -95,8 +96,7 @@ class MatchCard extends StatelessWidget {
                 right: 1,
                 top: 1,
                 child: new CircleAvatar(
-                  maxRadius: 25,
-                  minRadius: 25,
+                  radius: 25,
                   child: IconButton(
                     icon: Icon(Icons.edit),
                     onPressed: () {
@@ -170,7 +170,7 @@ class MatchCard extends StatelessWidget {
                         ),
                         Text(
                           "Live at " +
-                              DateFormat('hh:mm dMMM').format(match.matchTime),
+                              DateFormat(dateFormat).format(match.matchTime),
                           style: TextStyle(color: Colors.white60),
                         ),
                       ]),

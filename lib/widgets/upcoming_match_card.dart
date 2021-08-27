@@ -1,5 +1,7 @@
 import 'package:arcadia/constants/app_theme.dart';
+import 'package:arcadia/constants/const_strings.dart';
 import 'package:arcadia/provider/teams.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -14,115 +16,8 @@ class UpcomingMatchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return GestureDetector(
-    //   onTap: () {},
-    //   child: Container(
-    //       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-    //       height: 60,
-    //       width: MediaQuery.of(context).size.width,
-    //       decoration: BoxDecoration(
-    //         borderRadius: BorderRadius.circular(20),
-    //         border: Border.all(
-    //           color: Colors.blueAccent,
-    //         ),
-    //         color: CustomColors.taskez1,
-    //       ),
-    //       // margin: EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 0),
-    //       child: ListTile(
-    //         contentPadding:
-    //             EdgeInsets.only(top: 25, bottom: 25, right: 15, left: 15),
-
-    //         // trailing: Column(children: [
-    //         //   CircleAvatar(
-    //         //   minRadius: 25,
-    //         //   maxRadius: 25,
-    //         //   child: Image.network(
-    //         //     "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-    //         //   ),
-    //         // ),
-    //         // ],),
-    //         leading: Column(
-    //           children: [
-    //             CircleAvatar(
-    //               minRadius: 25,
-    //               maxRadius: 25,
-    //               child: Image.asset(
-    //                 teamImage,
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //         trailing: Column(
-    //           children: [
-    //             CircleAvatar(
-    //               minRadius: 25,
-    //               maxRadius: 25,
-    //               child: Image.asset(
-    //                 teamImage,
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //         title: Center(
-    //           child: Column(children: [
-    //             Text(
-    //               "Match " + match.matchId,
-    //               style: TextStyle(
-    //                   fontSize: 28,
-    //                   fontWeight: FontWeight.bold,
-    //                   color: Colors.white60),
-    //             ),
-    //             SizedBox(
-    //               height: 12,
-    //             ),
-    //             Row(
-    //               mainAxisAlignment: MainAxisAlignment.center,
-    //               children: [
-    //                 Text(
-    //                   Provider.of<Teams>(context)
-    //                       .getTeam(int.parse(match.teamId1))
-    //                       .teamName,
-    //                   style: TextStyle(fontSize: 28, color: Colors.white60),
-    //                 ),
-    //                 SizedBox(
-    //                   width: 20,
-    //                 ),
-    //                 Text(
-    //                   "vs",
-    //                   style: TextStyle(fontSize: 24, color: Colors.white60),
-    //                 ),
-    //                 SizedBox(
-    //                   width: 20,
-    //                 ),
-    //                 Text(
-    //                   Provider.of<Teams>(context)
-    //                       .getTeam(int.parse(match.teamId2))
-    //                       .teamName,
-    //                   style: TextStyle(fontSize: 24, color: Colors.white60),
-    //                 )
-    //               ],
-    //             ),
-    //             Divider(
-    //               height: 20,
-    //               color: Colors.white,
-    //             ),
-    //             Text(
-    //               "On " +
-    //                   match.matchTime.toLocal().day.toString() +
-    //                   "/" +
-    //                   match.matchTime.toLocal().month.toString() +
-    //                   "/" +
-    //                   match.matchTime.toLocal().year.toString() +
-    //                   " at " +
-    //                   match.matchTime.hour.toString() +
-    //                   ":" +
-    //                   match.matchTime.toLocal().minute.toString(),
-    //               style: TextStyle(color: Colors.white60),
-    //             ),
-    //           ]),
-    //         ),
-    //       )),
-    // );
+    var team1 = Provider.of<Teams>(context).getTeam(int.parse(match.teamId1));
+    var team2 = Provider.of<Teams>(context).getTeam(int.parse(match.teamId2));
     return Container(
       margin: EdgeInsets.all(5),
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -146,16 +41,34 @@ class UpcomingMatchCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 20,
-                        child: Image.network(
-                          "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-                        ),
+                      FutureBuilder(
+                        future: Provider.of<Teams>(context, listen: false)
+                            .getImageUrl(
+                                team1.teamUid),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              backgroundImage: CachedNetworkImageProvider(
+                                snapshot.data.toString(),
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Icon(Icons.image_not_supported_sharp);
+                          } else {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
                       ),
                       Text(
-                        Provider.of<Teams>(context)
-                            .getTeam(int.parse(match.teamId1))
-                            .teamAbbreviation,
+                        team1.teamAbbreviation,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15,
@@ -210,16 +123,33 @@ class UpcomingMatchCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 20,
-                        child: Image.network(
-                          "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-                        ),
-                      ),
+                      FutureBuilder(
+                    future: Provider.of<Teams>(context, listen: false)
+                        .getImageUrl(team2.teamUid),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CircleAvatar(
+                          radius: 20,
+                          backgroundColor: CustomColors.primaryColor,
+                          foregroundColor: Colors.white54,
+                          backgroundImage: CachedNetworkImageProvider(
+                            snapshot.data.toString(),
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Icon(Icons.image_not_supported_sharp);
+                      } else {
+                        return CircleAvatar(
+                          radius: 20,
+                          backgroundColor: CustomColors.primaryColor,
+                          foregroundColor: Colors.white54,
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
+                  ),
                       Text(
-                        Provider.of<Teams>(context)
-                            .getTeam(int.parse(match.teamId2))
-                            .teamAbbreviation,
+                        team2.teamAbbreviation,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15,
@@ -246,7 +176,7 @@ class UpcomingMatchCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  DateFormat('dd/MM hh:mm').format(match.matchTime) + ' B03',
+                  DateFormat(dateFormat).format(match.matchTime) + ' B03',
                   // '04/06 12:00 B03',
                   style: TextStyle(
                     fontSize: 15,

@@ -51,18 +51,33 @@ class _TeamStandingsState extends State<TeamStandings> {
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              
-              pinned: true,
-              expandedHeight: 160.0,
-              flexibleSpace: const FlexibleSpaceBar(
-                title: Text(
-                  'Standings',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
-                  textAlign: TextAlign.left,
+              title: Text(
+                'Standings',
+                style: TextStyle(
+                  color: CustomColors.firebaseOrange,
+                  fontSize: 22,
                 ),
-                background: FlutterLogo(),
+                textAlign: TextAlign.left,
+              ),
+              centerTitle: true,
+              pinned: true,
+              expandedHeight: 200.0,
+              flexibleSpace: FlexibleSpaceBar(
+                // title: Text(
+                //   'Standings',
+                //   style: TextStyle(
+                //     color: CustomColors.primaryColor,
+                //     fontSize: 22,
+                //   ),
+                //   textAlign: TextAlign.center,
+                // ),
+                background: Container(
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/gif1.gif',
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
               ),
             ),
             SliverToBoxAdapter(
