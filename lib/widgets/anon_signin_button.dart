@@ -1,7 +1,6 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
-import 'package:arcadia/screens/wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

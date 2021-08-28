@@ -74,7 +74,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         fontSize: 20.0,
                       ),
                     ),
-                  ):Container(),
+                  ):FlatButton(
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(SignInScreen.routeName),
+                    child: Text(
+                      '',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  )
                 ),
                 Container(
                   height: 600.0,
@@ -92,26 +102,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Stack(
-                            children: [
-                              Image.asset(
-                                'assets/onboarding.png',
-                                height: 600.0,
-                                width: MediaQuery.of(context).size.width,
-                              ),
-                              Positioned(
-                                top: 3,
-                                left: 90,
-                                child: Center(
-                                  child: Text(
-                                    'Make Your Profile',
-                                    style: kTitleStyle,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                            ],
+                           Stack(
+                        children: [
+                          Image.asset(
+                            'assets/onboarding.png',
+                            height: 600.0,
+                            width: MediaQuery.of(context).size.width,
                           ),
+                          Positioned(
+                            top: 3,
+                            left: 90,
+                            child: Center(
+                              child: Text(
+                                'Make Your Profile',
+                                style: kTitleStyle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
 
                           // SizedBox(height: 15.0),
                           // Text(
@@ -142,17 +152,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       Stack(
                         children: [
-                          Positioned(
-                            top:60,
-                            left: 10,
-                            child: Image.asset(
-                              'assets/onboarding3.png',
-                              height: 650.0,
-                              width: MediaQuery.of(context).size.width,
-                            ),
+                          Image.asset(
+                            'assets/onboarding2.png',
+                            height: 650.0,
+                            width: MediaQuery.of(context).size.width,
                           ),
                           Positioned(
-                            top:35,
+                            top:-1,
                             left: 60,
                             child: Center(
                               child: Text(
@@ -205,37 +211,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                       )
-                    : Text(''),
+                    : Expanded(
+                        child: Align(
+                          alignment: FractionalOffset.bottomRight,
+                          child: FlatButton(
+                            onPressed: () {
+                              _pageController.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(
+                                  'Let go',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22.0,
+                                  ),
+                                ),
+                                SizedBox(width: 10.0),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 30.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
               ],
             ),
           ),
         ),
       ),
-      bottomSheet: _currentPage == _numPages - 1
-          ? Container(
-              height: 80.0,
-              width: double.infinity,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed(SignInScreen.routeName);
-                },
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: Text(
-                      'Get started',
-                      style: TextStyle(
-                        color: Color(0xFF5B16D0),
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          : Text(''),
+     
     );
   }
 }
