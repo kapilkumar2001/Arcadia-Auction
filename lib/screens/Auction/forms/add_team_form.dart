@@ -110,7 +110,7 @@ class _AddTeamFormState extends State<AddTeamForm> {
         child: Container(
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
-          height: MediaQuery.of(context).size.height,
+          //  height: MediaQuery.of(context).size.height,
           color: Colors.white,
           child: Column(
             children: [
@@ -261,6 +261,9 @@ class _AddTeamFormState extends State<AddTeamForm> {
                             }
                           }
                         },
+                      ),
+                      SizedBox(
+                        height: 60.0,
                       ),
                     ],
                   ),
