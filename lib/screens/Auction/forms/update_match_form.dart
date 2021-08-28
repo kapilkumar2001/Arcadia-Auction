@@ -4,6 +4,7 @@ import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/admin_dashboard.dart';
+import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/widgets/blue_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -104,12 +105,12 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                   DropdownMenuItem(
                                     value: widget.match.teamId1.toString(),
                                     child: Text(
-                                        '${Provider.of<Teams>(context, listen: false).getTeam(int.parse(widget.match.teamId1)).teamName}'),
+                                        '${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName}'),
                                   ),
                                   DropdownMenuItem(
                                     value: widget.match.teamId2.toString(),
                                     child: Text(
-                                        '${Provider.of<Teams>(context, listen: false).getTeam(int.parse(widget.match.teamId2)).teamName}'),
+                                        '${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName}'),
                                   ),
                                   DropdownMenuItem(
                                     value: '-1',
@@ -142,7 +143,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               decoration: InputDecoration(
                                 hintText: "RoundsWon",
                                 labelText:
-                                    "RoundsWon (${Provider.of<Teams>(context, listen: false).getTeam(int.parse(widget.match.teamId1)).teamName})",
+                                    "RoundsWon (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName})",
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -159,7 +160,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               decoration: InputDecoration(
                                 hintText: "RoundsWon",
                                 labelText:
-                                    "RoundsWon (${Provider.of<Teams>(context, listen: false).getTeam(int.parse(widget.match.teamId2)).teamName})",
+                                    "RoundsWon (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName})",
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -176,7 +177,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               decoration: InputDecoration(
                                 hintText: "points",
                                 labelText:
-                                    "Points (${Provider.of<Teams>(context, listen: false).getTeam(int.parse(widget.match.teamId1)).teamName})",
+                                    "Points (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName})",
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -193,7 +194,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               decoration: InputDecoration(
                                 hintText: "points",
                                 labelText:
-                                    "Points (${Provider.of<Teams>(context, listen: false).getTeam(int.parse(widget.match.teamId2)).teamName})",
+                                    "Points (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName})",
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -226,7 +227,9 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                   });
                                 },
                                 items: [
-                                  ...teams[int.parse(widget.match.teamId1)]
+                                  ...teams
+                                      .firstWhere((e) =>
+                                          e.teamUid == widget.match.teamId1)
                                       .playerUid
                                       .map(
                                         (e) => DropdownMenuItem(
@@ -236,7 +239,9 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                         ),
                                       )
                                       .toList(),
-                                  ...teams[int.parse(widget.match.teamId2)]
+                                  ...teams
+                                      .firstWhere((e) =>
+                                          e.teamUid == widget.match.teamId2)
                                       .playerUid
                                       .map(
                                         (e) => DropdownMenuItem(
@@ -290,7 +295,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              AdminDashboard()));
+                                              AdminMainPage()));
                                 }
                               },
                             ),

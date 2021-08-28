@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
               ),
               home: getHome(snapshot.data),
               routes: {
-                AuctionOverview.routeName: (ctx) => AuctionOverview(),
+                AdminMainPage.routeName: (ctx) => AdminMainPage(),
                 AuctionHome.routeName: (ctx) => AuctionHome(),
                 // AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
                 AuctionPlayerResell.routeName: (ctx) => AuctionPlayerResell(),
@@ -108,7 +108,7 @@ class MyApp extends StatelessWidget {
         return PlayerDashBoard();
       // break;
       case 2:
-        return AuctionOverview();
+        return AdminMainPage();
       // break;
       case 3:
         return SignInScreen();

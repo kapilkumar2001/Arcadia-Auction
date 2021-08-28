@@ -4,13 +4,13 @@ import 'package:arcadia/screens/Auction/auction_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AuctionOverview extends StatefulWidget {
+class AdminMainPage extends StatefulWidget {
   static const routeName = '\auction-overview';
   @override
-  _AuctionOverviewState createState() => _AuctionOverviewState();
+  _AdminMainPageState createState() => _AdminMainPageState();
 }
 
-class _AuctionOverviewState extends State<AuctionOverview> {
+class _AdminMainPageState extends State<AdminMainPage> {
   int _currentIndex = 0;
   List<BottomNavigationBarItem> _item = [
     BottomNavigationBarItem(

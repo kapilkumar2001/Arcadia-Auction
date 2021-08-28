@@ -88,13 +88,11 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                     maxRadius: 80,
                                     backgroundColor: Colors.greenAccent,
                                     foregroundColor: Colors.white54,
-                                    backgroundImage:
-                                        CachedNetworkImageProvider(
-                                            snapshot.data.toString()),
+                                    backgroundImage: CachedNetworkImageProvider(
+                                        snapshot.data.toString()),
                                   );
                                 } else if (snapshot.hasError) {
-                                  return Icon(
-                                      Icons.image_not_supported_sharp);
+                                  return Icon(Icons.image_not_supported_sharp);
                                 } else {
                                   return CircularProgressIndicator();
                                 }
@@ -326,24 +324,29 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                       .updatePlayer(newPlayer);
 
                                   // updating team
-                                  int newnumPlayer =
-                                      teams[int.parse(_teams)].numPlayer;
-                                  int updatedcredits =
-                                      ((teams[int.parse(_teams)].credits) -
-                                          (int.parse(_soldIn.text)));
+                                  int newnumPlayer = teams
+                                      .firstWhere((e) => e.teamUid == _teams)
+                                      .numPlayer;
+                                  int updatedcredits = ((teams
+                                          .firstWhere(
+                                              (e) => e.teamUid == _teams)
+                                          .credits) -
+                                      (int.parse(_soldIn.text)));
                                   List<String> playersuid = [];
                                   int i;
                                   for (i = 0; i < newnumPlayer; i++) {
-                                    playersuid.add(teams[int.parse(_teams)]
+                                    playersuid.add(teams
+                                        .firstWhere((e) => e.teamUid == _teams)
                                         .playerUid[i]);
                                   }
                                   playersuid.add(currPlayer.uid);
-                                  Team newTeam =
-                                      teams[int.parse(_teams)].copyWith(
-                                    playerUid: playersuid,
-                                    numPlayer: newnumPlayer + 1,
-                                    credits: updatedcredits,
-                                  );
+                                  Team newTeam = teams
+                                      .firstWhere((e) => e.teamUid == _teams)
+                                      .copyWith(
+                                        playerUid: playersuid,
+                                        numPlayer: newnumPlayer + 1,
+                                        credits: updatedcredits,
+                                      );
                                   await Provider.of<Teams>(context,
                                           listen: false)
                                       .updateTeam(newTeam);
@@ -359,8 +362,7 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
                                     );
                                   } else {
                                     Navigator.of(context).pop();
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
                                             'All Players reselled or sold'),

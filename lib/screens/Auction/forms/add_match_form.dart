@@ -3,6 +3,7 @@ import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/admin_dashboard.dart';
+import 'package:arcadia/screens/Auction/auction_overview.dart';
 import 'package:arcadia/widgets/blue_box.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -304,7 +305,7 @@ class _AddMatchFormState extends State<AddMatchForm> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AdminDashboard()));
+                                    builder: (context) => AdminMainPage()));
                           }
                         },
                       ),

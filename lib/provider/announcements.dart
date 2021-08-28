@@ -18,11 +18,13 @@ class Announcements with ChangeNotifier {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection('Announcement');
 
-    QuerySnapshot allDataQuerySnapshot = await _collectionRef.get();
+    QuerySnapshot allDataQuerySnapshot =
+        await _collectionRef.orderBy('createddateTime').get();
 
     announcement = allDataQuerySnapshot.docs
         .map((doc) => doc.data())
         .toList()
+        .reversed
         .map((e) => Announcement.fromMap(e as Map<String, dynamic>))
         .toList();
   }

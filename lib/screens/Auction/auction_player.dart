@@ -84,7 +84,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                   children: [
                     Container(
                       width: double.infinity,
-                      height: height*0.4,
+                      height: height * 0.4,
                       color: Color(0xff787A91),
                       child: Column(
                         children: [
@@ -371,26 +371,32 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                             .updatePlayer(newPlayer);
 
                                         // updating team
-                                        int newnumPlayer =
-                                            teams[int.parse(_teams)].numPlayer;
-                                        int updatedcredits =
-                                            ((teams[int.parse(_teams)]
-                                                    .credits) -
-                                                (int.parse(_soldIn.text)));
+                                        int newnumPlayer = teams
+                                            .firstWhere(
+                                                (e) => e.teamUid == _teams)
+                                            .numPlayer;
+                                        int updatedcredits = ((teams
+                                                .firstWhere(
+                                                    (e) => e.teamUid == _teams)
+                                                .credits) -
+                                            (int.parse(_soldIn.text)));
                                         List<String> playersuid = [];
                                         int i;
                                         for (i = 0; i < newnumPlayer; i++) {
-                                          playersuid.add(
-                                              teams[int.parse(_teams)]
-                                                  .playerUid[i]);
+                                          playersuid.add(teams
+                                              .firstWhere(
+                                                  (e) => e.teamUid == _teams)
+                                              .playerUid[i]);
                                         }
                                         playersuid.add(widget.currPlayer.uid);
-                                        Team newTeam =
-                                            teams[int.parse(_teams)].copyWith(
-                                          playerUid: playersuid,
-                                          numPlayer: newnumPlayer + 1,
-                                          credits: updatedcredits,
-                                        );
+                                        Team newTeam = teams
+                                            .firstWhere(
+                                                (e) => e.teamUid == _teams)
+                                            .copyWith(
+                                              playerUid: playersuid,
+                                              numPlayer: newnumPlayer + 1,
+                                              credits: updatedcredits,
+                                            );
                                         await Provider.of<Teams>(context,
                                                 listen: false)
                                             .updateTeam(newTeam);

@@ -3,6 +3,7 @@ import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
 
 import 'package:arcadia/screens/Auction/admin_dashboard.dart';
+import 'package:arcadia/screens/Auction/auction_overview.dart';
 
 import 'package:arcadia/widgets/blue_box.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +127,7 @@ class _AddAnnouncementFormState extends State<AddAnnouncementForm> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AdminDashboard()));
+                                    builder: (context) => AdminMainPage()));
                           }
                         },
                       ),

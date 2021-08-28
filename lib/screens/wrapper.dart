@@ -18,7 +18,7 @@ class _WrapperState extends State<Wrapper> {
   bool isLoading = true;
 
   void initiate() async {
-        Auth.setUid();
+    Auth.setUid();
     var uid = Auth.uid;
     await FirebaseFirestore.instance.collection('Player').doc(uid).get().then(
       (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
@@ -48,7 +48,7 @@ class _WrapperState extends State<Wrapper> {
         child: CircularProgressIndicator(),
       );
     } else if (isData) {
-      return isAdmin ? AuctionOverview() : PlayerDashBoard();
+      return isAdmin ? AdminMainPage() : PlayerDashBoard();
     } else {
       return PlayerForm();
     }

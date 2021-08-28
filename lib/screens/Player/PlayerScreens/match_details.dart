@@ -93,11 +93,12 @@ class _MatchDetailsState extends State<MatchDetails> {
                                 minRadius: 50,
                                 maxRadius: 50,
                                 child: FutureBuilder(
-                                  future:
-                                      Provider.of<Teams>(context, listen: false)
-                                          .getImageUrl(
-                                              teams[int.parse(match.teamId1)]
-                                                  .teamUid),
+                                  future: Provider.of<Teams>(context,
+                                          listen: false)
+                                      .getImageUrl(teams
+                                          .firstWhere(
+                                              (e) => e.teamUid == match.teamId1)
+                                          .teamUid),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       return CircleAvatar(
@@ -129,7 +130,9 @@ class _MatchDetailsState extends State<MatchDetails> {
                                 height: 20,
                               ),
                               Text(
-                                teams[int.parse(match.teamId1)]
+                                teams
+                                    .firstWhere(
+                                        (e) => e.teamUid == match.teamId1)
                                     .teamAbbreviation,
                                 // overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -156,15 +159,16 @@ class _MatchDetailsState extends State<MatchDetails> {
                                 minRadius: 50,
                                 maxRadius: 50,
                                 child: FutureBuilder(
-                                  future:
-                                      Provider.of<Teams>(context, listen: false)
-                                          .getImageUrl(
-                                              teams[int.parse(match.teamId1)]
-                                                  .teamUid),
+                                  future: Provider.of<Teams>(context,
+                                          listen: false)
+                                      .getImageUrl(teams
+                                          .firstWhere(
+                                              (e) => e.teamUid == match.teamId1)
+                                          .teamUid),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       return CircleAvatar(
-                                        radius:  50,
+                                        radius: 50,
                                         backgroundColor:
                                             CustomColors.primaryColor,
                                         foregroundColor: Colors.white54,
@@ -192,7 +196,9 @@ class _MatchDetailsState extends State<MatchDetails> {
                                 height: 20,
                               ),
                               Text(
-                                teams[int.parse(match.teamId2)]
+                                teams
+                                    .firstWhere(
+                                        (e) => e.teamUid == match.teamId2)
                                     .teamAbbreviation,
                                 // overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -259,7 +265,9 @@ class _MatchDetailsState extends State<MatchDetails> {
                                     Column(
                                       children: [
                                         Text(
-                                          teams[int.parse(match.teamId1)]
+                                          teams
+                                              .firstWhere((e) =>
+                                                  e.teamUid == match.teamId1)
                                               .teamAbbreviation,
                                           style: TextStyle(
                                               color: Colors.amberAccent,
@@ -282,7 +290,9 @@ class _MatchDetailsState extends State<MatchDetails> {
                                     Column(
                                       children: [
                                         Text(
-                                          teams[int.parse(match.teamId2)]
+                                          teams
+                                              .firstWhere((e) =>
+                                                  e.teamUid == match.teamId2)
                                               .teamAbbreviation,
                                           style: TextStyle(
                                               color: Colors.amberAccent,
@@ -320,7 +330,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                                             (match.points![match.teamId2]!
                                                 .toInt()))
                                         ? Text(
-                                            teams[int.parse(match.teamId1)]
+                                            teams
+                                                    .firstWhere((e) =>
+                                                        e.teamUid ==
+                                                        match.teamId1)
                                                     .teamName +
                                                 " won the match",
                                             style: TextStyle(
@@ -329,7 +342,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                                                 fontWeight: FontWeight.bold),
                                           )
                                         : Text(
-                                            teams[int.parse(match.teamId2)]
+                                            teams
+                                                    .firstWhere((e) =>
+                                                        e.teamUid ==
+                                                        match.teamId2)
                                                     .teamName +
                                                 " won the match",
                                             style: TextStyle(
@@ -403,7 +419,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                     //                 width: 100,
                     //                 height: 30,
                     //                 child: Text(
-                    //                   teams[int.parse(match.teamId1)].teamAbbreviation,
+                    //                   teams.firstWhere((e) => e.teamUid==match.teamId1).teamAbbreviation,
                     //                   // overflow: TextOverflow.ellipsis,
                     //                   style: TextStyle(
                     //                       color: Colors.amberAccent,
@@ -414,7 +430,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                     //               SizedBox(
                     //                 height: 25,
                     //               ),
-                    //               ...teams[int.parse(match.teamId1)]
+                    //               ...teams.firstWhere((e) => e.teamUid==match.teamId1)
                     //                   .playerUid
                     //                   .map(
                     //                     (e) => (Column(
@@ -451,7 +467,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                     //                 width: 100,
                     //                 height: 30,
                     //                 child: Text(
-                    //                   teams[int.parse(match.teamId2)].teamAbbreviation,
+                    //                   teams.firstWhere((e) => e.teamUid==match.teamId2).teamAbbreviation,
                     //                   overflow: TextOverflow.ellipsis,
                     //                   style: TextStyle(
                     //                       color: Colors.amberAccent,
@@ -462,7 +478,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                     //               SizedBox(
                     //                 height: 25,
                     //               ),
-                    //               ...teams[int.parse(match.teamId2)]
+                    //               ...teams.firstWhere((e) => e.teamUid==match.teamId2)
                     //                   .playerUid
                     //                   .map(
                     //                     (e) => (Column(children: [

@@ -45,7 +45,9 @@ class MatchCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              teams[int.parse(match.teamId1)].teamAbbreviation,
+                              teams
+                                  .firstWhere((e) => e.teamUid == match.teamId1)
+                                  .teamAbbreviation,
                               style: TextStyle(
                                   color: Colors.white60,
                                   fontWeight: FontWeight.bold,
@@ -59,7 +61,9 @@ class MatchCard extends StatelessWidget {
                                   fontSize: 18),
                             ),
                             Text(
-                              teams[int.parse(match.teamId2)].teamAbbreviation,
+                              teams
+                                  .firstWhere((e) => e.teamUid == match.teamId2)
+                                  .teamAbbreviation,
                               style: TextStyle(
                                   color: Colors.white60,
                                   fontWeight: FontWeight.bold,
@@ -80,12 +84,18 @@ class MatchCard extends StatelessWidget {
                             : ((match.points![match.teamId1]!.toInt()) >
                                     (match.points![match.teamId2]!.toInt()))
                                 ? Text(
-                                    teams[int.parse(match.teamId1)].teamName +
+                                    teams
+                                            .firstWhere((e) =>
+                                                e.teamUid == match.teamId1)
+                                            .teamName +
                                         " won the match",
                                     style: TextStyle(color: Colors.white60),
                                   )
                                 : Text(
-                                    teams[int.parse(match.teamId2)].teamName +
+                                    teams
+                                            .firstWhere((e) =>
+                                                e.teamUid == match.teamId2)
+                                            .teamName +
                                         " won the match",
                                     style: TextStyle(color: Colors.white60),
                                   )
@@ -142,7 +152,9 @@ class MatchCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              teams[int.parse(match.teamId1)].teamAbbreviation,
+                              teams
+                                  .firstWhere((e) => e.teamUid == match.teamId1)
+                                  .teamAbbreviation,
                               style: TextStyle(
                                   color: Colors.white60,
                                   fontWeight: FontWeight.bold,
@@ -156,7 +168,9 @@ class MatchCard extends StatelessWidget {
                                   fontSize: 18),
                             ),
                             Text(
-                              teams[int.parse(match.teamId2)].teamAbbreviation,
+                              teams
+                                  .firstWhere((e) => e.teamUid == match.teamId2)
+                                  .teamAbbreviation,
                               style: TextStyle(
                                   color: Colors.white60,
                                   fontWeight: FontWeight.bold,

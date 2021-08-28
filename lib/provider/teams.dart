@@ -6,8 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 class Teams with ChangeNotifier {
   List<Team> teams = [];
 
-  Team getTeam(int index) {
-    return teams[index];
+  Team getTeam(String index) {
+    return teams.firstWhere((e) => e.teamUid == index);
   }
 
   Future<void> fetchAndSetTeams() async {

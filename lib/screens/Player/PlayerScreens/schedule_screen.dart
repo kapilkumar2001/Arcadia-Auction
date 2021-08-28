@@ -147,7 +147,9 @@ class UpcomingMatchCard extends StatelessWidget {
                   maxRadius: 25,
                   child: FutureBuilder(
                     future: Provider.of<Teams>(context, listen: false)
-                        .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                        .getImageUrl(teams
+                            .firstWhere((e) => e.teamUid == match.teamId1)
+                            .teamUid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CircleAvatar(
@@ -180,7 +182,9 @@ class UpcomingMatchCard extends StatelessWidget {
                   maxRadius: 25,
                   child: FutureBuilder(
                     future: Provider.of<Teams>(context, listen: false)
-                        .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                        .getImageUrl(teams
+                            .firstWhere((e) => e.teamUid == match.teamId1)
+                            .teamUid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CircleAvatar(
@@ -222,9 +226,11 @@ class UpcomingMatchCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      teams[int.parse(match.teamId1)].teamAbbreviation ,
-                          // teams[int.parse(match.teamId1)].teamAbbreviation[1] +
-                          // teams[int.parse(match.teamId1)].teamAbbreviation[2],
+                      teams
+                          .firstWhere((e) => e.teamUid == match.teamId1)
+                          .teamAbbreviation,
+                      // teams.firstWhere((e) => e.teamUid==match.teamId1).teamAbbreviation[1] +
+                      // teams.firstWhere((e) => e.teamUid==match.teamId1).teamAbbreviation[2],
 
                       // overflow: TextOverflow.visible,
                       style: TextStyle(
@@ -240,9 +246,11 @@ class UpcomingMatchCard extends StatelessWidget {
                           fontSize: 18),
                     ),
                     Text(
-                      teams[int.parse(match.teamId2)].teamAbbreviation ,
-                          // teams[int.parse(match.teamId2)].teamAbbreviation[1] +
-                          // teams[int.parse(match.teamId2)].teamAbbreviation[2],
+                      teams
+                          .firstWhere((e) => e.teamUid == match.teamId2)
+                          .teamAbbreviation,
+                      // teams.firstWhere((e) => e.teamUid==match.teamId2).teamAbbreviation[1] +
+                      // teams.firstWhere((e) => e.teamUid==match.teamId2).teamAbbreviation[2],
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -298,7 +306,9 @@ class CompletedMatchCard extends StatelessWidget {
               children: [
                 FutureBuilder(
                   future: Provider.of<Teams>(context, listen: false)
-                      .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                      .getImageUrl(teams
+                          .firstWhere((e) => e.teamUid == match.teamId1)
+                          .teamUid),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return CircleAvatar(
@@ -327,7 +337,9 @@ class CompletedMatchCard extends StatelessWidget {
               children: [
                 FutureBuilder(
                   future: Provider.of<Teams>(context, listen: false)
-                      .getImageUrl(teams[int.parse(match.teamId1)].teamUid),
+                      .getImageUrl(teams
+                          .firstWhere((e) => e.teamUid == match.teamId1)
+                          .teamUid),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return CircleAvatar(
@@ -368,10 +380,12 @@ class CompletedMatchCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      teams[int.parse(match.teamId1)].teamAbbreviation,
-                      // 
-                      //     teams[int.parse(match.teamId1)].teamAbbreviation[1] +
-                      //     teams[int.parse(match.teamId1)].teamAbbreviation[2],
+                      teams
+                          .firstWhere((e) => e.teamUid == match.teamId1)
+                          .teamAbbreviation,
+                      //
+                      //     teams.firstWhere((e) => e.teamUid==match.teamId1).teamAbbreviation[1] +
+                      //     teams.firstWhere((e) => e.teamUid==match.teamId1).teamAbbreviation[2],
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -386,9 +400,11 @@ class CompletedMatchCard extends StatelessWidget {
                           fontSize: 18),
                     ),
                     Text(
-                      teams[int.parse(match.teamId2)].teamAbbreviation,
-                          // teams[int.parse(match.teamId2)].teamAbbreviation[1] +
-                          // teams[int.parse(match.teamId2)].teamAbbreviation[2],
+                      teams
+                          .firstWhere((e) => e.teamUid == match.teamId2)
+                          .teamAbbreviation,
+                      // teams.firstWhere((e) => e.teamUid==match.teamId2).teamAbbreviation[1] +
+                      // teams.firstWhere((e) => e.teamUid==match.teamId2).teamAbbreviation[2],
                       // overflow: TextOverflow.visible,
                       style: TextStyle(
                           color: Colors.white60,
@@ -409,12 +425,18 @@ class CompletedMatchCard extends StatelessWidget {
                     : ((match.points![match.teamId1]!.toInt()) >
                             (match.points![match.teamId2]!.toInt()))
                         ? Text(
-                            teams[int.parse(match.teamId1)].teamName +
+                            teams
+                                    .firstWhere(
+                                        (e) => e.teamUid == match.teamId1)
+                                    .teamName +
                                 " won the match",
                             style: TextStyle(color: Colors.white60),
                           )
                         : Text(
-                            teams[int.parse(match.teamId2)].teamName +
+                            teams
+                                    .firstWhere(
+                                        (e) => e.teamUid == match.teamId2)
+                                    .teamName +
                                 " won the match",
                             style: TextStyle(color: Colors.white60),
                           )

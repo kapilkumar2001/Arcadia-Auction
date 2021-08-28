@@ -16,8 +16,8 @@ class UpcomingMatchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var team1 = Provider.of<Teams>(context).getTeam(int.parse(match.teamId1));
-    var team2 = Provider.of<Teams>(context).getTeam(int.parse(match.teamId2));
+    var team1 = Provider.of<Teams>(context).getTeam(match.teamId1);
+    var team2 = Provider.of<Teams>(context).getTeam(match.teamId2);
     return Container(
       margin: EdgeInsets.all(5),
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -43,8 +43,7 @@ class UpcomingMatchCard extends StatelessWidget {
                     children: [
                       FutureBuilder(
                         future: Provider.of<Teams>(context, listen: false)
-                            .getImageUrl(
-                                team1.teamUid),
+                            .getImageUrl(team1.teamUid),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return CircleAvatar(
@@ -124,30 +123,30 @@ class UpcomingMatchCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       FutureBuilder(
-                    future: Provider.of<Teams>(context, listen: false)
-                        .getImageUrl(team2.teamUid),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return CircleAvatar(
-                          radius: 20,
-                          backgroundColor: CustomColors.primaryColor,
-                          foregroundColor: Colors.white54,
-                          backgroundImage: CachedNetworkImageProvider(
-                            snapshot.data.toString(),
-                          ),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Icon(Icons.image_not_supported_sharp);
-                      } else {
-                        return CircleAvatar(
-                          radius: 20,
-                          backgroundColor: CustomColors.primaryColor,
-                          foregroundColor: Colors.white54,
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    },
-                  ),
+                        future: Provider.of<Teams>(context, listen: false)
+                            .getImageUrl(team2.teamUid),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              backgroundImage: CachedNetworkImageProvider(
+                                snapshot.data.toString(),
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Icon(Icons.image_not_supported_sharp);
+                          } else {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                       Text(
                         team2.teamAbbreviation,
                         overflow: TextOverflow.ellipsis,
