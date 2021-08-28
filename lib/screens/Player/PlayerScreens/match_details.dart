@@ -163,7 +163,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                                           listen: false)
                                       .getImageUrl(teams
                                           .firstWhere(
-                                              (e) => e.teamUid == match.teamId1)
+                                              (e) => e.teamUid == match.teamId2)
                                           .teamUid),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
