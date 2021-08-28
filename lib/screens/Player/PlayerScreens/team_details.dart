@@ -4,6 +4,7 @@ import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/match.dart';
+import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/widgets/player_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -13,7 +14,7 @@ import 'package:provider/provider.dart';
 
 class TeamDetails extends StatefulWidget {
   static const routeName = '/team-details';
-
+ 
   @override
   _TeamDetailsState createState() => _TeamDetailsState();
 }
@@ -62,18 +63,31 @@ class _TeamDetailsState extends State<TeamDetails> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: CircleAvatar(
-                      minRadius: 80,
-                      maxRadius: 80,
-                      backgroundColor: Colors.greenAccent,
-                      foregroundColor: Colors.white54,
-                      backgroundImage: CachedNetworkImageProvider(
-                        'https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png',
-                      ),
-                    ),
-                  ),
+                  FutureBuilder(
+                  future: Provider.of<Teams>(context, listen: false)
+                      .getImageUrl(team.teamUid),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CircleAvatar(
+                        radius: 80,
+                        backgroundColor: CustomColors.primaryColor,
+                        foregroundColor: Colors.white54,
+                        backgroundImage: CachedNetworkImageProvider(
+                          snapshot.data.toString(),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Icon(Icons.image_not_supported_sharp);
+                    } else {
+                      return CircleAvatar(
+                        radius: 50,
+                        backgroundColor: CustomColors.primaryColor,
+                        foregroundColor: Colors.white54,
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
