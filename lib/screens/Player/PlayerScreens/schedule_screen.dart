@@ -338,7 +338,7 @@ class CompletedMatchCard extends StatelessWidget {
                 FutureBuilder(
                   future: Provider.of<Teams>(context, listen: false)
                       .getImageUrl(teams
-                          .firstWhere((e) => e.teamUid == match.teamId1)
+                          .firstWhere((e) => e.teamUid == match.teamId2)
                           .teamUid),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
