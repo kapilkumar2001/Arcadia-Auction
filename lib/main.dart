@@ -135,7 +135,7 @@ class Init {
       print('Message clicked!');
     });
     if (!Auth.isAuth) {
-      if (!Auth.didSignOut) {
+      if (Auth.didSignOut) {
         return 3;
       }
       return -1;
