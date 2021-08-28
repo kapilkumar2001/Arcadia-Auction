@@ -85,6 +85,7 @@ class Auth with ChangeNotifier {
       }
       await FirebaseAuth.instance.signOut();
       uid = null;
+      isAnonymous = false;
     } catch (e) {}
   }
 }

@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
               routes: {
                 AuctionOverview.routeName: (ctx) => AuctionOverview(),
                 AuctionHome.routeName: (ctx) => AuctionHome(),
-                AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
+                // AuctionPlayer.routeName: (ctx) => AuctionPlayer(),
                 AuctionPlayerResell.routeName: (ctx) => AuctionPlayerResell(),
                 AuctionDetails.routeName: (ctx) => AuctionDetails(),
                 TeamDetails.routeName: (ctx) => TeamDetails(),
@@ -135,7 +135,7 @@ class Init {
       print('Message clicked!');
     });
     if (!Auth.isAuth) {
-      if (!Auth.didSignOut) {
+      if (Auth.didSignOut) {
         return 3;
       }
       return -1;
