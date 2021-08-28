@@ -63,29 +63,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Container(
-                  alignment: Alignment.centerRight,
-                  child:_currentPage!=2? FlatButton(
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed(SignInScreen.routeName),
-                    child: Text(
-                      'Skip',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  ):FlatButton(
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed(SignInScreen.routeName),
-                    child: Text(
-                      '',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  )
-                ),
+                    alignment: Alignment.centerRight,
+                    child: _currentPage != 2
+                        ? FlatButton(
+                            onPressed: () => Navigator.of(context)
+                                .pushNamed(SignInScreen.routeName),
+                            child: Text(
+                              'Skip',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          )
+                        : FlatButton(
+                            onPressed: () => Navigator.of(context)
+                                .pushNamed(SignInScreen.routeName),
+                            child: Text(
+                              '',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          )),
                 Container(
                   height: 600.0,
                   // width: MediaQuery.of(context).size.width,
@@ -102,26 +103,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                           Stack(
-                        children: [
-                          Image.asset(
-                            'assets/onboarding.png',
-                            height: 600.0,
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                          Positioned(
-                            top: 3,
-                            left: 90,
-                            child: Center(
-                              child: Text(
-                                'Make Your Profile',
-                                style: kTitleStyle,
-                                textAlign: TextAlign.center,
+                          Stack(
+                            children: [
+                              Center(
+                                child: Container(
+                                  height: 600.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    clipBehavior: Clip.hardEdge,
+                                    child: Image.asset(
+                                      'assets/onboarding.png',
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              Positioned(
+                                top: 3,
+                                left: 90,
+                                child: Center(
+                                  child: Text(
+                                    'Make Your Profile',
+                                    style: kTitleStyle,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
 
                           // SizedBox(height: 15.0),
                           // Text(
@@ -132,11 +141,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       Stack(
                         children: [
-                          Image.asset(
-                            'assets/onboarding1.png',
-                            height: 600.0,
-                            width: MediaQuery.of(context).size.width,
+                          Center(
+                            child: Container(
+                              height: 600.0,
+                              width: MediaQuery.of(context).size.width,
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                clipBehavior: Clip.hardEdge,
+                                child: Image.asset(
+                                  'assets/onboarding1.png',
+                                ),
+                              ),
+                            ),
                           ),
+                          // Image.asset(
+                          //   'assets/onboarding1.png',
+                          //   height: 600.0,
+                          //   width: MediaQuery.of(context).size.width,
+                          // ),
                           Positioned(
                             top: 3,
                             left: 70,
@@ -152,13 +174,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       Stack(
                         children: [
+                          Center(
+                            child: Container(
+                              height: 600.0,
+                              width: MediaQuery.of(context).size.width,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                clipBehavior: Clip.hardEdge,
+                                child: Image.asset(
+                                  'assets/onboarding2.png',
+                                ),
+                              ),
+                            ),
+                          ),
                           Image.asset(
                             'assets/onboarding2.png',
                             height: 650.0,
                             width: MediaQuery.of(context).size.width,
                           ),
                           Positioned(
-                            top:-1,
+                            top: -1,
                             left: 60,
                             child: Center(
                               child: Text(
@@ -173,7 +208,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
@@ -215,18 +252,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: Align(
                           alignment: FractionalOffset.bottomRight,
                           child: FlatButton(
-                            onPressed: () {
-                              _pageController.nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.ease,
-                              );
-                            },
+                              onPressed:
+                              () => Navigator.of(context)
+                                  .pushNamed(SignInScreen.routeName),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Text(
-                                  'Let go',
+                                  'Let\'s go',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22.0,
@@ -248,7 +282,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
         ),
       ),
-     
     );
   }
 }
