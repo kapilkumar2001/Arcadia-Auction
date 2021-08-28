@@ -65,14 +65,19 @@ class _AuctionHomeState extends State<AuctionHome> {
                           Provider.of<Players>(context, listen: false)
                               .getNextPlayer;
                       if (nextPlayer != null) {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        //   return AuctionPlayer();
-                        // }));
-
-                        Navigator.of(context).pushNamed(
-                          AuctionPlayer.routeName,
-                          arguments: nextPlayer,
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return AuctionPlayer(nextPlayer);
+                            },
+                          ),
                         );
+
+                        // Navigator.of(context).pushNamed(
+                        //   AuctionPlayer.routeName,
+                        //   arguments: nextPlayer,
+                        // );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
