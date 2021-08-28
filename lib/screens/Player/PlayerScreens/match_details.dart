@@ -101,7 +101,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       return CircleAvatar(
-                                        radius: 20,
+                                        radius: 50,
                                         backgroundColor:
                                             CustomColors.primaryColor,
                                         foregroundColor: Colors.white54,
@@ -164,7 +164,7 @@ class _MatchDetailsState extends State<MatchDetails> {
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       return CircleAvatar(
-                                        radius: 20,
+                                        radius:  50,
                                         backgroundColor:
                                             CustomColors.primaryColor,
                                         foregroundColor: Colors.white54,

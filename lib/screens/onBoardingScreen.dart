@@ -46,10 +46,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               end: Alignment.bottomCenter,
               stops: [0.1, 0.4, 0.7, 0.9],
               colors: [
-                Color(0xFF3594DD),
-                Color(0xFF4563DB),
-                Color(0xFF5036D5),
-                Color(0xFF5B16D0),
+                Colors.black,
+                Colors.black,
+                Colors.black,
+                Colors.black,
+                // Color(0xFF3594DD),
+                // Color(0xFF4563DB),
+                // Color(0xFF5036D5),
+                // Color(0xFF5B16D0),
               ],
             ),
           ),
@@ -60,8 +64,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerRight,
-                  child: FlatButton(
-                    onPressed: () => Navigator.of(context).pushNamed(SignInScreen.routeName),
+                  child:_currentPage!=2? FlatButton(
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(SignInScreen.routeName),
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -69,10 +74,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         fontSize: 20.0,
                       ),
                     ),
-                  ),
+                  ):Container(),
                 ),
                 Container(
                   height: 600.0,
+                  // width: MediaQuery.of(context).size.width,
                   child: PageView(
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
@@ -82,92 +88,86 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       });
                     },
                     children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image.asset(
-                                
-                                  'assets/onboarding.png',
-                                
-                                height: 400.0,
-                                width: 400.0,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Stack(
+                            children: [
+                              Image.asset(
+                                'assets/onboarding.png',
+                                height: 600.0,
+                                width: MediaQuery.of(context).size.width,
                               ),
-                            ),
-                            // SizedBox(height: 30.0),
-                            Center(
-                              child: Text(
-                                
-                                'HEADSHOTS \nor\n DEADSHOTS',
-                                style: kTitleStyle,
-                                textAlign: TextAlign.center,
+                              Positioned(
+                                top: 3,
+                                left: 90,
+                                child: Center(
+                                  child: Text(
+                                    'Make Your Profile',
+                                    style: kTitleStyle,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
-                            ),
-                            // SizedBox(height: 15.0),
-                            // Text(
-                            //   'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
-                            //   style: kSubtitleStyle,
-                            // ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
+                            ],
+                          ),
 
-                              child: Image.asset(
-                                
-                                  'assets/onboarding1.png',
-                                
-                                height: 400.0,
-                                width: 400.0,
-                              ),
-                            ),
-                            // SizedBox(height: 30.0),
-                            Center(
-                              child: Text(
-                                'Make Your Proflies\n&\nget Your Match Stats',
-                                style: kTitleStyle,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
+                          // SizedBox(height: 15.0),
+                          // Text(
+                          //   'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                          //   style: kSubtitleStyle,
+                          // ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                           Center(
-                              child: Image.asset(
-                                
-                                  'assets/onboarding.png',
-                                
-                                height: 400.0,
-                                width: 400.0,
-                              ),
-                            ),
-                            SizedBox(height: 30.0),
-                            Center(
+                      Stack(
+                        children: [
+                          Image.asset(
+                            'assets/onboarding1.png',
+                            height: 600.0,
+                            width: MediaQuery.of(context).size.width,
+                          ),
+                          Positioned(
+                            top: 3,
+                            left: 70,
+                            child: Center(
                               child: Text(
-                                
-                                'What are you wating for?',
+                                'Get Your Match Stats',
                                 style: kTitleStyle,
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
+                      Stack(
+                        children: [
+                          Positioned(
+                            top:60,
+                            left: 10,
+                            child: Image.asset(
+                              'assets/onboarding3.png',
+                              height: 650.0,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ),
+                          Positioned(
+                            top:35,
+                            left: 60,
+                            child: Center(
+                              child: Text(
+                                'what are you waiting for?',
+                                style: kTitleStyle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
@@ -222,7 +222,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 15.0),
+                    padding: EdgeInsets.only(bottom: 10.0),
                     child: Text(
                       'Get started',
                       style: TextStyle(
