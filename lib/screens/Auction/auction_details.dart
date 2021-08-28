@@ -15,6 +15,7 @@ class AuctionDetails extends StatefulWidget {
 
 class _AuctionDetailsState extends State<AuctionDetails> {
   List<Team> teams = [];
+
   bool _isInit = true;
   bool _isLoading = true;
 
@@ -22,13 +23,14 @@ class _AuctionDetailsState extends State<AuctionDetails> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Players>(context, listen: false)
-          .fetchAndSetPlayers()
+      Provider.of<Teams>(context, listen: false)
+          .fetchAndSetTeams()
           .then((value) {
-        Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
-        setState(() {
-          _isLoading = false;
-        });
+        Provider.of<Players>(context, listen: false)
+            .fetchAndSetPlayers()
+            .then((value) => setState(() {
+                  _isLoading = false;
+                }));
       });
     }
     _isInit = false;
@@ -37,6 +39,7 @@ class _AuctionDetailsState extends State<AuctionDetails> {
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
+
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -72,112 +75,139 @@ class TeamCard extends StatefulWidget {
 }
 
 class _TeamCardState extends State<TeamCard> {
+  List<String> playersUid = [];
+  bool _isInit = true;
+  bool _isLoading = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      Provider.of<Players>(context, listen: false)
+          .fetchAndSetPlayers()
+          .then((value) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+  }
+
   var isexpanded = false;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      color: CustomColors.taskez1,
-      margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-      child: ExpansionTile(
-        onExpansionChanged: (value) {
-          setState(() {
-            isexpanded = !isexpanded;
-          });
-        },
-        trailing: !isexpanded
-            ? Stack(
-                children: <Widget>[
-                  new Icon(
-                    Icons.person,
-                    size: 42,
-                  ),
-                  new Positioned(
-                    right: 0,
-                    child: new Container(
-                      padding: EdgeInsets.all(2),
-                      decoration: new BoxDecoration(
-                        //color: Color(0xFF89CA72),
-                        color: Color(0xFF2368F8),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      constraints: BoxConstraints(
-                        minWidth: 18,
-                        minHeight: 18,
-                      ),
-                      child: new Text(
-                        widget.team.numPlayer.toString(),
-                        style: new TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
+    playersUid = widget.team.playerUid.toList();
+    return _isLoading
+        ? Center(child: CircularProgressIndicator())
+        : Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            color: CustomColors.taskez1,
+            margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+            child: ExpansionTile(
+              onExpansionChanged: (value) {
+                setState(() {
+                  isexpanded = !isexpanded;
+                });
+              },
+              trailing: !isexpanded
+                  ? Stack(
+                      children: <Widget>[
+                        new Icon(
+                          Icons.person,
+                          size: 42,
                         ),
-                        textAlign: TextAlign.center,
+                        new Positioned(
+                          right: 0,
+                          child: new Container(
+                            padding: EdgeInsets.all(2),
+                            decoration: new BoxDecoration(
+                              //color: Color(0xFF89CA72),
+                              color: Color(0xFF2368F8),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            constraints: BoxConstraints(
+                              minWidth: 18,
+                              minHeight: 18,
+                            ),
+                            child: new Text(
+                              widget.team.numPlayer.toString(),
+                              style: new TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  : Icon(Icons.expand_less),
+              title: Text(
+                widget.team.teamName,
+                style: TextStyle(
+                    color: Colors.white54,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22),
+              ),
+              subtitle: Text(
+                "Owner: " + widget.team.ownerName,
+                style: TextStyle(
+                    color: Colors.white54,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15),
+              ),
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: CustomColors.firebaseNavy,
+                        border: Border.all(
+                          color: Colors.blueAccent,
+                        ),
+                      ),
+                      margin: EdgeInsets.only(
+                          left: 20, right: 4, top: 20, bottom: 20),
+                      child: Text(
+                        "Players: " + widget.team.playerUid.length.toString(),
+                        style: TextStyle(fontSize: 22, color: Colors.white54),
                       ),
                     ),
-                  )
-                ],
-              )
-            : Icon(Icons.expand_less),
-        title: Text(
-          widget.team.teamName,
-          style: TextStyle(
-              color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 22),
-        ),
-        subtitle: Text(
-          "Owner: " + widget.team.ownerName,
-          style: TextStyle(
-              color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
-        ),
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: CustomColors.firebaseNavy,
-                  border: Border.all(
-                    color: Colors.blueAccent,
-                  ),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: CustomColors.firebaseNavy,
+                        border: Border.all(
+                          color: Colors.blueAccent,
+                        ),
+                      ),
+                      margin: EdgeInsets.only(
+                          left: 4, right: 20, top: 20, bottom: 20),
+                      child: Text(
+                        "Credits: " + widget.team.credits.toString(),
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white54,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                margin:
-                    EdgeInsets.only(left: 20, right: 4, top: 20, bottom: 20),
-                child: Text(
-                  "Players: " + widget.team.playerUid.length.toString(),
-                  style: TextStyle(fontSize: 22, color: Colors.white54),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: CustomColors.firebaseNavy,
-                  border: Border.all(
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                margin:
-                    EdgeInsets.only(left: 4, right: 20, top: 20, bottom: 20),
-                child: Text(
-                  "Credits: " + widget.team.credits.toString(),
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white54,
-                  ),
-                ),
-              )
-            ],
-          ),
-          ...widget.team.playerUid.map((e) {
-            return PlayerTile(
-                player: Provider.of<Players>(context).getPlayer(e));
-          }).toList(),
-        ],
-      ),
-    );
+                ...playersUid.map((e) {
+                  return PlayerTile(
+                      player: Provider.of<Players>(context, listen: false)
+                          .getPlayer(e));
+                }).toList(),
+              ],
+            ),
+          );
   }
 }
 

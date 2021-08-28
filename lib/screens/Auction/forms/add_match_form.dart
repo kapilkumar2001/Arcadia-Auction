@@ -119,8 +119,8 @@ class _AddMatchFormState extends State<AddMatchForm> {
         child: Container(
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          //  width: MediaQuery.of(context).size.width,
           color: Colors.white,
           child: Column(
             children: [

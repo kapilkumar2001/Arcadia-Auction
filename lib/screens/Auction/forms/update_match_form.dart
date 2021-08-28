@@ -40,10 +40,11 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
       Provider.of<Players>(context, listen: false)
           .fetchAndSetPlayers()
           .then((value) {
-        Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
-        setState(() {
-          _isLoading = false;
-        });
+        Provider.of<Teams>(context, listen: false)
+            .fetchAndSetTeams()
+            .then((value) => setState(() {
+                  _isLoading = false;
+                }));
       });
     }
     _isInit = false;
