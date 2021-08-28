@@ -43,17 +43,13 @@ An App where all the details about a tournament can be found.
 
 ## 💻Tech Stacks 
 
-- ### Flutter
-- ### Firebase
+- Flutter
+- Firebase
 
 <br> 
 
 ## 🤓 Contributors 
 
-<!-- <a href = "https://github.com/kapilkumar2001/Arcadia-Auction/contributors">
-  <img src = "https://contrib.rocks/image?repo =kapilkumar2001/Arcadia-Auction"/>
-</a> -->
-
-- ### [Ashish Kumar Singh](https://github.com/ashishsingh2001)
-- ### [Kapil Kumar](https://github.com/kapilkumar2001)
-- ### [Nishant Andoriya](https://github.com/M-A-D-A-R-A)
+- [Ashish Kumar Singh](https://github.com/AshishSingh2001)
+- [Kapil Kumar](https://github.com/kapilkumar2001)
+- [Nishant Andoriya](https://github.com/M-A-D-A-R-A)
