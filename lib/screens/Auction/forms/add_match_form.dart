@@ -34,14 +34,20 @@ class _AddMatchFormState extends State<AddMatchForm> {
 
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
+    Provider.of<Teams>(context, listen: false)
+        .fetchAndSetTeams()
+        .then((value) => setState(() {
+              _team1 =
+                  Provider.of<Teams>(context, listen: false).teams[0].teamUid;
+              _team2 =
+                  Provider.of<Teams>(context, listen: false).teams[1].teamUid;
+            }));
   }
 
   @override
   void initState() {
     super.initState();
-    // _team1 = '0';
-    // _team2 = '1';
+
     _dateController.text = DateFormat.yMd().format(DateTime.now());
 
     _timeController.text = formatDate(
@@ -110,8 +116,7 @@ class _AddMatchFormState extends State<AddMatchForm> {
   Widget build(BuildContext context) {
     dateTime = DateFormat.yMd().format(DateTime.now());
     teams = Provider.of<Teams>(context, listen: false).teams;
-    _team1 = teams[0].teamUid;
-    _team2 = teams[1].teamUid;
+
     return Scaffold(
       backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
