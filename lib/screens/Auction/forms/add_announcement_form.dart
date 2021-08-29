@@ -26,6 +26,7 @@ class _AddAnnouncementFormState extends State<AddAnnouncementForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
         title: Text(
           "Add Announcement",

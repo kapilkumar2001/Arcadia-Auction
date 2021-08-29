@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/screens/Auction/admin_dashboard.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
@@ -42,6 +43,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: CustomColors.primaryColor,
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,
         backgroundColor: Colors.white38,

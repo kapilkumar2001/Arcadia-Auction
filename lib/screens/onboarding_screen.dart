@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/screens/signin_screen.dart';
 import 'package:arcadia/widgets/styles.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(

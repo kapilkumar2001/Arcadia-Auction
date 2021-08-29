@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/team_standings.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/home_screen.dart';
@@ -57,6 +58,7 @@ class _PlayerDashBoardState extends State<PlayerDashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: CustomColors.primaryColor,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
