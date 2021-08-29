@@ -18,24 +18,10 @@ class UpcomingMatchCard extends StatefulWidget {
 
 class _UpcomingMatchCardState extends State<UpcomingMatchCard> {
   var team1, team2;
-  var imageURLteam1, imageURLteam2;
-  bool isInit = true;
-  bool isLoading = true;
+ 
+ 
   @override
-  void didChangeDependencies() async {
-    super.didChangeDependencies();
-    if (isInit) {
-      await Provider.of<Teams>(context, listen: false).fetchAndSetTeams();
-      imageURLteam1 = await Provider.of<Teams>(context, listen: false)
-          .getImageUrl(widget.match.teamId1);
-      imageURLteam2 = await Provider.of<Teams>(context, listen: false)
-          .getImageUrl(widget.match.teamId2);
-      setState(() {
-        isLoading = false;
-      });
-    }
-    isInit = false;
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +29,7 @@ class _UpcomingMatchCardState extends State<UpcomingMatchCard> {
         .getTeam(widget.match.teamId1);
     var team2 = Provider.of<Teams>(context, listen: false)
         .getTeam(widget.match.teamId2);
-    return isLoading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : Container(
+    return  Container(
             margin: EdgeInsets.all(5),
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             width: 270,
@@ -72,25 +54,31 @@ class _UpcomingMatchCardState extends State<UpcomingMatchCard> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: CachedNetworkImage(
-                                imageUrl: imageURLteam2,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                              child: FutureBuilder(
+                        future: Provider.of<Teams>(context, listen: false)
+                            .getImageUrl(team1.teamUid),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              backgroundImage: CachedNetworkImageProvider(
+                                snapshot.data.toString(),
                               ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Icon(Icons.image_not_supported_sharp);
+                          } else {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                             ),
                             Text(
                               team1.teamAbbreviation,
@@ -154,25 +142,31 @@ class _UpcomingMatchCardState extends State<UpcomingMatchCard> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: CachedNetworkImage(
-                                imageUrl: imageURLteam1,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                              child: FutureBuilder(
+                        future: Provider.of<Teams>(context, listen: false)
+                            .getImageUrl(team2.teamUid),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              backgroundImage: CachedNetworkImageProvider(
+                                snapshot.data.toString(),
                               ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Icon(Icons.image_not_supported_sharp);
+                          } else {
+                            return CircleAvatar(
+                              radius: 20,
+                              backgroundColor: CustomColors.primaryColor,
+                              foregroundColor: Colors.white54,
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
                             ),
                             Text(
                               team2.teamAbbreviation,
