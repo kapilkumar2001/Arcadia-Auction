@@ -112,7 +112,7 @@ class _AddTeamFormState extends State<AddTeamForm> {
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
           //  height: MediaQuery.of(context).size.height,
-          color: Colors.white,
+          color: CustomColors.primaryColor,
           child: Column(
             children: [
               SizedBox(
@@ -146,6 +146,9 @@ class _AddTeamFormState extends State<AddTeamForm> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 16.0, horizontal: 32.0),
@@ -158,6 +161,25 @@ class _AddTeamFormState extends State<AddTeamForm> {
                         decoration: InputDecoration(
                           hintText: "Ex: Chennai Super Kings",
                           labelText: "Team Name",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -180,6 +202,25 @@ class _AddTeamFormState extends State<AddTeamForm> {
                         decoration: InputDecoration(
                           hintText: "Ex: CSK",
                           labelText: "Team Abbreviation",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -196,6 +237,25 @@ class _AddTeamFormState extends State<AddTeamForm> {
                         decoration: InputDecoration(
                           hintText: "Ex: Kapil Kumar",
                           labelText: "Owner Name",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -209,9 +269,29 @@ class _AddTeamFormState extends State<AddTeamForm> {
                       ),
                       TextFormField(
                         controller: creditController,
+                        keyboardType: TextInputType.numberWithOptions(),
                         decoration: InputDecoration(
                           hintText: "Ex: 200",
                           labelText: "Team Credits",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -224,10 +304,24 @@ class _AddTeamFormState extends State<AddTeamForm> {
                         height: 60.0,
                       ),
                       GestureDetector(
-                        child: blueButton(
-                            context: context,
-                            label: "Save",
-                            buttonWidth: MediaQuery.of(context).size.width / 2),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: 50,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Save",
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                         onTap: () {
                           List<String> playerUid = [];
                           List<String> completedMatches = [];

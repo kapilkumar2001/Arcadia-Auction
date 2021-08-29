@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/team.dart';
@@ -120,9 +121,10 @@ class _AddMatchFormState extends State<AddMatchForm> {
         child: Container(
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
-          // height: MediaQuery.of(context).size.height,
+
+          height: MediaQuery.of(context).size.height,
           //  width: MediaQuery.of(context).size.width,
-          color: Colors.white,
+          color: CustomColors.primaryColor,
           child: Column(
             children: [
               SizedBox(
@@ -144,12 +146,20 @@ class _AddMatchFormState extends State<AddMatchForm> {
                               _team1 = newVal!;
                             });
                           },
+                          menuMaxHeight: MediaQuery.of(context).size.height / 3,
+                          iconEnabledColor: Colors.blueAccent,
+                          iconDisabledColor: Colors.blueAccent,
                           items: [
                             ...teams
                                 .map(
                                   (e) => DropdownMenuItem(
                                     value: e.teamUid.toString(),
-                                    child: Text('${e.teamName}'),
+                                    child: Text(
+                                      '${e.teamName}',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: Colors.blueAccent),
+                                    ),
                                   ),
                                 )
                                 .toList(),
@@ -161,7 +171,8 @@ class _AddMatchFormState extends State<AddMatchForm> {
                       ),
                       Text(
                         "Vs",
-                        style: TextStyle(fontSize: 20),
+                        style:
+                            TextStyle(fontSize: 20, color: Colors.blueAccent),
                       ),
                       SizedBox(
                         height: 5,
@@ -175,12 +186,20 @@ class _AddMatchFormState extends State<AddMatchForm> {
                               _team2 = newVal!;
                             });
                           },
+                          menuMaxHeight: MediaQuery.of(context).size.height / 3,
+                          iconEnabledColor: Colors.blueAccent,
+                          iconDisabledColor: Colors.blueAccent,
                           items: [
                             ...teams
                                 .map(
                                   (e) => DropdownMenuItem(
                                     value: e.teamUid.toString(),
-                                    child: Text('${e.teamName}'),
+                                    child: Text(
+                                      '${e.teamName}',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: Colors.blueAccent),
+                                    ),
                                   ),
                                 )
                                 .toList(),
@@ -193,9 +212,9 @@ class _AddMatchFormState extends State<AddMatchForm> {
                       Text(
                         'Choose Date',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
-                        ),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                            color: Colors.blueAccent),
                       ),
                       InkWell(
                         onTap: () {
@@ -234,8 +253,10 @@ class _AddMatchFormState extends State<AddMatchForm> {
                       Text(
                         'Choose Time',
                         style: TextStyle(
-                            fontStyle: FontStyle.italic,
+                            // fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w600,
+                            color: Colors.blueAccent,
+                            fontSize: 17,
                             letterSpacing: 0.5),
                       ),
                       InkWell(
@@ -269,10 +290,24 @@ class _AddMatchFormState extends State<AddMatchForm> {
                         height: 40,
                       ),
                       GestureDetector(
-                        child: blueButton(
-                            context: context,
-                            label: "Save",
-                            buttonWidth: MediaQuery.of(context).size.width / 2),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: 50,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Save",
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                         onTap: () {
                           int id = Provider.of<Matches>(context, listen: false)
                               .matches

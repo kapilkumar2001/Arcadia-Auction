@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
@@ -69,7 +70,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                 padding: EdgeInsets.only(top: 24),
                 alignment: Alignment.topCenter,
                 height: MediaQuery.of(context).size.height,
-                color: Colors.white,
+                color: CustomColors.primaryColor,
                 child: Column(
                   children: [
                     SizedBox(
@@ -85,40 +86,40 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                             SizedBox(
                               height: 5,
                             ),
-                            Text(
-                              "Select Winner",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: DropdownButton<String>(
-                                value: _winner,
-                                onChanged: (newVal) {
-                                  setState(() {
-                                    _winner = newVal!;
-                                  });
-                                },
-                                items: [
-                                  DropdownMenuItem(
-                                    value: widget.match.teamId1.toString(),
-                                    child: Text(
-                                        '${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName}'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: widget.match.teamId2.toString(),
-                                    child: Text(
-                                        '${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName}'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: '-1',
-                                    child: Text('draw'),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // Text(
+                            //   "Select Winner",
+                            //   style: TextStyle(fontSize: 20),
+                            // ),
+                            // SizedBox(
+                            //   height: 2,
+                            // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.all(10),
+                            //   child: DropdownButton<String>(
+                            //     value: _winner,
+                            //     onChanged: (newVal) {
+                            //       setState(() {
+                            //         _winner = newVal!;
+                            //       });
+                            //     },
+                            //     items: [
+                            //       DropdownMenuItem(
+                            //         value: widget.match.teamId1.toString(),
+                            //         child: Text(
+                            //             '${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName}'),
+                            //       ),
+                            //       DropdownMenuItem(
+                            //         value: widget.match.teamId2.toString(),
+                            //         child: Text(
+                            //             '${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName}'),
+                            //       ),
+                            //       DropdownMenuItem(
+                            //         value: '-1',
+                            //         child: Text('draw'),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                             SizedBox(
                               height: 10.0,
                             ),
@@ -127,6 +128,25 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               decoration: InputDecoration(
                                 hintText: "Rounds Difference",
                                 labelText: "Rounds Difference",
+                                filled: true,
+                                fillColor: CustomColors.firebaseGrey,
+                                labelStyle: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 14,
+                                    color: Colors.blueAccent),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                    width: 2.0,
+                                  ),
+                                ),
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -136,7 +156,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               },
                             ),
                             SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                             TextFormField(
                               controller: roundswon1Controller,
@@ -144,6 +164,25 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                 hintText: "RoundsWon",
                                 labelText:
                                     "RoundsWon (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName})",
+                                filled: true,
+                                fillColor: CustomColors.firebaseGrey,
+                                labelStyle: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 14,
+                                    color: Colors.blueAccent),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                    width: 2.0,
+                                  ),
+                                ),
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -153,7 +192,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               },
                             ),
                             SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                             TextFormField(
                               controller: roundswon2Controller,
@@ -161,6 +200,25 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                 hintText: "RoundsWon",
                                 labelText:
                                     "RoundsWon (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName})",
+                                filled: true,
+                                fillColor: CustomColors.firebaseGrey,
+                                labelStyle: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 14,
+                                    color: Colors.blueAccent),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                    width: 2.0,
+                                  ),
+                                ),
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -170,7 +228,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               },
                             ),
                             SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                             TextFormField(
                               controller: point1Controller,
@@ -178,6 +236,25 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                 hintText: "points",
                                 labelText:
                                     "Points (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId1).teamName})",
+                                filled: true,
+                                fillColor: CustomColors.firebaseGrey,
+                                labelStyle: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 14,
+                                    color: Colors.blueAccent),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                    width: 2.0,
+                                  ),
+                                ),
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -187,7 +264,7 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               },
                             ),
                             SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                             TextFormField(
                               controller: point2Controller,
@@ -195,6 +272,25 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                 hintText: "points",
                                 labelText:
                                     "Points (${Provider.of<Teams>(context, listen: false).getTeam(widget.match.teamId2).teamName})",
+                                filled: true,
+                                fillColor: CustomColors.firebaseGrey,
+                                labelStyle: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 14,
+                                    color: Colors.blueAccent),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.blueAccent,
+                                    width: 2.0,
+                                  ),
+                                ),
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -212,7 +308,8 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                             ),
                             Text(
                               "Select MVP",
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                  fontSize: 20, color: Colors.blueAccent),
                             ),
                             SizedBox(
                               height: 2,
@@ -221,6 +318,9 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               padding: const EdgeInsets.all(10),
                               child: DropdownButton<String>(
                                 value: _mvp,
+                                focusColor: Colors.blueAccent,
+                                iconDisabledColor: Colors.blueAccent,
+                                iconEnabledColor: Colors.blueAccent,
                                 onChanged: (newVal) {
                                   setState(() {
                                     _mvp = newVal!;
@@ -235,7 +335,8 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                                         (e) => DropdownMenuItem(
                                           value: e.toString(),
                                           child: Text(
-                                              '${Provider.of<Players>(context, listen: false).getPlayer(e.toString()).name}'),
+                                            '${Provider.of<Players>(context, listen: false).getPlayer(e.toString()).name}',
+                                          ),
                                         ),
                                       )
                                       .toList(),
@@ -264,11 +365,24 @@ class UpdateMatchFormstate extends State<UpdateMatchForm> {
                               height: 40.0,
                             ),
                             GestureDetector(
-                              child: blueButton(
-                                  context: context,
-                                  label: "Save",
-                                  buttonWidth:
-                                      MediaQuery.of(context).size.width / 2),
+                              child: AnimatedContainer(
+                                duration: Duration(seconds: 1),
+                                width: MediaQuery.of(context).size.width / 2,
+                                height: 50,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Save",
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
                               onTap: () async {
                                 Match m = widget.match.copyWith(
                                     mvpId: _mvp,
