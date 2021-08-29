@@ -36,7 +36,7 @@ class _PlayerFormState extends State<PlayerForm> {
   final gameHRScontroller = new TextEditingController();
 
   Weapons? primaryWeapons = Weapons.AWP;
-  Weapons? secondadryWeapons =Weapons.USP;
+  Weapons? secondadryWeapons = Weapons.USP;
 
   @override
   void initState() {
@@ -127,35 +127,12 @@ class _PlayerFormState extends State<PlayerForm> {
         child: Container(
           padding: EdgeInsets.only(top: 24),
           alignment: Alignment.topCenter,
+          color: CustomColors.primaryColor,
           child: Column(
             children: [
               SizedBox(
                 height: 12,
               ),
-              // Container(
-              //     margin: EdgeInsets.all(15),
-              //     padding: EdgeInsets.all(15),
-              //     decoration: BoxDecoration(
-              //       color: Colors.white,
-              //       borderRadius: BorderRadius.all(
-              //         Radius.circular(15),
-              //       ),
-              //       border: Border.all(color: Colors.white),
-              //       boxShadow: [
-              //         BoxShadow(
-              //           color: Colors.black12,
-              //           offset: Offset(2, 2),
-              //           spreadRadius: 2,
-              //           blurRadius: 1,
-              //         ),
-              //       ],
-              //     ),
-              //     child: (imageUrl != null)
-              //         ? Image.network(imageUrl)
-              //         : Image.network('https://i.imgur.com/sUFH1Aq.png')),
-              // SizedBox(
-              //   height: 20.0,
-              // ),
               Center(
                 child: GestureDetector(
                   onTap: () async {
@@ -184,6 +161,9 @@ class _PlayerFormState extends State<PlayerForm> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 40,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 16.0, horizontal: 32.0),
@@ -194,8 +174,27 @@ class _PlayerFormState extends State<PlayerForm> {
                       TextFormField(
                         controller: namecontroller,
                         decoration: InputDecoration(
-                          hintText: "Ex:- Mani",
+                          hintText: "Enter Your Name",
                           labelText: "Your Name",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -218,6 +217,25 @@ class _PlayerFormState extends State<PlayerForm> {
                         decoration: InputDecoration(
                           hintText: "Ex:-20195513",
                           labelText: "Student ID",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -234,6 +252,25 @@ class _PlayerFormState extends State<PlayerForm> {
                         decoration: InputDecoration(
                           hintText: "Ex:- MadMani",
                           labelText: "IGN(In Game Name)",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -247,10 +284,30 @@ class _PlayerFormState extends State<PlayerForm> {
                       ),
                       TextFormField(
                         controller: gameHRScontroller,
+                        keyboardType: TextInputType.numberWithOptions(),
                         obscureText: false,
                         decoration: InputDecoration(
                           hintText: "Ex:-1520",
                           labelText: "Game Hours",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -265,24 +322,33 @@ class _PlayerFormState extends State<PlayerForm> {
                         height: 40.0,
                       ),
                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          
-                          Text("Primary Weapon:",style:TextStyle(
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold
-                          ) ,),
+                          Text(
+                            "Primary Weapon:",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.bold),
+                          ),
                           // SizedBox(width: 20,),
                           DropdownButton<Weapons>(
+                            // menuMaxHeight: MediaQuery.of(context).size.height,
+                            iconEnabledColor: Colors.blueAccent,
+                            iconDisabledColor: Colors.blueAccent,
 
                             underline: Container(
-                              // child: Text("Primary Weapons"),
-                              color: Colors.transparent),
+                                // child: Text("Primary Weapons"),
+                                color: Colors.transparent),
                             value: primaryWeapons,
                             items: Weapons.values.map((Weapons value) {
                               return DropdownMenuItem<Weapons>(
                                 value: value,
-                                child: Text(value.toString().split('.').last),
+                                child: Text(
+                                  value.toString().split('.').last,
+                                  style: TextStyle(
+                                      fontSize: 17, color: Colors.blueAccent),
+                                ),
                               );
                             }).toList(),
                             onChanged: (value) {
@@ -293,7 +359,6 @@ class _PlayerFormState extends State<PlayerForm> {
                             },
                             // hint: Text(_playerStatus.toString().split('.').last),
                           ),
-
                         ],
                       ),
                       SizedBox(
@@ -302,18 +367,28 @@ class _PlayerFormState extends State<PlayerForm> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Text(" Secondary Weapon:",style:TextStyle(
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold
-                          ) ,),
-                          
+                          Text(
+                            " Secondary Weapon:",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.bold),
+                          ),
                           DropdownButton<Weapons>(
+                            iconEnabledColor: Colors.blueAccent,
+                            iconDisabledColor: Colors.blueAccent,
                             underline: Container(color: Colors.transparent),
                             value: secondadryWeapons,
+                            // menuMaxHeight:
+                            //     MediaQuery.of(context).size.height / 2,
                             items: Weapons.values.map((Weapons value) {
                               return DropdownMenuItem<Weapons>(
                                 value: value,
-                                child: Text(value.toString().split('.').last),
+                                child: Text(
+                                  value.toString().split('.').last,
+                                  style: TextStyle(
+                                      fontSize: 17, color: Colors.blueAccent),
+                                ),
                               );
                             }).toList(),
                             onChanged: (value) {
@@ -336,6 +411,25 @@ class _PlayerFormState extends State<PlayerForm> {
                           hintText:
                               "https://steamcommunity.com/profiles/76561199007256891/",
                           labelText: "Steam URL",
+                          filled: true,
+                          fillColor: CustomColors.firebaseGrey,
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                              color: Colors.blueAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -374,19 +468,32 @@ class _PlayerFormState extends State<PlayerForm> {
                                           int.parse(gameHRScontroller.text),
                                       steamUrl: streamURLcontroller.text));
                               if (_formKey.currentState!.validate()) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PlayerDashBoard()));
+                                Navigator.pushAndRemoveUntil(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return PlayerDashBoard();
+                                }), (route) => false);
                               }
                             }
                           },
-                          child: blueButton(
-                              context: context,
-                              label: "Apply",
-                              buttonWidth:
-                                  MediaQuery.of(context).size.width / 2)),
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: 50,
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Register",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          )),
+                      SizedBox(height: 20),
                       ElevatedButton.icon(
                         onPressed: () async {
                           await Provider.of<Auth>(context, listen: false)
