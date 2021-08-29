@@ -58,7 +58,7 @@ An App where all the details about a tournament can be found.
 
 <br>
 
-## 💻Tech Stacks
+## 💻Tech Stack
 
 - Flutter
 - Firebase
