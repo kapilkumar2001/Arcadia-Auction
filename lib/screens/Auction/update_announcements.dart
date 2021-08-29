@@ -81,15 +81,15 @@ class _UpdateAnnouncementsState extends State<UpdateAnnouncements> {
               SizedBox(
                 height: 20,
               ),
-              Center(
-                child: Text(
-                  "Announcements",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white54,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+              // Center(
+              //   child: Text(
+              //     "Announcements",
+              //     style: TextStyle(
+              //         fontSize: 20,
+              //         color: Colors.white54,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              // ),
               ...announcementList
                   .map((e) => AdminAnnouncementCard(announcement: e))
                   .toList(),

@@ -89,15 +89,15 @@ class _UpdateMatchesState extends State<UpdateMatches> {
                 SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: Text(
-                    "Matches",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white54,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                // Center(
+                //   child: Text(
+                //     "Matches",
+                //     style: TextStyle(
+                //         fontSize: 20,
+                //         color: Colors.white54,
+                //         fontWeight: FontWeight.bold),
+                //   ),
+                // ),
                 ...matches.map((e) => MatchCard(e, teams)).toList(),
               ],
             ),

@@ -81,15 +81,15 @@ class _UpdateTeamsState extends State<UpdateTeams> {
                 SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: Text(
-                    "Teams",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white54,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                // Center(
+                //   child: Text(
+                //     "Teams",
+                //     style: TextStyle(
+                //         fontSize: 20,
+                //         color: Colors.white54,
+                //         fontWeight: FontWeight.bold),
+                //   ),
+                // ),
                 ...teams.map((e) => TeamCard(e)).toList(),
               ],
             ),
