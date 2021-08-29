@@ -72,7 +72,7 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
-           backgroundColor: CustomColors.primaryColor,
+            backgroundColor: CustomColors.primaryColor,
             appBar: AppBar(
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
@@ -302,7 +302,6 @@ class _PlayerProfileScreenState extends State<PlayerProfileScreen> {
           );
   }
 }
-
 
 // style: ButtonStyle(
 //                                 backgroundColor: MaterialStateProperty.all(Colors.red),

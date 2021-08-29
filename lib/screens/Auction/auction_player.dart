@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
 import 'package:arcadia/enums/weapons.dart';
@@ -85,7 +86,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                     Container(
                       width: double.infinity,
                       height: height * 0.4,
-                      color: Color(0xff787A91),
+                      color: CustomColors.secondaryColor,
                       child: Column(
                         children: [
                           Spacer(
@@ -117,33 +118,6 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
                                 errorWidget: (context, url, error) =>
                                     Icon(Icons.error),
                               ),
-                              // child: FutureBuilder(
-                              //   future: Provider.of<Players>(context, listen: false)
-                              //       .getImageUrl(widget.currPlayer.uid),
-                              //   builder: (context, snapshot) {
-                              //     if (snapshot.hasData) {
-                              //       return CircleAvatar(
-                              //         minRadius: 80,
-                              //         maxRadius: 80,
-                              //         backgroundColor: Colors.greenAccent,
-                              //         foregroundColor: Colors.white54,
-                              //         backgroundImage: CachedNetworkImageProvider(
-                              //           snapshot.data.toString(),
-                              //         ),
-                              //       );
-                              //     } else if (snapshot.hasError) {
-                              //       return Icon(Icons.image_not_supported_sharp);
-                              //     } else {
-                              //       return CircleAvatar(
-                              //         minRadius: 80,
-                              //         maxRadius: 80,
-                              //         backgroundColor: Colors.greenAccent,
-                              //         foregroundColor: Colors.white54,
-                              //         child: CircularProgressIndicator(),
-                              //       );
-                              //     }
-                              //   },
-                              // ),
                             ),
                           ),
                           Container(
