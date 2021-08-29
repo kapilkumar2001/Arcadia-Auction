@@ -48,6 +48,7 @@ class _TeamStandingsState extends State<TeamStandings> {
       return Center(child: CircularProgressIndicator());
     } else {
       return Container(
+        color: CustomColors.firebaseNavy.withOpacity(0.6),
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
