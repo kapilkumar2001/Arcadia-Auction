@@ -83,6 +83,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
       );
     } else {
       return Scaffold(
+        backgroundColor: CustomColors.primaryColor,
         appBar: AppBar(
           actions: [
             Padding(
@@ -146,33 +147,13 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                // VxSwiper.builder(
-                //   itemCount: sugg.length,
-                //   height: 50.0,
-                //   viewportFraction: 0.35,
-                //   autoPlay: true,
-                //   autoPlayAnimationDuration: 3.seconds,
-                //   autoPlayCurve: Curves.linear,
-                //   enableInfiniteScroll: true,
-                //   itemBuilder: (context, index) {
-                //     // var _random = new Random();
-                //     // index = _random.nextInt(sugg.length);
-                //     final s = sugg[index];
-                //     return Image.asset(s);
-                //   },
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 Text(
                   'Upcoming Matches',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
-                    // textStyle: Theme.of(context).textTheme.headline4,
                     fontSize: 30,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
-                    // fontStyle: FontStyle.italic,
                   ),
                 ),
                
@@ -219,7 +200,6 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
-                  color: CustomColors.firebaseNavy,
                   child: ListView(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),

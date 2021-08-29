@@ -44,6 +44,7 @@ class _AuctionResultsState extends State<AuctionResults> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
+           backgroundColor: CustomColors.primaryColor,
             appBar: AppBar(
               backgroundColor: CustomColors.firebaseNavy,
               title: Text(
