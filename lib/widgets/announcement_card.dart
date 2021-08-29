@@ -99,18 +99,22 @@ customDialogBox(BuildContext context, Announcement announcement) {
                             height: 1.0,
                           ),
                         ),
-                        Center(
-                            child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: new Text(
-                            announcement.desc,
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ) //
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 22),
+                          child: Align(
+                            alignment: Alignment.center,
+                              child: new Text(
+                                
+                                announcement.desc,
+                                style: TextStyle(
+                                
+                                  fontSize: 18.0,
+                                  color: Colors.white,
+                                
+                                ),
+                              ) //
+                              ),
+                        ),
                         InkWell(
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 5),
