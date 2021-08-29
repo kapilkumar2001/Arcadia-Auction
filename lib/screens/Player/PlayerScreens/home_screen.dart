@@ -156,7 +156,6 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-               
                 Container(
                   color: CustomColors.firebaseNavy.withOpacity(0.2),
                   margin: EdgeInsets.all(10),
@@ -200,15 +199,33 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
-                  child: ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        ...announcementList
-                            .map((e) => AnnouncementCard(announcement: e))
-                            .toList(),
-                      ]),
-                ),
+                  child: announcementList.isNotEmpty
+                      ? ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                              ...announcementList
+                                  .map((e) => AnnouncementCard(announcement: e))
+                                  .toList(),
+                            ])
+                      : Container(
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          width: MediaQuery.of(context).size.width ,
+                          height: MediaQuery.of(context).size.height / 12,
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child:Center(
+                            child: Text(
+                'No New Announcements :)',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+                          ),
+            ),
+                        ),
+              
               ],
             ),
           ),
