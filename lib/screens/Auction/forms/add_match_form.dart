@@ -111,6 +111,7 @@ class _AddMatchFormState extends State<AddMatchForm> {
     dateTime = DateFormat.yMd().format(DateTime.now());
     teams = Provider.of<Teams>(context, listen: false).teams;
     return Scaffold(
+       backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
         title: Text(
           "Add Match",

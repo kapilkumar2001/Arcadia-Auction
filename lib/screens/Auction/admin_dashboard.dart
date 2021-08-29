@@ -19,6 +19,7 @@ class _AdminDashboardState extends State<AdminDashboard>
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+         backgroundColor: CustomColors.primaryColor,
         appBar: AppBar(
           title: Text(
             "Admin DashBoard",

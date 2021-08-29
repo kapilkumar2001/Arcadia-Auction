@@ -66,6 +66,7 @@ class _MatchDetailsState extends State<MatchDetails> {
     return _isLoading
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
+           backgroundColor: CustomColors.primaryColor,
             appBar: AppBar(
               title: Text("Match " + match.matchId),
               backgroundColor: CustomColors.primaryColor,

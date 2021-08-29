@@ -26,14 +26,30 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
   List<Announcement> announcementList = [];
   bool _isInit = true;
   bool _isLoading = true;
+  int _currentpage = 0;
   List<Match> upcomingMatchList = [];
+  PageController _pageController = PageController(initialPage: 0);
+  List<Widget> _buildPageIndicator() {
+    List<Widget> list = [];
 
-  final sugg = [
-    'assets/gif.gif',
-    'assets/gif1.gif',
-    'assets/gif2.gif',
-    // 'assets/gif3.gif',
-  ];
+    for (int i = 0; i < upcomingMatchList.length; i++) {
+      list.add(i == _currentpage ? _indicator(true) : _indicator(false));
+    }
+    return list;
+  }
+
+  Widget _indicator(bool isActive) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 150),
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      height: 8.0,
+      width: isActive ? 24.0 : 16.0,
+      decoration: BoxDecoration(
+        color: isActive ? Colors.white : CustomColors.firebaseGrey,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+    );
+  }
 
   @override
   void didChangeDependencies() async {
@@ -67,6 +83,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
       );
     } else {
       return Scaffold(
+        backgroundColor: CustomColors.primaryColor,
         appBar: AppBar(
           actions: [
             Padding(
@@ -130,52 +147,38 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                // VxSwiper.builder(
-                //   itemCount: sugg.length,
-                //   height: 50.0,
-                //   viewportFraction: 0.35,
-                //   autoPlay: true,
-                //   autoPlayAnimationDuration: 3.seconds,
-                //   autoPlayCurve: Curves.linear,
-                //   enableInfiniteScroll: true,
-                //   itemBuilder: (context, index) {
-                //     // var _random = new Random();
-                //     // index = _random.nextInt(sugg.length);
-                //     final s = sugg[index];
-                //     return Image.asset(s);
-                //   },
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 Text(
                   'Upcoming Matches',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
-                    // textStyle: Theme.of(context).textTheme.headline4,
                     fontSize: 30,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
-                    // fontStyle: FontStyle.italic,
                   ),
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 Container(
                   color: CustomColors.firebaseNavy.withOpacity(0.2),
                   margin: EdgeInsets.all(10),
-                  height: 150,
-                  child: ListView(
+                  height: 200,
+                  child: PageView(
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentpage = page;
+                      });
+                    },
                     scrollDirection: Axis.horizontal,
                     children: [
                       ...upcomingMatchList
                           .map((e) => GestureDetector(
-                              // onTap: ,
                               child: UpcomingMatchCard(match: e)))
                           .toList(),
                     ],
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildPageIndicator(),
                 ),
                 SizedBox(
                   height: 20,
@@ -196,16 +199,33 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
-                  color: CustomColors.firebaseNavy,
-                  child: ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        ...announcementList
-                            .map((e) => AnnouncementCard(announcement: e))
-                            .toList(),
-                      ]),
-                ),
+                  child: announcementList.isNotEmpty
+                      ? ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                              ...announcementList
+                                  .map((e) => AnnouncementCard(announcement: e))
+                                  .toList(),
+                            ])
+                      : Container(
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          width: MediaQuery.of(context).size.width ,
+                          height: MediaQuery.of(context).size.height / 12,
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child:Center(
+                            child: Text(
+                'No New Announcements :)',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+                          ),
+            ),
+                        ),
+              
               ],
             ),
           ),
