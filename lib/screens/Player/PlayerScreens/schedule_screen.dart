@@ -57,6 +57,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         : DefaultTabController(
             length: 2,
             child: Scaffold(
+               backgroundColor: CustomColors.primaryColor,
               appBar: AppBar(
                 backgroundColor: CustomColors.firebaseNavy,
                 title: Text(

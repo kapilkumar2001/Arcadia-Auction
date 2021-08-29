@@ -1,3 +1,4 @@
+import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/team.dart';
@@ -110,6 +111,7 @@ class _AddMatchFormState extends State<AddMatchForm> {
     dateTime = DateFormat.yMd().format(DateTime.now());
     teams = Provider.of<Teams>(context, listen: false).teams;
     return Scaffold(
+       backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
         title: Text(
           "Add Match",
