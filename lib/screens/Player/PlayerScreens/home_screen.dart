@@ -1,11 +1,13 @@
+import 'package:arcadia/models/models.dart' as m;
+
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_profile_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
+import 'package:arcadia/screens/onboarding/signin_screen.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,9 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:arcadia/provider/match.dart';
-
-import '../../signin_screen.dart';
 
 class PlayerHomeScreen extends StatefulWidget {
   @override
@@ -23,11 +22,11 @@ class PlayerHomeScreen extends StatefulWidget {
 }
 
 class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
-  List<Announcement> announcementList = [];
+  List<m.Announcement> announcementList = [];
   bool _isInit = true;
   bool _isLoading = true;
   int _currentpage = 0;
-  List<Match> upcomingMatchList = [];
+  List<m.Match> upcomingMatchList = [];
   PageController _pageController = PageController(initialPage: 0);
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -76,7 +75,6 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
         Provider.of<Announcements>(context, listen: false).announcement;
     upcomingMatchList =
         Provider.of<Matches>(context, listen: false).upcomingMatches;
-    // print('announcements :   $announcementList');
     if (_isLoading) {
       return Center(
         child: CircularProgressIndicator(),
@@ -170,7 +168,7 @@ class _PlayerHomeScreenState extends State<PlayerHomeScreen> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       ...upcomingMatchList
-                          .map((e) => GestureDetector(
+                          .map((m.Match e) => GestureDetector(
                               child: UpcomingMatchCard(match: e)))
                           .toList(),
                     ],

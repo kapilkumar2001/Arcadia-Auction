@@ -1,7 +1,6 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/matches.dart';
-import 'package:arcadia/provider/match.dart';
-import 'package:arcadia/provider/team.dart';
+import 'package:arcadia/models/models.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/forms/add_match_form.dart';
 import 'package:arcadia/screens/Auction/widgets/match_card.dart';

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 
-class Announcement with ChangeNotifier {
+class Announcement {
   final String id;
   final String title;
   final String subtitle;

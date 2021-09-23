@@ -10,10 +10,8 @@ import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/team_details.dart';
-import 'package:arcadia/screens/onboarding_screen.dart';
 import 'package:arcadia/screens/splash_screen.dart';
 import 'package:arcadia/screens/Auction/auction_home.dart';
-import 'package:arcadia/screens/signin_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -26,6 +24,8 @@ import 'constants/app_theme.dart';
 import 'screens/Auction/auction_resell_player.dart';
 import 'screens/Player/PlayerScreens/player_profile_screen.dart';
 import 'screens/Player/player_form.dart';
+import 'screens/onboarding/onboarding_screen.dart';
+import 'screens/onboarding/signin_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

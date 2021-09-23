@@ -1,4 +1,4 @@
-import 'package:arcadia/provider/announcement.dart';
+import 'package:arcadia/models/announcement.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 

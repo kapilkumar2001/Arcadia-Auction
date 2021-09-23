@@ -1,10 +1,10 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/announcement.dart';
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
-import 'package:arcadia/widgets/blue_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:arcadia/models/models.dart';
 
 class AddAnnouncementForm extends StatefulWidget {
   const AddAnnouncementForm({Key? key}) : super(key: key);

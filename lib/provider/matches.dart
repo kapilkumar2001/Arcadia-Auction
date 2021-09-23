@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'match.dart';
+import '../models/match.dart';
 
 class Matches with ChangeNotifier {
   List<Match> matches = [];

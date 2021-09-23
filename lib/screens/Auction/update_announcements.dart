@@ -1,5 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/announcement.dart';
+import 'package:arcadia/models/models.dart';
 import 'package:arcadia/provider/announcements.dart';
 import 'package:arcadia/screens/Auction/forms/add_announcement_form.dart';
 import 'package:arcadia/screens/Auction/widgets/admin_announcement_card.dart';

@@ -1,11 +1,11 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/category.dart';
-import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:arcadia/models/models.dart';
 
 class AuctionDetails extends StatefulWidget {
   static const routeName = '/auction-details';

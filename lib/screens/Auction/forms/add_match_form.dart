@@ -1,15 +1,13 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/matches.dart';
-import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
-import 'package:arcadia/screens/Auction/admin_dashboard.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
-import 'package:arcadia/widgets/blue_box.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:date_format/date_format.dart';
+
+import 'package:arcadia/models/models.dart';
 
 class AddMatchForm extends StatefulWidget {
   const AddMatchForm({Key? key}) : super(key: key);

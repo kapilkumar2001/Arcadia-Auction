@@ -1,13 +1,13 @@
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
 import 'package:arcadia/enums/weapons.dart';
-import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:arcadia/models/models.dart';
 
 class AuctionPlayerResell extends StatefulWidget {
   static const routeName = '/auction-player-resell';
