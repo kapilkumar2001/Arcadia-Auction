@@ -1,7 +1,7 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/screens/Auction/update_announcements.dart';
-import 'package:arcadia/screens/Auction/update_matches.dart';
-import 'package:arcadia/screens/Auction/update_teams.dart';
+import 'package:arcadia/screens/admin/update_announcements.dart';
+import 'package:arcadia/screens/admin/update_matches.dart';
+import 'package:arcadia/screens/admin/update_teams.dart';
 import 'package:flutter/material.dart';
 
 class AdminDashboard extends StatefulWidget {
@@ -19,7 +19,7 @@ class _AdminDashboardState extends State<AdminDashboard>
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-         backgroundColor: CustomColors.primaryColor,
+        backgroundColor: CustomColors.primaryColor,
         appBar: AppBar(
           title: Text(
             "Admin DashBoard",

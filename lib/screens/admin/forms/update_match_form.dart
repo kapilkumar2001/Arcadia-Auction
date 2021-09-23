@@ -1,8 +1,6 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/matches.dart';
-import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/provider/teams.dart';
-import 'package:arcadia/screens/Auction/auction_overview.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/admin/auction_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

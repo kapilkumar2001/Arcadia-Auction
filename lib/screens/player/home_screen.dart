@@ -1,12 +1,9 @@
 import 'package:arcadia/models/models.dart' as m;
 
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/announcements.dart';
-import 'package:arcadia/provider/auth.dart';
-import 'package:arcadia/provider/matches.dart';
-import 'package:arcadia/provider/teams.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/player_profile_screen.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/player/player_profile_screen.dart';
+import 'package:arcadia/screens/player/rules_pdf_viewer.dart';
 import 'package:arcadia/screens/onboarding/signin_screen.dart';
 import 'package:arcadia/widgets/announcement_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';

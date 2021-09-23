@@ -1,8 +1,8 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/models/models.dart';
-import 'package:arcadia/provider/announcements.dart';
-import 'package:arcadia/screens/Auction/forms/add_announcement_form.dart';
-import 'package:arcadia/screens/Auction/widgets/admin_announcement_card.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/admin/forms/add_announcement_form.dart';
+import 'package:arcadia/screens/admin/widgets/admin_announcement_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
