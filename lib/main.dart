@@ -5,6 +5,7 @@ import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_details.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
+import 'package:arcadia/screens/Auction/auction_player.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/rules_pdf_viewer.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';

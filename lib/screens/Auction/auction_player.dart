@@ -49,7 +49,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
   @override
   void initState() {
     super.initState();
-    _teams = '0';
+
     _playerStatus = PlayerStatus.unassigned;
   }
 
@@ -60,6 +60,7 @@ class _AuctionPlayerState extends State<AuctionPlayer> {
       playerImage = await Provider.of<Players>(context, listen: false)
           .getImageUrl(widget.currPlayer.uid);
       setState(() {
+        _teams = Provider.of<Teams>(context, listen: false).teams[0].teamUid;
         isLoading = false;
       });
     }

@@ -43,7 +43,7 @@ class _AuctionPlayerState extends State<AuctionPlayerResell> {
   @override
   void initState() {
     super.initState();
-    _teams = '0';
+    _teams = Provider.of<Teams>(context, listen: false).teams[0].teamUid;
     _playerStatus = PlayerStatus.unassigned;
   }
 
