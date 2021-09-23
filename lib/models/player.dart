@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:arcadia/enums/weapons.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';

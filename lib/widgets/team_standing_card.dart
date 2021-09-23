@@ -1,6 +1,6 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/models/models.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/team_details.dart';
+import 'package:arcadia/screens/player/team_details.dart';
 import 'package:flutter/material.dart';
 
 class TeamStandingCard extends StatelessWidget {

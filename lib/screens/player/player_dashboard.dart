@@ -1,7 +1,7 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/schedule_screen.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/team_standings.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/home_screen.dart';
+import 'package:arcadia/screens/player/schedule_screen.dart';
+import 'package:arcadia/screens/player/team_standings.dart';
+import 'package:arcadia/screens/player/home_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

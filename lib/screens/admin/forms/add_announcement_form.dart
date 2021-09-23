@@ -1,6 +1,6 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/announcements.dart';
-import 'package:arcadia/screens/Auction/auction_overview.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/admin/auction_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class _AddAnnouncementFormState extends State<AddAnnouncementForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: CustomColors.primaryColor,
+      backgroundColor: CustomColors.primaryColor,
       appBar: AppBar(
         title: Text(
           "Add Announcement",

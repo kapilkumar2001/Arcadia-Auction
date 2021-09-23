@@ -1,9 +1,8 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/weapons.dart';
-import 'package:arcadia/provider/auth.dart';
 import 'package:arcadia/models/models.dart';
-import 'package:arcadia/provider/players.dart';
+import 'package:arcadia/provider/provider.dart';
 import 'package:arcadia/screens/onboarding/signin_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';

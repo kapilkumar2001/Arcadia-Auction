@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/teams.dart';
-import 'package:arcadia/screens/Auction/admin_dashboard.dart';
-import 'package:arcadia/screens/Auction/auction_overview.dart';
-import 'package:arcadia/widgets/blue_box.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/admin/auction_overview.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

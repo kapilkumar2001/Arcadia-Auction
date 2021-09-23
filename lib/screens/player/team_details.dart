@@ -1,7 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/matches.dart';
-import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/provider/teams.dart';
+import 'package:arcadia/provider/provider.dart';
 import 'package:arcadia/widgets/player_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
 import 'package:cached_network_image/cached_network_image.dart';

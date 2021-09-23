@@ -1,9 +1,8 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/constants/const_strings.dart';
-import 'package:arcadia/provider/matches.dart';
 import 'package:arcadia/models/models.dart';
-import 'package:arcadia/provider/teams.dart';
-import 'package:arcadia/screens/Player/PlayerScreens/match_details.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/player/match_details.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

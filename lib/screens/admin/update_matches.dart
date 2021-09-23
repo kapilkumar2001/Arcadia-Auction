@@ -1,19 +1,20 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/models/models.dart';
-import 'package:arcadia/provider/teams.dart';
-import 'package:arcadia/screens/Auction/forms/add_team_form.dart';
-import 'package:arcadia/screens/Auction/widgets/team_card.dart';
+import 'package:arcadia/provider/provider.dart';
+import 'package:arcadia/screens/admin/forms/add_match_form.dart';
+import 'package:arcadia/screens/admin/widgets/match_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class UpdateTeams extends StatefulWidget {
-  const UpdateTeams({Key? key}) : super(key: key);
+class UpdateMatches extends StatefulWidget {
+  const UpdateMatches({Key? key}) : super(key: key);
 
   @override
-  _UpdateTeamsState createState() => _UpdateTeamsState();
+  _UpdateMatchesState createState() => _UpdateMatchesState();
 }
 
-class _UpdateTeamsState extends State<UpdateTeams> {
+class _UpdateMatchesState extends State<UpdateMatches> {
+  List<Match> matches = [];
   List<Team> teams = [];
   bool _isInit = true;
   bool _isLoading = true;
@@ -22,11 +23,15 @@ class _UpdateTeamsState extends State<UpdateTeams> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
-            (value) => setState(() {
-              _isLoading = false;
-            }),
-          );
+      Provider.of<Matches>(context, listen: false)
+          .fetchAndSetMatches()
+          .then((value) {
+        Provider.of<Teams>(context, listen: false).fetchAndSetTeams().then(
+              (value) => setState(() {
+                _isLoading = false;
+              }),
+            );
+      });
     }
     _isInit = false;
   }
@@ -34,6 +39,7 @@ class _UpdateTeamsState extends State<UpdateTeams> {
   @override
   Widget build(BuildContext context) {
     teams = Provider.of<Teams>(context, listen: false).teams;
+    matches = Provider.of<Matches>(context, listen: false).matches;
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -49,7 +55,7 @@ class _UpdateTeamsState extends State<UpdateTeams> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AddTeamForm()),
+                      MaterialPageRoute(builder: (context) => AddMatchForm()),
                     );
                   },
                   child: Container(
@@ -70,7 +76,7 @@ class _UpdateTeamsState extends State<UpdateTeams> {
                           children: [
                             Icon(Icons.add, color: Colors.white),
                             Text(
-                              "  Add Team",
+                              "  Add Match",
                               style:
                                   TextStyle(fontSize: 20, color: Colors.white),
                             ),
@@ -83,14 +89,14 @@ class _UpdateTeamsState extends State<UpdateTeams> {
                 ),
                 // Center(
                 //   child: Text(
-                //     "Teams",
+                //     "Matches",
                 //     style: TextStyle(
                 //         fontSize: 20,
                 //         color: Colors.white54,
                 //         fontWeight: FontWeight.bold),
                 //   ),
                 // ),
-                ...teams.map((e) => TeamCard(e)).toList(),
+                ...matches.map((e) => MatchCard(e, teams)).toList(),
               ],
             ),
           );
