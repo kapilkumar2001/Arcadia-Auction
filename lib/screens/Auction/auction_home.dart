@@ -1,12 +1,13 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/auth.dart';
-import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/auction_resell_player.dart';
-import 'package:arcadia/screens/signin_screen.dart';
+import 'package:arcadia/screens/onboarding/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:arcadia/models/models.dart';
 
 import 'auction_player.dart';
 
@@ -73,11 +74,6 @@ class _AuctionHomeState extends State<AuctionHome> {
                             },
                           ),
                         );
-
-                        // Navigator.of(context).pushNamed(
-                        //   AuctionPlayer.routeName,
-                        //   arguments: nextPlayer,
-                        // );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

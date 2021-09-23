@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:arcadia/enums/player_status.dart';
-import 'package:arcadia/provider/player.dart';
+import 'package:arcadia/models/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

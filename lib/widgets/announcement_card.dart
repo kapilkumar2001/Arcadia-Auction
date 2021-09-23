@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:arcadia/constants/const_strings.dart';
-import 'package:arcadia/provider/announcement.dart';
+import 'package:arcadia/models/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

@@ -1,5 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/screens/signin_screen.dart';
+import 'package:arcadia/screens/onboarding/signin_screen.dart';
 import 'package:arcadia/widgets/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,10 +52,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Colors.black,
                 Colors.black,
                 Colors.black,
-                // Color(0xFF3594DD),
-                // Color(0xFF4563DB),
-                // Color(0xFF5036D5),
-                // Color(0xFF5B16D0),
               ],
             ),
           ),
@@ -69,7 +65,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: _currentPage != 2
                         ? FlatButton(
                             onPressed: () => Navigator.of(context)
-                                .pushNamed(SignInScreen.routeName),
+                                .pushReplacementNamed(SignInScreen.routeName),
                             child: Text(
                               'Skip',
                               style: TextStyle(
@@ -80,7 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           )
                         : FlatButton(
                             onPressed: () => Navigator.of(context)
-                                .pushNamed(SignInScreen.routeName),
+                                .pushReplacementNamed(SignInScreen.routeName),
                             child: Text(
                               '',
                               style: TextStyle(
@@ -256,7 +252,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           child: FlatButton(
                               onPressed:
                               () => Navigator.of(context)
-                                  .pushNamed(SignInScreen.routeName),
+                                  .pushReplacementNamed(SignInScreen.routeName),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,

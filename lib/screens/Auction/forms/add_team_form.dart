@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/team.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/screens/Auction/admin_dashboard.dart';
 import 'package:arcadia/screens/Auction/auction_overview.dart';
@@ -11,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+
+import 'package:arcadia/models/models.dart';
 
 class AddTeamForm extends StatefulWidget {
   const AddTeamForm({Key? key}) : super(key: key);

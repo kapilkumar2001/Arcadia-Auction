@@ -3,18 +3,16 @@ import 'dart:io';
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/enums/weapons.dart';
 import 'package:arcadia/provider/auth.dart';
-import 'package:arcadia/provider/player.dart';
+import 'package:arcadia/models/models.dart';
 import 'package:arcadia/provider/players.dart';
 import 'package:arcadia/screens/Player/PlayerScreens/player_dashboard.dart';
-import 'package:arcadia/screens/signin_screen.dart';
-import 'package:arcadia/widgets/blue_box.dart';
+import 'package:arcadia/screens/onboarding/signin_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-import '../signin_screen.dart';
 
 class PlayerForm extends StatefulWidget {
   @override

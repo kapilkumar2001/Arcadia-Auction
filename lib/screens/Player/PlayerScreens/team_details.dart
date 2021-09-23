@@ -1,9 +1,6 @@
 import 'package:arcadia/constants/app_theme.dart';
 import 'package:arcadia/provider/matches.dart';
-import 'package:arcadia/provider/player.dart';
 import 'package:arcadia/provider/players.dart';
-import 'package:arcadia/provider/team.dart';
-import 'package:arcadia/provider/match.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/widgets/player_card.dart';
 import 'package:arcadia/widgets/upcoming_match_card.dart';
@@ -11,6 +8,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'package:arcadia/models/models.dart';
 
 class TeamDetails extends StatefulWidget {
   static const routeName = '/team-details';

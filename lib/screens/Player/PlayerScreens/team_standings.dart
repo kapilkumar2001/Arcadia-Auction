@@ -1,5 +1,5 @@
 import 'package:arcadia/constants/app_theme.dart';
-import 'package:arcadia/provider/team.dart';
+import 'package:arcadia/models/models.dart';
 import 'package:arcadia/provider/teams.dart';
 import 'package:arcadia/widgets/team_standing_card.dart';
 import 'package:flutter/material.dart';

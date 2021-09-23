@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../provider/match.dart';
+import 'package:arcadia/models/models.dart';
 
 class UpcomingMatchCard extends StatefulWidget {
   final Match match;

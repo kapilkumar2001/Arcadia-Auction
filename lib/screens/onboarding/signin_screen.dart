@@ -11,17 +11,6 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  // Future<void> getdata() async {
-  //   await Players().getData();
-  // }
-
-  // @override
-  // void initState() {
-  //   getdata();
-  //   super.initState();
-  // }
-
-  
 
   @override
   Widget build(BuildContext context) {

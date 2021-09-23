@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:arcadia/enums/category.dart';
 import 'package:arcadia/enums/player_status.dart';
 
-class Player with ChangeNotifier {
+class Player {
   final String uid;
   final String name;
   final String studentID;
