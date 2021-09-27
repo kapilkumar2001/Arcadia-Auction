@@ -2,6 +2,7 @@
     Awesome! Contributions of all kinds are greatly appreciated. To help smoothen the process we have a few non-exhaustive guidelines to follow which should get you going in no time.
  
  ## Getting Started
+    [Contributing to Flutter:Getting Started](https://medium.com/flutter-community/contributing-to-flutter-getting-started-a0db68cbcd5b)
     Fork the repository
     Send your commits
     Submit a Pull request
