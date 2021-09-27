@@ -1,9 +1,10 @@
 import 'package:arcadia/provider/provider.dart';
 import 'package:arcadia/screens/admin/auction_overview.dart';
 import 'package:arcadia/screens/player/forms/player_form.dart';
+import 'package:arcadia/screens/player/player_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../Player/player_dashboard.dart';
+
 
 class Wrapper extends StatefulWidget {
   static const routeName = '/wrapper';
