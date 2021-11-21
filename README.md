@@ -5,19 +5,20 @@
 </p>
 <div align='center'>
 <a href="https://play.google.com/store/apps/details?id=com.arcadia.auction&hl=en">
-  <img src="./readme/play.png" alt="Google Play" height=40px>
+  <img src="./readme/play.png" alt="Google Play" height=45px>
 </a>
 <a href="https://flutterawesome.com/cs-go-tournament-app-build-using-flutter/">
-  <img src="./readme/flutter_awesome.png" alt="Google Play" height=40px>
+  <img src="./readme/flutter_awesome.png" alt="Google Play" height=45px>
 </a>
 <a href="https://devlibrary.withgoogle.com/products/flutter/repos/kapilkumar2001-Arcadia-Auction">
   <img src="https://cdn.worldvectorlogo.com/logos/google-developers.svg
-" alt="Google Play" height=40px>
+" alt="Google Play" height=45px>
 </a>
 </div>
 <br>
-An App where all the details about a tournament can be found.
+<!-- An App where all the details about a tournament can be found. -->
 
+Want to get the best esports experience? Want to be updated about your favorite teams? Arcadia Auction is a one stop solution to all your tournament needs with a simple UI and lot of features. Track your favortite teams and players , know who is dominating the server and when is the next match.
 
 <br>
 <p align="center">
