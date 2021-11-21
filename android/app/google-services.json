@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:508512706519:android:d92664cd634ecbf997f592",
         "android_client_info": {
-          "package_name": "com.example.auctions"
+          "package_name": "com.arcadia.auction"
         }
       },
       "oauth_client": [

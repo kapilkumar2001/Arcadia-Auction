@@ -1,4 +1,4 @@
-package com.example.auctions
+package com.arcadia.auction
 
 import io.flutter.embedding.android.FlutterActivity
 
