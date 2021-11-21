@@ -11,8 +11,7 @@
   <img src="./readme/flutter_awesome.png" alt="Google Play" height=40px>
 </a>
 <a href="https://devlibrary.withgoogle.com/products/flutter/repos/kapilkumar2001-Arcadia-Auction">
-  <img src="https://cdn.worldvectorlogo.com/logos/google-developers.svg
-" alt="Google Play" height=40px>
+  <img src="https://cdn.worldvectorlogo.com/logos/google-developers.svg" alt="Google Play" height=40px>
 </a>
 </div>
 <br>
