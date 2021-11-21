@@ -1,61 +1,34 @@
-# CS:GO Tournament App
+# Arcadia Auction - CSGO Tournment
 
+<p align='center'>
+<img src="./readme/featured-design.png" width="80%"></img>
+</p>
+<div align='center'>
+<a href="https://play.google.com/store/apps/details?id=com.arcadia.auction&hl=en">
+  <img src="./readme/play.png" alt="Google Play" height=40px>
+</a>
+<a href="https://flutterawesome.com/cs-go-tournament-app-build-using-flutter/">
+  <img src="./readme/flutter_awesome.png" alt="Google Play" height=40px>
+</a>
+<a href="https://devlibrary.withgoogle.com/products/flutter/repos/kapilkumar2001-Arcadia-Auction">
+  <img src="https://cdn.worldvectorlogo.com/logos/google-developers.svg
+" alt="Google Play" height=40px>
+</a>
+</div>
+<br>
 An App where all the details about a tournament can be found.
 
-## ⚡Features
-
-- User Side
-
-  - Players can Register for the tournament through the App itself.
-  - Users can Sign-in Anonymously.
-  - Users can see the Match Schedule on the App.
-  - Users can watch Match details (including time, score, winner team, MVP etc)
-  - Users can see the points table on the App.
-  - Users will get announcements from Organisers in case of match rescheduling or any important update on the App.
-  - Many Features which can't be explained through a README. You can see the demo video below.
-
-- Admin Side
-  - Admin can add teams on the App which are registered for the tournament.
-  - Admin can organise Live Auction for the teams and players on the App inself.
-  - Admin gets live updates about the Auction during live Auction.
-  - Admin can add match schedule on the App which will be displayed to the users.
-  - Admin can announce any updates throught the App itself.
-
-<br>
-<br>
-
-## ⚡Screenshots
 
 <br>
 <p align="center">
-    <img src="screenshots/onboarding1.jpg" width="30%"></img>
-    <img src="screenshots/onboarding3.jpg" width="30%"></img>
-    <img src="screenshots/onboarding2.jpg" width="30%"></img> 
+    <img src="./readme/make-team.jpg" width="200"></img>
+    <img src="./readme/miss.jpg" width="200"></img>
+    <img src="./readme/match.jpg" width="200"></img> 
     <br>
-    <img src="screenshots/playerhome.jpg" width="30%"></img> 
-    <img src="screenshots/announcementdialog.jpeg" width="30%"></img>
-    <img src="screenshots/playerprofile.jpg" width="30%"></img>
+    <img src="./readme/auction.jpg" width="200"></img> 
+    <img src="./readme/latest.jpg" width="200"></img>
     <br> 
-    <!-- <img src="screenshots/matchdetails.jpg" width="30%"> 
-    </img><img src="screenshots/onboarding-1.jpg" width="30%">
-    <img src="screenshots/a" width="30%"></img>  
-    <br> -->
-    <img src="screenshots/teamschedule.jpg" width="30%"></img>
-    <img src="screenshots/teamstandings.jpg" width="30%"></img>
-    <img src="screenshots/teamdetails2.jpeg" width="30%"></img>
-    <!-- <img src="screenshots/addteam1.jpg" width="30%"></img> -->
-    <br>
-    <img src="screenshots/login.jpg" width="30%"></img>
-    <img src="screenshots/matchdetails.jpg" width="30%"></img>
-    <img src="screenshots/rules.jpg" width="30%"></img>
-    <br>
-    <img src="screenshots/addannouncement.jpg" width="30%"></img> 
-    <img src="screenshots/addmatch.jpg" width="30%"></img>
-    <img src="screenshots/admindashboard.jpg" width="30%"></img>
-    <br>
-    <!-- <img src="screenshots/auctionstatus.jpg" width="30%"></img> -->
 </p>
-
 <br>
 
 ## 💻Tech Stack
