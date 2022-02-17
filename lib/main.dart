@@ -35,7 +35,7 @@ Future<void> _messageHandler(RemoteMessage message) async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of your application.     
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -124,6 +124,7 @@ class Init {
     //initiate default subscription topic
     messaging.subscribeToTopic("announcement");
     messaging.getToken().then((value) {
+      
       print(value);
     });
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
